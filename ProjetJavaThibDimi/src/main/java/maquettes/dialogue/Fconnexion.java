@@ -108,7 +108,7 @@ public class Fconnexion extends JFrame {
 		panel.add(txtpnVeuillezSaisirLe);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(5, 189, 432, 69);
+		panel_1.setBounds(0, 189, 442, 69);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -120,30 +120,22 @@ public class Fconnexion extends JFrame {
 		});
 		btnValider.setHorizontalTextPosition(SwingConstants.LEADING);
 		btnValider.setForeground(new Color(255, 255, 255));
-		btnValider.setBounds(302, 11, 130, 55);
+		btnValider.setBounds(312, 11, 130, 55);
 		btnValider.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Power-48.png")));
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_1.add(btnValider);
 		
-		JButton button = new JButton("New button");
-		button.setBounds(282, 66, 89, 23);
-		panel_1.add(button);
-		
-		JButton button_1 = new JButton("New button");
-		button_1.setBounds(408, 66, 89, 23);
-		panel_1.add(button_1);
-		
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.setHorizontalAlignment(SwingConstants.LEFT);
-		btnQuitter.setBounds(172, 11, 130, 55);
+		btnQuitter.setBounds(178, 11, 130, 55);
 		panel_1.add(btnQuitter);
 		btnQuitter.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Stop-48.png")));
 		btnQuitter.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JButton btnNewButton = new JButton("Param\u00E8tres");
-		btnNewButton.setBounds(-3, 11, 165, 55);
-		panel_1.add(btnNewButton);
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton.setBounds(0, 11, 168, 55);
+		panel_1.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
