@@ -190,7 +190,7 @@ public class Fclients extends JFrame {
 		
 		JLabel lblNewLabel_9 = new JLabel("New label");
 		panel_2.add(lblNewLabel_9, "cell 2 3,alignx trailing");
-		
+	
 		textField_7 = new JTextField();
 		panel_2.add(textField_7, "cell 3 3,growx");
 		textField_7.setColumns(10);
