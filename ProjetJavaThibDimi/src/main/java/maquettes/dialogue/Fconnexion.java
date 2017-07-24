@@ -131,7 +131,7 @@ public class Fconnexion extends JFrame {
 		panel_1.add(btnQuitter);
 		btnQuitter.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Stop-48.png")));
 		btnQuitter.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
+	
 		JButton btnNewButton = new JButton("Param\u00E8tres");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setBounds(0, 11, 168, 55);
