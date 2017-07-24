@@ -80,7 +80,7 @@ public class Fconnexion extends JFrame {
 		panel.add(lblNomDutilisateur);
 		
 		JLabel lblNewLabel_1 = new JLabel("Mot de passe");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Key-16.png")));
 		lblNewLabel_1.setBounds(28, 36, 108, 14);
