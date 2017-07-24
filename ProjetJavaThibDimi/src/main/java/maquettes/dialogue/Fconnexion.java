@@ -73,13 +73,15 @@ public class Fconnexion extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNomDutilisateur = new JLabel("Nom D'utilisateur");
-		lblNomDutilisateur.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNomDutilisateur.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNomDutilisateur.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblNomDutilisateur.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNomDutilisateur.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Windows-8-Login-16.png")));
-		lblNomDutilisateur.setBounds(10, 11, 126, 14);
+		lblNomDutilisateur.setBounds(10, 9, 132, 16);
 		panel.add(lblNomDutilisateur);
 		
 		JLabel lblNewLabel_1 = new JLabel("Mot de passe");
+		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Key-16.png")));
@@ -111,7 +113,12 @@ public class Fconnexion extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnValider = new JButton("Valider");
-		btnValider.setHorizontalAlignment(SwingConstants.LEFT);
+		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnValider.setHorizontalTextPosition(SwingConstants.LEADING);
 		btnValider.setForeground(new Color(255, 255, 255));
 		btnValider.setBounds(302, 11, 130, 55);
 		btnValider.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Power-48.png")));
