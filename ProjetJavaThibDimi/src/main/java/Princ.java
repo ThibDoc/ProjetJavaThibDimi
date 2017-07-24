@@ -2,7 +2,7 @@
 public class Princ {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		System.out.println("Sylvain il joue en formation !");
 
 	}
 
