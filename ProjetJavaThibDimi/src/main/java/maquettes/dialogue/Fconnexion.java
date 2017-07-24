@@ -134,7 +134,7 @@ public class Fconnexion extends JFrame {
 		btnQuitter.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JButton btnNewButton = new JButton("Param\u00E8tres");
-		btnNewButton.setBounds(0, 10, 165, 55);
+		btnNewButton.setBounds(-3, 11, 165, 55);
 		panel_1.add(btnNewButton);
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
