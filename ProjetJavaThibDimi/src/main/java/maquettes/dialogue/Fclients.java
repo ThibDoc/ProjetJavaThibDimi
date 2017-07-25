@@ -46,6 +46,8 @@ public class Fclients extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
 
 	/**
 	 * Launch the application.
@@ -69,7 +71,6 @@ public class Fclients extends JFrame {
 	public Fclients() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 845, 718);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -82,13 +83,13 @@ public class Fclients extends JFrame {
 				
 				JPanel panel_4 = new JPanel(); // panel ajout
 				layeredPane.setLayer(panel_4, 2);
-				layeredPane.add(panel_4, "name_6203143474598");
+				layeredPane.add(panel_4, "name_11438623287941");
 				panel_4.setLayout(new BorderLayout(0, 0));
 				
 				JPanel panel_5 = new JPanel();
 				panel_5.setBackground(new Color(30, 144, 255));
 				panel_4.add(panel_5, BorderLayout.WEST);
-				panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][center][center][center][][][][][][][][][][]"));
+				panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][grow,center][center][center][][][][][][][][][][]"));
 				
 				JLabel lblNewLabel_11 = new JLabel("Ajout");
 				lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -108,7 +109,7 @@ public class Fclients extends JFrame {
 					}
 				});
 				btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnAperu, "cell 0 8,alignx left");
+				panel_5.add(btnAperu, "cell 0 8,alignx left,aligny center");
 				
 				JButton btnImprimer = new JButton("Imprimer");
 				btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -127,11 +128,30 @@ public class Fclients extends JFrame {
 				JPanel panel_7 = new JPanel();
 				panel_7.setBorder(new TitledBorder(null, "Client", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_7, "cell 0 0 4 1,grow");
-				panel_7.setLayout(new MigLayout("", "[][][][][]", "[]"));
+				panel_7.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[grow]"));
+				
+				JLabel lblNewLabel_12 = new JLabel("Code");
+				panel_7.add(lblNewLabel_12, "cell 0 0,alignx trailing");
+				
+				textField_8 = new JTextField();
+				panel_7.add(textField_8, "cell 1 0,growx");
+				textField_8.setColumns(10);
+				
+				JLabel lblNewLabel_13 = new JLabel("Créé le");
+				panel_7.add(lblNewLabel_13, "cell 2 0,alignx trailing");
+				
+				textField_9 = new JTextField();
+				panel_7.add(textField_9, "cell 3 0,growx");
+				textField_9.setColumns(10);
+				
+				JCheckBox chckbxCarteDeFidlit = new JCheckBox("Carte de fidélité");
+				chckbxCarteDeFidlit.setHorizontalAlignment(SwingConstants.CENTER);
+				panel_7.add(chckbxCarteDeFidlit, "cell 4 0,alignx center");
 				
 				JPanel panel_8 = new JPanel();
 				panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_8, "cell 0 1 4 1,grow");
+				panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
 				
 				JPanel panel_9 = new JPanel();
 				panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -143,7 +163,7 @@ public class Fclients extends JFrame {
 				
 				JPanel panel_3 = new JPanel(); // panel principal
 				layeredPane.setLayer(panel_3, 1);
-				layeredPane.add(panel_3, "name_6203154876346");
+				layeredPane.add(panel_3, "name_11438638148150");
 				panel_3.setLayout(new BorderLayout(0, 0));
 				
 				JButton btnExport = new JButton("Export");
@@ -225,6 +245,7 @@ public class Fclients extends JFrame {
 					textField_4.setColumns(10);
 					
 					JCheckBox chckbxNewCheckBox = new JCheckBox("Carte fid\u00E9lit\u00E9");
+					chckbxNewCheckBox.setBackground(new Color(135, 206, 250));
 					panel_2.add(chckbxNewCheckBox, "flowx,cell 3 4");
 					
 					JLabel lblNewLabel_6 = new JLabel("Remarque");
