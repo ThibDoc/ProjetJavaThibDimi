@@ -122,12 +122,10 @@ public class Fconnexion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			 try {
 				Connexions con = new Connexions(textField.getText(),textField_1.getText());
-				System.out.println("Ok");
-				FAccueil frame = new FAccueil();
+				FAccueil frame = new FAccueil(con);
 				frame.setVisible(true);
 				close();
 			} catch (SQLException e1) {
-				System.out.println("Pas ok");
 			}
 			}
 		});

@@ -26,6 +26,9 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Connexions.Connexions;
+
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 
@@ -48,7 +51,7 @@ public class Fcommandes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fcommandes frame = new Fcommandes();
+					Fcommandes frame = new Fcommandes(new Connexions("Luna","Luna"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +63,7 @@ public class Fcommandes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fcommandes() {
+	public Fcommandes(Connexions con) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);

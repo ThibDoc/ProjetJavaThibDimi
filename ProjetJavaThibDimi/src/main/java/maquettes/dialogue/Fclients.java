@@ -31,6 +31,9 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import Connexions.Connexions;
+
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import java.awt.CardLayout;
@@ -87,7 +90,7 @@ public class Fclients extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fclients frame = new Fclients();
+					Fclients frame = new Fclients(new Connexions("Luna","Luna"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,7 +102,7 @@ public class Fclients extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fclients() {
+	public Fclients(Connexions con) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
 		setBounds(100, 100, 845, 718);

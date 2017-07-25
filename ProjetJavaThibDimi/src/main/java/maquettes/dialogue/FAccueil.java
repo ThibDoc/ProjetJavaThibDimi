@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Connexions.Connexions;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -41,7 +44,7 @@ public class FAccueil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FAccueil frame = new FAccueil();
+					FAccueil frame = new FAccueil(new Connexions("Luna","Luna"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +56,7 @@ public class FAccueil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FAccueil() {
+	public FAccueil(Connexions con) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Accueil");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));
@@ -98,7 +101,7 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Farticles frame = new Farticles();
+				Farticles frame = new Farticles(con);
 				frame.setVisible(true);
 			}
 		});
@@ -108,7 +111,7 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fclients frame = new Fclients();
+				Fclients frame = new Fclients(con);
 				frame.setVisible(true);
 			}
 		});
@@ -122,7 +125,7 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_5 = new JButton("");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fcommandes frame = new Fcommandes();
+				Fcommandes frame = new Fcommandes(con);
 				frame.setVisible(true);
 			}
 		});
@@ -133,4 +136,5 @@ public class FAccueil extends JFrame {
 		btnNewButton_3.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Settings-02-128.png")));
 		panel_1.add(btnNewButton_3, "cell 1 2");
 	}
+
 }

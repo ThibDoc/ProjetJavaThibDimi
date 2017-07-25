@@ -14,14 +14,6 @@ public class Connexions{
 		
 		Connection con = DriverManager.getConnection(url,login,mdp);
 
-		Statement req1 = con.createStatement();
-		ResultSet rs = req1.executeQuery("select * from clients where id = '1'");
-
-		while(rs.next()){
-			System.out.println(rs.getString("id"));
-		}
-		rs.close();
-		req1.close();
 		con.close();
 		
 

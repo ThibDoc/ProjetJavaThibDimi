@@ -30,6 +30,9 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+import Connexions.Connexions;
+
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import java.awt.Toolkit;
@@ -54,7 +57,7 @@ public class Farticles extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Farticles frame = new Farticles();
+					Farticles frame = new Farticles(new Connexions("Luna","Luna"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,7 +69,7 @@ public class Farticles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Farticles() {
+	public Farticles(Connexions con) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));
