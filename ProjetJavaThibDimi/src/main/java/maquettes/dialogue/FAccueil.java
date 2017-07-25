@@ -54,9 +54,9 @@ public class FAccueil extends JFrame {
 	 * Create the frame.
 	 */
 	public FAccueil() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Accueil");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1079, 579);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -91,10 +91,21 @@ public class FAccueil extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[grow,center][grow,center][grow,center]", "[grow,center][grow,center][grow,center]"));
 		
 		JButton btnNewButton_4 = new JButton("");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Farticles frame = new Farticles();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton_4.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Product-128.png")));
 		panel_1.add(btnNewButton_4, "cell 1 0");
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			       new Fclients().setVisible(true);
+			}
+		});
 		btnNewButton_1.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/People-128.png")));
 		panel_1.add(btnNewButton_1, "cell 0 1");
 		

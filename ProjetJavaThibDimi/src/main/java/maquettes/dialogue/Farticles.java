@@ -33,6 +33,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Farticles extends JFrame {
 
@@ -65,9 +67,9 @@ public class Farticles extends JFrame {
 	 * Create the frame.
 	 */
 	public Farticles() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1018, 569);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
