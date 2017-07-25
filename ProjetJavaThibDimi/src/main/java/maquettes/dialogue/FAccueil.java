@@ -28,6 +28,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class FAccueil extends JFrame {
 
@@ -53,6 +54,7 @@ public class FAccueil extends JFrame {
 	 * Create the frame.
 	 */
 	public FAccueil() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1079, 579);
 		
