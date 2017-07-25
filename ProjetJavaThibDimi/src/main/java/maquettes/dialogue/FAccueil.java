@@ -81,6 +81,11 @@ public class FAccueil extends JFrame {
 		panel.setLayout(new MigLayout("", "[92px]", "[21px][grow][100px]"));
 		
 		JButton btnNewButton = new JButton("Quittez");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		panel.add(btnNewButton, "cell 0 2,alignx center,aligny top");
 		panel.add(lblSarlLuna, "cell 0 0,alignx left,aligny top");

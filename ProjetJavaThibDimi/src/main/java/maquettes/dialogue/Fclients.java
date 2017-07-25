@@ -69,6 +69,7 @@ public class Fclients extends JFrame {
 	public Fclients() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 845, 718);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -79,7 +80,7 @@ public class Fclients extends JFrame {
 			contentPane.add(layeredPane, BorderLayout.CENTER);
 				layeredPane.setLayout(new CardLayout(0, 0));
 				
-				JPanel panel_4 = new JPanel();
+				JPanel panel_4 = new JPanel(); // panel ajout
 				layeredPane.setLayer(panel_4, 2);
 				layeredPane.add(panel_4, "name_6203143474598");
 				panel_4.setLayout(new BorderLayout(0, 0));
@@ -113,9 +114,7 @@ public class Fclients extends JFrame {
 				btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 				panel_5.add(btnImprimer, "cell 0 9,alignx left");
 				
-				JButton btnExport = new JButton("Export");
-				btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnExport, "cell 0 10,alignx left");
+				
 				
 				JButton btnNewButton_9 = new JButton("Annuler");
 				btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
@@ -142,10 +141,21 @@ public class Fclients extends JFrame {
 				panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_10, "cell 0 3 4 1,grow");
 				
-				JPanel panel_3 = new JPanel();
+				JPanel panel_3 = new JPanel(); // panel principal
 				layeredPane.setLayer(panel_3, 1);
 				layeredPane.add(panel_3, "name_6203154876346");
 				panel_3.setLayout(new BorderLayout(0, 0));
+				
+				JButton btnExport = new JButton("Export");
+				btnExport.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						panel_4.setVisible(false);
+						panel_3.setVisible(true);
+						
+					}
+				});
+				btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
+				panel_5.add(btnExport, "cell 0 10,alignx left");
 				
 				JPanel panel_1 = new JPanel();
 				panel_1.setBackground(new Color(135, 206, 250));
@@ -273,6 +283,13 @@ public class Fclients extends JFrame {
 					panel.add(btnNewButton_2, "cell 0 3,alignx left,aligny center");
 					
 					JButton btnNewButton_3 = new JButton("Supprimer");
+					btnNewButton_3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							panel_3.setVisible(false);
+							panel_4.setVisible(true);
+							
+						}
+					});
 					btnNewButton_3.setBackground(new Color(30, 144, 255));
 					btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_3.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
@@ -308,5 +325,6 @@ public class Fclients extends JFrame {
 					panel.add(btnNewButton_4, "cell 0 10,alignx left,aligny center");
 				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, panel_3, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
 	}
+	
 
 }
