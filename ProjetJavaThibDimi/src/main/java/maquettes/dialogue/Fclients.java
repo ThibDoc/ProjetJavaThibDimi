@@ -32,6 +32,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import javax.swing.border.TitledBorder;
 
 public class Fclients extends JFrame {
 	
@@ -244,7 +245,66 @@ public class Fclients extends JFrame {
 				panel.add(btnNewButton_4, "cell 0 10,alignx left,aligny center");
 				
 				JPanel panel_4 = new JPanel();
-				layeredPane.add(panel_4, BorderLayout.NORTH);
+				layeredPane.setLayer(panel_4, 1);
+				layeredPane.add(panel_4, BorderLayout.CENTER);
+				panel_4.setLayout(new BorderLayout(0, 0));
+				
+				JPanel panel_5 = new JPanel();
+				panel_5.setBackground(new Color(30, 144, 255));
+				panel_4.add(panel_5, BorderLayout.WEST);
+				panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][center][center][center][][][][][][][][][][]"));
+				
+				JLabel lblNewLabel_11 = new JLabel("Ajout");
+				lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
+				lblNewLabel_11.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Add-64.png")));
+				panel_5.add(lblNewLabel_11, "cell 0 0,alignx left,aligny top");
+				
+				JButton btnNewButton_8 = new JButton("Sauvegarder");
+				btnNewButton_8.setBackground(new Color(30, 144, 255));
+				btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
+				btnNewButton_8.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
+				panel_5.add(btnNewButton_8, "cell 0 2,alignx center");
+				
+				JButton btnAperu = new JButton("Aperçu");
+				btnAperu.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
+				btnAperu.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
+				panel_5.add(btnAperu, "cell 0 8,alignx center");
+				
+				JButton btnImprimer = new JButton("Imprimer");
+				btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
+				panel_5.add(btnImprimer, "cell 0 9,alignx center");
+				
+				JButton btnExport = new JButton("Export");
+				btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
+				panel_5.add(btnExport, "cell 0 10,alignx center");
+				
+				JButton btnNewButton_9 = new JButton("Annuler");
+				btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+				panel_5.add(btnNewButton_9, "cell 0 20,alignx center");
+				
+				JPanel panel_6 = new JPanel();
+				panel_4.add(panel_6, BorderLayout.CENTER);
+				panel_6.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow 10][grow 30][grow 20][grow 40]"));
+				
+				JPanel panel_7 = new JPanel();
+				panel_7.setBorder(new TitledBorder(null, "Client", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_6.add(panel_7, "cell 0 0 4 1,grow");
+				
+				JPanel panel_8 = new JPanel();
+				panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_6.add(panel_8, "cell 0 1 4 1,grow");
+				
+				JPanel panel_9 = new JPanel();
+				panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_6.add(panel_9, "cell 0 2 4 1,grow");
+				
+				JPanel panel_10 = new JPanel();
+				panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_6.add(panel_10, "cell 0 3 4 1,grow");
 				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, panel_3, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
 	}
 
