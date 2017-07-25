@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Toolkit;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
