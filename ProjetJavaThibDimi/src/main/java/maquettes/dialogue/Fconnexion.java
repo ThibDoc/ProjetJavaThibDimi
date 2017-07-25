@@ -15,12 +15,16 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+
+import Connexions.Connexions;
+
 import javax.swing.JTextPane;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Fconnexion extends JFrame {
@@ -116,12 +120,21 @@ public class Fconnexion extends JFrame {
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			 try {
+				Connexions con = new Connexions(textField.getText(),textField_1.getText());
+				System.out.println("Ok");
+				FAccueil frame = new FAccueil();
+				frame.setVisible(true);
+				close();
+			} catch (SQLException e1) {
+				System.out.println("Pas ok");
+			}
 			}
 		});
 		btnValider.setHorizontalTextPosition(SwingConstants.LEADING);
-		btnValider.setForeground(new Color(255, 255, 255));
+		btnValider.setForeground(new Color(0, 0, 0));
 		btnValider.setBounds(312, 11, 130, 55);
-		btnValider.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Power-48.png")));
+		btnValider.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Power-48-actif.png")));
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_1.add(btnValider);
 		
@@ -142,5 +155,9 @@ public class Fconnexion extends JFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Customize-01-48.png")));
+	}
+	
+	public void close(){
+		super.dispose();
 	}
 }

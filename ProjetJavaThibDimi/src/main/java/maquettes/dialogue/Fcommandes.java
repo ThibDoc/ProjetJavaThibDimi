@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class Fcommandes extends JFrame {
 
@@ -60,6 +61,8 @@ public class Fcommandes extends JFrame {
 	 * Create the frame.
 	 */
 	public Fcommandes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
+		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
@@ -145,6 +148,11 @@ public class Fcommandes extends JFrame {
 		panel_1.add(btnNewButton_6, "cell 0 7");
 		
 		JButton btnNewButton_7 = new JButton("Accueil");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CloseFrame();
+			}
+		});
 		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_7.setForeground(Color.WHITE);
 		btnNewButton_7.setBackground(new Color(255, 140, 0));
@@ -306,6 +314,10 @@ public class Fcommandes extends JFrame {
 		btnNewButton_11.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Cart-05-48.png")));
 		btnNewButton_11.setBorder(null);
 		panel_5.add(btnNewButton_11, "cell 2 1 2 1,grow");
+	}
+	
+	public void CloseFrame(){
+	    super.dispose();
 	}
 
 }
