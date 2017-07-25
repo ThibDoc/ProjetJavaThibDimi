@@ -103,7 +103,8 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			       new Fclients().setVisible(true);
+				Fclients frame = new Fclients();
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/People-128.png")));

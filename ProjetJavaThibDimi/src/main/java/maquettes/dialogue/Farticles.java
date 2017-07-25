@@ -90,6 +90,7 @@ public class Farticles extends JFrame {
 		btnAccueil.setIcon(new ImageIcon(Farticles.class.getResource("/images/gestion/Home-48.png")));
 		btnAccueil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CloseFrame();
 			}
 		});
 		
@@ -264,5 +265,9 @@ public class Farticles extends JFrame {
 		textField_5 = new JTextField();
 		panel_4.add(textField_5, "cell 4 0,growx");
 		textField_5.setColumns(10);
+	}
+	
+	public void CloseFrame(){
+	    super.dispose();
 	}
 }
