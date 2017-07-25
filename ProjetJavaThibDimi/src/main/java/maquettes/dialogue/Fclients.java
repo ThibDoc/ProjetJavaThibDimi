@@ -81,7 +81,7 @@ public class Fclients extends JFrame {
 				layeredPane.setLayout(new CardLayout(0, 0));
 				
 				JPanel panel_4 = new JPanel();
-				layeredPane.setLayer(panel_4, 1);
+				layeredPane.setLayer(panel_4, 2);
 				layeredPane.add(panel_4, "name_6203143474598");
 				panel_4.setLayout(new BorderLayout(0, 0));
 				
@@ -108,19 +108,19 @@ public class Fclients extends JFrame {
 					}
 				});
 				btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnAperu, "cell 0 8,alignx center");
+				panel_5.add(btnAperu, "cell 0 8,alignx left");
 				
 				JButton btnImprimer = new JButton("Imprimer");
 				btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnImprimer, "cell 0 9,alignx center");
+				panel_5.add(btnImprimer, "cell 0 9,alignx left");
 				
 				JButton btnExport = new JButton("Export");
 				btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnExport, "cell 0 10,alignx center");
+				panel_5.add(btnExport, "cell 0 10,alignx left");
 				
 				JButton btnNewButton_9 = new JButton("Annuler");
 				btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-				panel_5.add(btnNewButton_9, "cell 0 20,alignx center");
+				panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
 				
 				JPanel panel_6 = new JPanel();
 				panel_4.add(panel_6, BorderLayout.CENTER);
@@ -129,6 +129,7 @@ public class Fclients extends JFrame {
 				JPanel panel_7 = new JPanel();
 				panel_7.setBorder(new TitledBorder(null, "Client", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_7, "cell 0 0 4 1,grow");
+				panel_7.setLayout(new MigLayout("", "[][][][][]", "[]"));
 				
 				JPanel panel_8 = new JPanel();
 				panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -143,7 +144,7 @@ public class Fclients extends JFrame {
 				panel_6.add(panel_10, "cell 0 3 4 1,grow");
 				
 				JPanel panel_3 = new JPanel();
-				layeredPane.setLayer(panel_3, 2);
+				layeredPane.setLayer(panel_3, 1);
 				layeredPane.add(panel_3, "name_6203154876346");
 				panel_3.setLayout(new BorderLayout(0, 0));
 				
