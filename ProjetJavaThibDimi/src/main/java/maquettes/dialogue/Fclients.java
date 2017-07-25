@@ -34,6 +34,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import java.awt.CardLayout;
+import java.awt.SystemColor;
 
 public class Fclients extends JFrame {
 	
@@ -48,6 +49,28 @@ public class Fclients extends JFrame {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField textField_17;
+	private JTextField textField_18;
+	private JTextField textField_19;
+	private JTextField textField_20;
+	private JTextField textField_21;
+	private JTextField textField_22;
+	private JTextField textField_23;
+	private JTextField textField_24;
+	private JTextField textField_25;
+	private JTextField textField_26;
+	private JTextField textField_27;
+	private JTextField textField_28;
+	private JTextField textField_29;
+	private JTextField textField_30;
+	private JTextField textField_31;
 
 	/**
 	 * Launch the application.
@@ -81,14 +104,14 @@ public class Fclients extends JFrame {
 			contentPane.add(layeredPane, BorderLayout.CENTER);
 				layeredPane.setLayout(new CardLayout(0, 0));
 				
-				JPanel panel_4 = new JPanel(); // panel ajout
-				layeredPane.setLayer(panel_4, 2);
-				layeredPane.add(panel_4, "name_11438623287941");
-				panel_4.setLayout(new BorderLayout(0, 0));
+				JPanel FCAjout = new JPanel(); // panel ajout
+				layeredPane.setLayer(FCAjout, 2);
+				layeredPane.add(FCAjout, "name_11438623287941");
+				FCAjout.setLayout(new BorderLayout(0, 0));
 				
 				JPanel panel_5 = new JPanel();
 				panel_5.setBackground(new Color(30, 144, 255));
-				panel_4.add(panel_5, BorderLayout.WEST);
+				FCAjout.add(panel_5, BorderLayout.WEST);
 				panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][grow,center][center][center][][][][][][][][][][]"));
 				
 				JLabel lblNewLabel_11 = new JLabel("Ajout");
@@ -122,7 +145,7 @@ public class Fclients extends JFrame {
 				panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
 				
 				JPanel panel_6 = new JPanel();
-				panel_4.add(panel_6, BorderLayout.CENTER);
+				FCAjout.add(panel_6, BorderLayout.CENTER);
 				panel_6.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow 10][grow 30][grow 20][grow 40]"));
 				
 				JPanel panel_7 = new JPanel();
@@ -153,24 +176,87 @@ public class Fclients extends JFrame {
 				panel_6.add(panel_8, "cell 0 1 4 1,grow");
 				panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
 				
+				JLabel lblPrenom = new JLabel("Prénom");
+				panel_8.add(lblPrenom, "cell 0 0,alignx trailing");
+				
+				textField_10 = new JTextField();
+				panel_8.add(textField_10, "cell 1 0,growx");
+				textField_10.setColumns(10);
+				
+				JLabel lblNom = new JLabel("Nom");
+				panel_8.add(lblNom, "cell 2 0,alignx trailing");
+				
+				textField_11 = new JTextField();
+				panel_8.add(textField_11, "cell 3 0,growx");
+				textField_11.setColumns(10);
+				
+				JLabel lblAdresse = new JLabel("Adresse");
+				panel_8.add(lblAdresse, "cell 0 1,alignx trailing");
+				
+				textField_12 = new JTextField();
+				panel_8.add(textField_12, "cell 1 1 3 1,growx");
+				textField_12.setColumns(10);
+				
+				JLabel lblCodePostal = new JLabel("Code postal");
+				panel_8.add(lblCodePostal, "cell 0 2,alignx trailing");
+				
+				textField_13 = new JTextField();
+				panel_8.add(textField_13, "cell 1 2,growx");
+				textField_13.setColumns(10);
+				
+				JLabel lblVille = new JLabel("Ville");
+				panel_8.add(lblVille, "cell 2 2,alignx trailing");
+				
+				textField_14 = new JTextField();
+				panel_8.add(textField_14, "cell 3 2,growx");
+				textField_14.setColumns(10);
+				
 				JPanel panel_9 = new JPanel();
 				panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_9, "cell 0 2 4 1,grow");
+				panel_9.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow]"));
+				
+				JLabel lblFixe = new JLabel("Fixe");
+				panel_9.add(lblFixe, "cell 0 0,alignx trailing");
+				
+				textField_15 = new JTextField();
+				panel_9.add(textField_15, "cell 1 0,growx");
+				textField_15.setColumns(10);
+				
+				JLabel lblMobile = new JLabel("Mobile");
+				panel_9.add(lblMobile, "cell 2 0,alignx trailing");
+				
+				textField_16 = new JTextField();
+				panel_9.add(textField_16, "cell 3 0,growx");
+				textField_16.setColumns(10);
+				
+				JLabel lblEmail = new JLabel("Email");
+				panel_9.add(lblEmail, "cell 0 1,alignx trailing");
+				
+				textField_17 = new JTextField();
+				panel_9.add(textField_17, "cell 1 1 3 1,growx");
+				textField_17.setColumns(10);
 				
 				JPanel panel_10 = new JPanel();
 				panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_6.add(panel_10, "cell 0 3 4 1,grow");
+				panel_10.setLayout(new MigLayout("", "[grow]", "[grow]"));
 				
-				JPanel panel_3 = new JPanel(); // panel principal
-				layeredPane.setLayer(panel_3, 1);
-				layeredPane.add(panel_3, "name_11438638148150");
-				panel_3.setLayout(new BorderLayout(0, 0));
+				JTextArea textArea_1 = new JTextArea();
+				panel_10.add(textArea_1, "cell 0 0,grow");
+				
+				/* --- Fenêtre principal ---- */
+				
+				JPanel FClient = new JPanel(); // panel principal
+				layeredPane.setLayer(FClient, 1);
+				layeredPane.add(FClient, "name_11438638148150");
+				FClient.setLayout(new BorderLayout(0, 0));
 				
 				JButton btnExport = new JButton("Export");
 				btnExport.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						panel_4.setVisible(false);
-						panel_3.setVisible(true);
+						FCAjout.setVisible(false);
+						FClient.setVisible(true);
 						
 					}
 				});
@@ -179,7 +265,7 @@ public class Fclients extends JFrame {
 				
 				JPanel panel_1 = new JPanel();
 				panel_1.setBackground(new Color(135, 206, 250));
-				panel_3.add(panel_1, BorderLayout.CENTER);
+				FClient.add(panel_1, BorderLayout.CENTER);
 				panel_1.setLayout(new MigLayout("", "[grow]", "[grow 50][grow][]"));
 				
 				JPanel panel_2 = new JPanel();
@@ -268,7 +354,7 @@ public class Fclients extends JFrame {
 					panel_1.add(comboBox, "cell 0 2");
 					
 					JPanel panel = new JPanel();
-					panel_3.add(panel, BorderLayout.WEST);
+					FClient.add(panel, BorderLayout.WEST);
 					panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 					panel.setBackground(new Color(30, 144, 255));
 					panel.setLayout(new MigLayout("", "[left]", "[grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
@@ -306,8 +392,8 @@ public class Fclients extends JFrame {
 					JButton btnNewButton_3 = new JButton("Supprimer");
 					btnNewButton_3.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							panel_3.setVisible(false);
-							panel_4.setVisible(true);
+							FClient.setVisible(false);
+							FCAjout.setVisible(true);
 							
 						}
 					});
@@ -344,7 +430,245 @@ public class Fclients extends JFrame {
 					btnNewButton_4.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Home-48.png")));
 					btnNewButton_4.setBorder(null);
 					panel.add(btnNewButton_4, "cell 0 10,alignx left,aligny center");
-				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, panel_3, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
+					
+					JPanel FCRecherche = new JPanel();
+					layeredPane.add(FCRecherche, "name_13820692107793");
+					FCRecherche.setLayout(new BorderLayout(0, 0));
+					
+					JPanel panel_4 = new JPanel();
+					panel_4.setBackground(new Color(30, 144, 255));
+					FCRecherche.add(panel_4, BorderLayout.WEST);
+					panel_4.setLayout(new MigLayout("", "[46px]", "[14px][][][][][][][][][][][][][][][][][][][][][]"));
+					
+					JLabel lblNewLabel_14 = new JLabel("Recherche");
+					lblNewLabel_14.setFont(new Font("Tahoma", Font.BOLD, 18));
+					lblNewLabel_14.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Find-64.png")));
+					panel_4.add(lblNewLabel_14, "cell 0 0,alignx left,aligny top");
+					
+					JButton btnAperu_1 = new JButton("Aperçu");
+					btnAperu_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Preview-48.png")));
+					panel_4.add(btnAperu_1, "cell 0 7");
+					
+					JButton btnNewButton_11 = new JButton("Imprimer");
+					panel_4.add(btnNewButton_11, "cell 0 8");
+					
+					JButton btnExport_1 = new JButton("Export");
+					panel_4.add(btnExport_1, "cell 0 9");
+					
+					JButton btnNewButton_12 = new JButton("Annuler");
+					btnNewButton_12.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_4.add(btnNewButton_12, "cell 0 21");
+					
+					JPanel panel_3 = new JPanel();
+					panel_3.setBackground(new Color(135, 206, 235));
+					FCRecherche.add(panel_3, BorderLayout.CENTER);
+					panel_3.setLayout(new MigLayout("", "[grow]", "[grow 20][grow][grow][50px]"));
+					
+					JPanel panel_11 = new JPanel();
+					panel_11.setBackground(SystemColor.activeCaptionBorder);
+					panel_3.add(panel_11, "cell 0 0,grow");
+					panel_11.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
+					
+					JLabel lblCode = new JLabel("Code");
+					panel_11.add(lblCode, "cell 0 0,alignx trailing");
+					
+					textField_18 = new JTextField();
+					panel_11.add(textField_18, "cell 1 0,growx");
+					textField_18.setColumns(10);
+					
+					JCheckBox chckbxCarteDeFidlit_1 = new JCheckBox("Carte de fidélité");
+					panel_11.add(chckbxCarteDeFidlit_1, "cell 3 0,alignx center");
+					
+					JLabel lblNom_1 = new JLabel("Nom");
+					panel_11.add(lblNom_1, "cell 0 1,alignx trailing");
+					
+					textField_19 = new JTextField();
+					panel_11.add(textField_19, "cell 1 1,growx");
+					textField_19.setColumns(10);
+					
+					JLabel lblPrenom_1 = new JLabel("Prenom");
+					panel_11.add(lblPrenom_1, "cell 2 1,alignx trailing");
+					
+					textField_20 = new JTextField();
+					panel_11.add(textField_20, "cell 3 1,growx");
+					textField_20.setColumns(10);
+					
+					JButton button = new JButton("Rechercher");
+					button.setFont(new Font("Tahoma", Font.BOLD, 12));
+					button.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
+					panel_11.add(button, "cell 1 2 2 1,grow");
+					
+					JPanel panel_16 = new JPanel();
+					panel_3.add(panel_16, "cell 0 1,grow");
+					panel_16.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow]"));
+					
+					JLabel lblCode_2 = new JLabel("Code");
+					panel_16.add(lblCode_2, "cell 0 0");
+					
+					JLabel lblCrLe = new JLabel("Créé le");
+					panel_16.add(lblCrLe, "cell 2 0");
+					
+					JLabel lblNom_3 = new JLabel("Nom");
+					panel_16.add(lblNom_3, "cell 0 1");
+					
+					JLabel lblPrenom_3 = new JLabel("Prenom");
+					panel_16.add(lblPrenom_3, "cell 2 1");
+					
+					JLabel lblAdresse_1 = new JLabel("Adresse");
+					panel_16.add(lblAdresse_1, "cell 0 2");
+					
+					JScrollPane scrollPane_1 = new JScrollPane();
+					panel_3.add(scrollPane_1, "cell 0 2,grow");
+					
+					JLabel lblTrierLaListe = new JLabel("Trier la liste par");
+					lblTrierLaListe.setVerticalAlignment(SwingConstants.BOTTOM);
+					lblTrierLaListe.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Sort-Ascending-32.png")));
+					panel_3.add(lblTrierLaListe, "flowx,cell 0 3,aligny center");
+					
+					JComboBox comboBox_1 = new JComboBox();
+					panel_3.add(comboBox_1, "cell 0 3");
+					
+					/* --- Fin fenêtre principal ---- */
+					
+					JPanel FCModifier = new JPanel();
+					layeredPane.add(FCModifier, "name_15745152809402");
+					FCModifier.setLayout(new BorderLayout(0, 0));
+					
+					JPanel panel_12 = new JPanel();
+					panel_12.setBackground(new Color(30, 144, 255));
+					FCModifier.add(panel_12, BorderLayout.WEST);
+					panel_12.setLayout(new MigLayout("", "[142px]", "[64px][][][][][][][][][][][][][][]"));
+					
+					JLabel lblSupprimer = new JLabel("Modifier");
+					lblSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Modify-64.png")));
+					lblSupprimer.setFont(new Font("Tahoma", Font.BOLD, 18));
+					panel_12.add(lblSupprimer, "cell 0 0,alignx left,aligny top");
+					
+					JButton btnNewButton_13 = new JButton("Enregistrer");
+					btnNewButton_13.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
+					btnNewButton_13.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
+					panel_12.add(btnNewButton_13, "cell 0 2");
+					
+					JButton btnAnnuler = new JButton("Annuler");
+					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_12.add(btnAnnuler, "cell 0 14");
+					
+					JPanel panel_13 = new JPanel();
+					panel_13.setBackground(new Color(135, 206, 235));
+					FCModifier.add(panel_13, BorderLayout.CENTER);
+					panel_13.setLayout(new MigLayout("", "[grow]", "[grow 20][grow 50][grow]"));
+					
+					JPanel panel_15 = new JPanel();
+					panel_13.add(panel_15, "cell 0 0,grow");
+					panel_15.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
+					
+					JLabel lblNom_2 = new JLabel("Nom");
+					panel_15.add(lblNom_2, "cell 0 0,alignx trailing");
+					
+					textField_29 = new JTextField();
+					panel_15.add(textField_29, "cell 1 0,growx");
+					textField_29.setColumns(10);
+					
+					JLabel lblPrenom_2 = new JLabel("Prenom");
+					panel_15.add(lblPrenom_2, "cell 2 0,alignx trailing");
+					
+					textField_30 = new JTextField();
+					panel_15.add(textField_30, "cell 3 0,growx");
+					textField_30.setColumns(10);
+					
+					JLabel lblCode_1 = new JLabel("Code");
+					panel_15.add(lblCode_1, "cell 0 1,alignx trailing");
+					
+					textField_31 = new JTextField();
+					panel_15.add(textField_31, "cell 1 1,growx");
+					textField_31.setColumns(10);
+					
+					JCheckBox chckbxCarteDeFidlit_2 = new JCheckBox("Carte de fidélité");
+					panel_15.add(chckbxCarteDeFidlit_2, "cell 3 1");
+					
+					JButton btnNewButton_14 = new JButton("Rechercher");
+					btnNewButton_14.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
+					btnNewButton_14.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton_14.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
+					panel_15.add(btnNewButton_14, "cell 1 2 2 1,grow");
+					
+					JPanel panel_14 = new JPanel();
+					panel_14.setBackground(new Color(135, 206, 235));
+					panel_14.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+					panel_13.add(panel_14, "cell 0 1,grow");
+					panel_14.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow]"));
+					
+					JLabel label = new JLabel("Code");
+					panel_14.add(label, "cell 0 0,alignx right,aligny center");
+					
+					textField_21 = new JTextField();
+					textField_21.setColumns(10);
+					panel_14.add(textField_21, "cell 1 0,growx,aligny center");
+					
+					JLabel label_1 = new JLabel("Créé le");
+					panel_14.add(label_1, "cell 2 0,alignx left,aligny center");
+					
+					textField_22 = new JTextField();
+					textField_22.setColumns(10);
+					panel_14.add(textField_22, "cell 3 0,growx,aligny center");
+					
+					JLabel label_2 = new JLabel("Prénom");
+					panel_14.add(label_2, "cell 0 1,alignx right,aligny center");
+					
+					textField_23 = new JTextField();
+					textField_23.setColumns(10);
+					panel_14.add(textField_23, "cell 1 1,growx,aligny center");
+					
+					JLabel label_3 = new JLabel("Nom");
+					panel_14.add(label_3, "cell 2 1,alignx right,aligny center");
+					
+					textField_24 = new JTextField();
+					textField_24.setColumns(10);
+					panel_14.add(textField_24, "cell 3 1,growx,aligny center");
+					
+					JLabel label_4 = new JLabel("Adresse");
+					panel_14.add(label_4, "cell 0 2,alignx right,aligny center");
+					
+					textField_25 = new JTextField();
+					textField_25.setColumns(10);
+					panel_14.add(textField_25, "cell 1 2 3 1,growx");
+					
+					JLabel label_5 = new JLabel("Fixe");
+					panel_14.add(label_5, "cell 0 3,alignx right,aligny center");
+					
+					textField_26 = new JTextField();
+					textField_26.setColumns(10);
+					panel_14.add(textField_26, "cell 1 3,growx,aligny center");
+					
+					JLabel label_6 = new JLabel("Mobile");
+					panel_14.add(label_6, "cell 2 3,alignx right,aligny center");
+					
+					textField_27 = new JTextField();
+					textField_27.setColumns(10);
+					panel_14.add(textField_27, "cell 3 3,growx,aligny center");
+					
+					JLabel label_7 = new JLabel("Email");
+					panel_14.add(label_7, "cell 0 4,alignx right,aligny center");
+					
+					textField_28 = new JTextField();
+					textField_28.setColumns(10);
+					panel_14.add(textField_28, "cell 1 4,growx,aligny center");
+					
+					JCheckBox checkBox = new JCheckBox("Carte fidélité");
+					checkBox.setBackground(new Color(135, 206, 250));
+					panel_14.add(checkBox, "cell 3 4,alignx left,aligny top");
+					
+					JLabel label_8 = new JLabel("Remarque");
+					label_8.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel_14.add(label_8, "cell 0 5,alignx left,aligny center");
+					
+					JTextArea textArea_2 = new JTextArea();
+					textArea_2.setLineWrap(true);
+					panel_14.add(textArea_2, "cell 1 5 1 3,grow");
+					
+					JScrollPane scrollPane_2 = new JScrollPane();
+					panel_13.add(scrollPane_2, "cell 0 2,grow");
+				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
 	}
 	
 
