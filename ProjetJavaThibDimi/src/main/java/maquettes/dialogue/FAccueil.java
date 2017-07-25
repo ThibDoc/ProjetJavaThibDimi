@@ -54,6 +54,7 @@ public class FAccueil extends JFrame {
 	 * Create the frame.
 	 */
 	public FAccueil() {
+		setTitle("Accueil");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1079, 579);

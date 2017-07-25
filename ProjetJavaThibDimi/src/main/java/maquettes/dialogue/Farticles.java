@@ -66,6 +66,7 @@ public class Farticles extends JFrame {
 	 * Create the frame.
 	 */
 	public Farticles() {
+		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1018, 569);
