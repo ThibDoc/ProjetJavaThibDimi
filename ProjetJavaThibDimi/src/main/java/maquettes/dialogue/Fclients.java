@@ -292,9 +292,7 @@ public class Fclients extends JFrame {
 					JButton btnExport_1 = new JButton("Export");
 					panel_4.add(btnExport_1, "cell 0 9");
 					
-					JButton btnNewButton_12 = new JButton("Annuler");
-					btnNewButton_12.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_4.add(btnNewButton_12, "cell 0 21");
+					
 					
 					JPanel panel_3 = new JPanel();
 					panel_3.setBackground(new Color(135, 206, 235));
@@ -443,9 +441,7 @@ public class Fclients extends JFrame {
 					
 					panel_12.add(btnSupprimer, "cell 0 3");
 					
-					JButton btnAnnuler = new JButton("Annuler");
-					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_12.add(btnAnnuler, "cell 0 14");
+					
 					
 					JPanel panel_13 = new JPanel();
 					panel_13.setBackground(new Color(135, 206, 235));
@@ -599,9 +595,7 @@ public class Fclients extends JFrame {
 					
 					
 					
-					JButton btnNewButton_9 = new JButton("Annuler");
-					btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
+					
 					
 					JPanel panel_6 = new JPanel();
 					FCAjout.add(panel_6, BorderLayout.CENTER);
@@ -762,6 +756,38 @@ public class Fclients extends JFrame {
 					btnNewButton_2.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Edit-48.png")));
 					btnNewButton_2.setBorder(null);
 					panel.add(btnNewButton_2, "cell 0 3,alignx left,aligny center");
+					
+					JButton btnNewButton_12 = new JButton("Annuler");
+					btnNewButton_12.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCRecherche.setVisible(false);
+							FClient.setVisible(true);
+							
+						}
+					});
+					btnNewButton_12.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_4.add(btnNewButton_12, "cell 0 21");
+					
+					JButton btnAnnuler = new JButton("Annuler");
+					btnAnnuler.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCModifier.setVisible(false);
+							FClient.setVisible(true);
+						}
+					});
+					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_12.add(btnAnnuler, "cell 0 14");
+					
+					
+					JButton btnNewButton_9 = new JButton("Annuler");
+					btnNewButton_9.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCAjout.setVisible(false);
+							FClient.setVisible(true);
+						}
+					});
+					btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
 					
 					layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
 
