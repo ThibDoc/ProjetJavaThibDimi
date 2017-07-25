@@ -120,6 +120,12 @@ public class FAccueil extends JFrame {
 		panel_1.add(btnNewButton_2, "cell 1 1");
 		
 		JButton btnNewButton_5 = new JButton("");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Fcommandes frame = new Fcommandes();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton_5.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Shopping-Bag-128.png")));
 		panel_1.add(btnNewButton_5, "cell 2 1");
 		
