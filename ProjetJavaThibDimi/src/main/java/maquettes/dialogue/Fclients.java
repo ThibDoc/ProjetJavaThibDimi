@@ -254,6 +254,11 @@ public class Fclients extends JFrame {
 					panel.add(btnNewButton_7, "cell 0 8,alignx left,aligny center");
 					
 					JButton btnNewButton_4 = new JButton("Accueil");
+					btnNewButton_4.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							CloseFrame();
+						}
+					});
 					btnNewButton_4.setBackground(new Color(30, 144, 255));
 					btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_4.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Home-48.png")));
@@ -760,5 +765,8 @@ public class Fclients extends JFrame {
 
 	}
 	
+	public void CloseFrame(){
+	    super.dispose();
+	}
 
 }
