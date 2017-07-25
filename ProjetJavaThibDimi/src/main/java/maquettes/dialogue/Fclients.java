@@ -71,6 +71,14 @@ public class Fclients extends JFrame {
 	private JTextField textField_29;
 	private JTextField textField_30;
 	private JTextField textField_31;
+	private JTextField textField_32;
+	private JTextField textField_33;
+	private JTextField textField_34;
+	private JTextField textField_35;
+	private JTextField textField_36;
+	private JTextField textField_37;
+	private JTextField textField_38;
+	private JTextField textField_39;
 
 	/**
 	 * Launch the application.
@@ -104,164 +112,12 @@ public class Fclients extends JFrame {
 			contentPane.add(layeredPane, BorderLayout.CENTER);
 				layeredPane.setLayout(new CardLayout(0, 0));
 				
-				JPanel FCAjout = new JPanel(); // panel ajout
-				layeredPane.setLayer(FCAjout, 2);
-				layeredPane.add(FCAjout, "name_11438623287941");
-				FCAjout.setLayout(new BorderLayout(0, 0));
-				
-				JPanel panel_5 = new JPanel();
-				panel_5.setBackground(new Color(30, 144, 255));
-				FCAjout.add(panel_5, BorderLayout.WEST);
-				panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][grow,center][center][center][][][][][][][][][][]"));
-				
-				JLabel lblNewLabel_11 = new JLabel("Ajout");
-				lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
-				lblNewLabel_11.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Add-64.png")));
-				panel_5.add(lblNewLabel_11, "cell 0 0,alignx left,aligny top");
-				
-				JButton btnNewButton_8 = new JButton("Sauvegarder");
-				btnNewButton_8.setBackground(new Color(30, 144, 255));
-				btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
-				btnNewButton_8.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
-				panel_5.add(btnNewButton_8, "cell 0 2,alignx center");
-				
-				JButton btnAperu = new JButton("Aperçu");
-				btnAperu.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
-				btnAperu.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnAperu, "cell 0 8,alignx left,aligny center");
-				
-				JButton btnImprimer = new JButton("Imprimer");
-				btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnImprimer, "cell 0 9,alignx left");
-				
-				
-				
-				JButton btnNewButton_9 = new JButton("Annuler");
-				btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-				panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
-				
-				JPanel panel_6 = new JPanel();
-				FCAjout.add(panel_6, BorderLayout.CENTER);
-				panel_6.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow 10][grow 30][grow 20][grow 40]"));
-				
-				JPanel panel_7 = new JPanel();
-				panel_7.setBorder(new TitledBorder(null, "Client", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_6.add(panel_7, "cell 0 0 4 1,grow");
-				panel_7.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[grow]"));
-				
-				JLabel lblNewLabel_12 = new JLabel("Code");
-				panel_7.add(lblNewLabel_12, "cell 0 0,alignx trailing");
-				
-				textField_8 = new JTextField();
-				panel_7.add(textField_8, "cell 1 0,growx");
-				textField_8.setColumns(10);
-				
-				JLabel lblNewLabel_13 = new JLabel("Créé le");
-				panel_7.add(lblNewLabel_13, "cell 2 0,alignx trailing");
-				
-				textField_9 = new JTextField();
-				panel_7.add(textField_9, "cell 3 0,growx");
-				textField_9.setColumns(10);
-				
-				JCheckBox chckbxCarteDeFidlit = new JCheckBox("Carte de fidélité");
-				chckbxCarteDeFidlit.setHorizontalAlignment(SwingConstants.CENTER);
-				panel_7.add(chckbxCarteDeFidlit, "cell 4 0,alignx center");
-				
-				JPanel panel_8 = new JPanel();
-				panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_6.add(panel_8, "cell 0 1 4 1,grow");
-				panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
-				
-				JLabel lblPrenom = new JLabel("Prénom");
-				panel_8.add(lblPrenom, "cell 0 0,alignx trailing");
-				
-				textField_10 = new JTextField();
-				panel_8.add(textField_10, "cell 1 0,growx");
-				textField_10.setColumns(10);
-				
-				JLabel lblNom = new JLabel("Nom");
-				panel_8.add(lblNom, "cell 2 0,alignx trailing");
-				
-				textField_11 = new JTextField();
-				panel_8.add(textField_11, "cell 3 0,growx");
-				textField_11.setColumns(10);
-				
-				JLabel lblAdresse = new JLabel("Adresse");
-				panel_8.add(lblAdresse, "cell 0 1,alignx trailing");
-				
-				textField_12 = new JTextField();
-				panel_8.add(textField_12, "cell 1 1 3 1,growx");
-				textField_12.setColumns(10);
-				
-				JLabel lblCodePostal = new JLabel("Code postal");
-				panel_8.add(lblCodePostal, "cell 0 2,alignx trailing");
-				
-				textField_13 = new JTextField();
-				panel_8.add(textField_13, "cell 1 2,growx");
-				textField_13.setColumns(10);
-				
-				JLabel lblVille = new JLabel("Ville");
-				panel_8.add(lblVille, "cell 2 2,alignx trailing");
-				
-				textField_14 = new JTextField();
-				panel_8.add(textField_14, "cell 3 2,growx");
-				textField_14.setColumns(10);
-				
-				JPanel panel_9 = new JPanel();
-				panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_6.add(panel_9, "cell 0 2 4 1,grow");
-				panel_9.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow]"));
-				
-				JLabel lblFixe = new JLabel("Fixe");
-				panel_9.add(lblFixe, "cell 0 0,alignx trailing");
-				
-				textField_15 = new JTextField();
-				panel_9.add(textField_15, "cell 1 0,growx");
-				textField_15.setColumns(10);
-				
-				JLabel lblMobile = new JLabel("Mobile");
-				panel_9.add(lblMobile, "cell 2 0,alignx trailing");
-				
-				textField_16 = new JTextField();
-				panel_9.add(textField_16, "cell 3 0,growx");
-				textField_16.setColumns(10);
-				
-				JLabel lblEmail = new JLabel("Email");
-				panel_9.add(lblEmail, "cell 0 1,alignx trailing");
-				
-				textField_17 = new JTextField();
-				panel_9.add(textField_17, "cell 1 1 3 1,growx");
-				textField_17.setColumns(10);
-				
-				JPanel panel_10 = new JPanel();
-				panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_6.add(panel_10, "cell 0 3 4 1,grow");
-				panel_10.setLayout(new MigLayout("", "[grow]", "[grow]"));
-				
-				JTextArea textArea_1 = new JTextArea();
-				panel_10.add(textArea_1, "cell 0 0,grow");
-				
 				/* --- Fenêtre principal ---- */
 				
 				JPanel FClient = new JPanel(); // panel principal
 				layeredPane.setLayer(FClient, 1);
 				layeredPane.add(FClient, "name_11438638148150");
 				FClient.setLayout(new BorderLayout(0, 0));
-				
-				JButton btnExport = new JButton("Export");
-				btnExport.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						FCAjout.setVisible(false);
-						FClient.setVisible(true);
-						
-					}
-				});
-				btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-				panel_5.add(btnExport, "cell 0 10,alignx left");
 				
 				JPanel panel_1 = new JPanel();
 				panel_1.setBackground(new Color(135, 206, 250));
@@ -272,7 +128,7 @@ public class Fclients extends JFrame {
 				panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 				panel_2.setBackground(new Color(135, 206, 250));
 				panel_1.add(panel_2, "cell 0 0,grow");
-				panel_2.setLayout(new MigLayout("", "[grow 20][grow][grow 20][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow]"));
+				panel_2.setLayout(new MigLayout("", "[grow 20][grow][grow 20][grow]", "[grow][grow][grow][grow][grow][grow]"));
 				
 				JLabel lblNewLabel_1 = new JLabel("Code");
 				panel_2.add(lblNewLabel_1, "cell 0 0,alignx trailing");
@@ -338,9 +194,13 @@ public class Fclients extends JFrame {
 					lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
 					panel_2.add(lblNewLabel_6, "cell 0 5,alignx right");
 					
+					JScrollPane scrollPane_3 = new JScrollPane();
+					panel_2.add(scrollPane_3, "cell 1 5 3 1,grow");
+					
 					JTextArea textArea = new JTextArea();
+					scrollPane_3.setViewportView(textArea);
 					textArea.setLineWrap(true);
-					panel_2.add(textArea, "cell 1 5 3 3,grow");
+					
 					
 					JScrollPane scrollPane = new JScrollPane();
 					panel_1.add(scrollPane, "cell 0 1,grow");
@@ -364,44 +224,13 @@ public class Fclients extends JFrame {
 					lblNewLabel.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/People-64-actif.png")));
 					panel.add(lblNewLabel, "cell 0 0,alignx left,aligny top");
 					
-					JButton btnNewButton = new JButton("Ajouter");
-					btnNewButton.setBackground(new Color(30, 144, 255));
-					btnNewButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-						}
-					});
-					btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-					btnNewButton.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Add-New-48.png")));
-					btnNewButton.setBorder(null);
-					panel.add(btnNewButton, "cell 0 1,alignx left,aligny center");
 					
-					JButton btnNewButton_1 = new JButton("Rechercher");
-					btnNewButton_1.setBackground(new Color(30, 144, 255));
-					btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-					btnNewButton_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-48.png")));
-					btnNewButton_1.setBorder(null);
-					panel.add(btnNewButton_1, "cell 0 2,alignx left,aligny center");
 					
-					JButton btnNewButton_2 = new JButton("Modifier");
-					btnNewButton_2.setBackground(new Color(30, 144, 255));
-					btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-					btnNewButton_2.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Edit-48.png")));
-					btnNewButton_2.setBorder(null);
-					panel.add(btnNewButton_2, "cell 0 3,alignx left,aligny center");
 					
-					JButton btnNewButton_3 = new JButton("Supprimer");
-					btnNewButton_3.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							FClient.setVisible(false);
-							FCAjout.setVisible(true);
-							
-						}
-					});
-					btnNewButton_3.setBackground(new Color(30, 144, 255));
-					btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-					btnNewButton_3.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
-					btnNewButton_3.setBorder(null);
-					panel.add(btnNewButton_3, "cell 0 4,alignx left,aligny center");
+					
+					
+					
+					
 					
 					JButton btnNewButton_5 = new JButton("Aper\u00E7u");
 					btnNewButton_5.setBackground(new Color(30, 144, 255));
@@ -432,6 +261,7 @@ public class Fclients extends JFrame {
 					panel.add(btnNewButton_4, "cell 0 10,alignx left,aligny center");
 					
 					JPanel FCRecherche = new JPanel();
+					layeredPane.setLayer(FCRecherche, 4);
 					layeredPane.add(FCRecherche, "name_13820692107793");
 					FCRecherche.setLayout(new BorderLayout(0, 0));
 					
@@ -503,19 +333,66 @@ public class Fclients extends JFrame {
 					panel_16.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow]"));
 					
 					JLabel lblCode_2 = new JLabel("Code");
-					panel_16.add(lblCode_2, "cell 0 0");
+					panel_16.add(lblCode_2, "cell 0 0,alignx trailing");
+					
+					textField_32 = new JTextField();
+					panel_16.add(textField_32, "cell 1 0,growx");
+					textField_32.setColumns(10);
 					
 					JLabel lblCrLe = new JLabel("Créé le");
-					panel_16.add(lblCrLe, "cell 2 0");
+					panel_16.add(lblCrLe, "cell 2 0,alignx trailing");
+					
+					textField_37 = new JTextField();
+					panel_16.add(textField_37, "cell 3 0,growx");
+					textField_37.setColumns(10);
 					
 					JLabel lblNom_3 = new JLabel("Nom");
-					panel_16.add(lblNom_3, "cell 0 1");
+					panel_16.add(lblNom_3, "cell 0 1,alignx trailing");
+					
+					textField_33 = new JTextField();
+					panel_16.add(textField_33, "cell 1 1,growx");
+					textField_33.setColumns(10);
 					
 					JLabel lblPrenom_3 = new JLabel("Prenom");
-					panel_16.add(lblPrenom_3, "cell 2 1");
+					panel_16.add(lblPrenom_3, "cell 2 1,alignx trailing");
+					
+					textField_38 = new JTextField();
+					panel_16.add(textField_38, "cell 3 1,growx");
+					textField_38.setColumns(10);
 					
 					JLabel lblAdresse_1 = new JLabel("Adresse");
-					panel_16.add(lblAdresse_1, "cell 0 2");
+					panel_16.add(lblAdresse_1, "cell 0 2,alignx trailing");
+					
+					textField_34 = new JTextField();
+					panel_16.add(textField_34, "cell 1 2 3 1,growx");
+					textField_34.setColumns(10);
+					
+					JLabel lblFixe_1 = new JLabel("Fixe");
+					panel_16.add(lblFixe_1, "cell 0 3,alignx trailing");
+					
+					textField_35 = new JTextField();
+					panel_16.add(textField_35, "cell 1 3,growx");
+					textField_35.setColumns(10);
+					
+					JLabel lblMobile_1 = new JLabel("Mobile");
+					panel_16.add(lblMobile_1, "cell 2 3,alignx trailing");
+					
+					textField_39 = new JTextField();
+					panel_16.add(textField_39, "cell 3 3,growx");
+					textField_39.setColumns(10);
+					
+					JLabel lblEmail_1 = new JLabel("Email");
+					panel_16.add(lblEmail_1, "cell 0 4,alignx trailing");
+					
+					textField_36 = new JTextField();
+					panel_16.add(textField_36, "cell 1 4 3 1,growx");
+					textField_36.setColumns(10);
+					
+					JLabel lblRemarques = new JLabel("Remarques");
+					panel_16.add(lblRemarques, "cell 0 5,alignx right");
+					
+					JTextArea textArea_3 = new JTextArea();
+					panel_16.add(textArea_3, "cell 1 5 3 3,grow");
 					
 					JScrollPane scrollPane_1 = new JScrollPane();
 					panel_3.add(scrollPane_1, "cell 0 2,grow");
@@ -544,10 +421,20 @@ public class Fclients extends JFrame {
 					lblSupprimer.setFont(new Font("Tahoma", Font.BOLD, 18));
 					panel_12.add(lblSupprimer, "cell 0 0,alignx left,aligny top");
 					
+					
 					JButton btnNewButton_13 = new JButton("Enregistrer");
+					btnNewButton_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_13.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
 					btnNewButton_13.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
 					panel_12.add(btnNewButton_13, "cell 0 2");
+					
+					
+					JButton btnSupprimer = new JButton("Supprimer");
+					btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
+					
+					
+					panel_12.add(btnSupprimer, "cell 0 3");
 					
 					JButton btnAnnuler = new JButton("Annuler");
 					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
@@ -668,7 +555,209 @@ public class Fclients extends JFrame {
 					
 					JScrollPane scrollPane_2 = new JScrollPane();
 					panel_13.add(scrollPane_2, "cell 0 2,grow");
-				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
+					
+					JPanel FCAjout = new JPanel(); // panel ajout
+					layeredPane.setLayer(FCAjout, 2);
+					layeredPane.add(FCAjout, "name_11438623287941");
+					FCAjout.setLayout(new BorderLayout(0, 0));
+					
+					JPanel panel_5 = new JPanel();
+					panel_5.setBackground(new Color(30, 144, 255));
+					FCAjout.add(panel_5, BorderLayout.WEST);
+					panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][grow,center][center][center][][][][][][][][][][]"));
+					
+					JLabel lblNewLabel_11 = new JLabel("Ajout");
+					lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
+					lblNewLabel_11.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Add-64.png")));
+					panel_5.add(lblNewLabel_11, "cell 0 0,alignx left,aligny top");
+					
+					JButton btnNewButton_8 = new JButton("Sauvegarder");
+					btnNewButton_8.setBackground(new Color(30, 144, 255));
+					btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton_8.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
+					panel_5.add(btnNewButton_8, "cell 0 2,alignx center");
+					
+					JButton btnAperu = new JButton("Aperçu");
+					btnAperu.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
+					btnAperu.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
+					panel_5.add(btnAperu, "cell 0 8,alignx left,aligny center");
+					
+					JButton btnImprimer = new JButton("Imprimer");
+					btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
+					panel_5.add(btnImprimer, "cell 0 9,alignx left");
+					
+					
+					
+					JButton btnNewButton_9 = new JButton("Annuler");
+					btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
+					
+					JPanel panel_6 = new JPanel();
+					FCAjout.add(panel_6, BorderLayout.CENTER);
+					panel_6.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow 10][grow 30][grow 20][grow 40]"));
+					
+					JPanel panel_7 = new JPanel();
+					panel_7.setBorder(new TitledBorder(null, "Client", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panel_6.add(panel_7, "cell 0 0 4 1,grow");
+					panel_7.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[grow]"));
+					
+					JLabel lblNewLabel_12 = new JLabel("Code");
+					panel_7.add(lblNewLabel_12, "cell 0 0,alignx trailing");
+					
+					textField_8 = new JTextField();
+					panel_7.add(textField_8, "cell 1 0,growx");
+					textField_8.setColumns(10);
+					
+					JLabel lblNewLabel_13 = new JLabel("Créé le");
+					panel_7.add(lblNewLabel_13, "cell 2 0,alignx trailing");
+					
+					textField_9 = new JTextField();
+					panel_7.add(textField_9, "cell 3 0,growx");
+					textField_9.setColumns(10);
+					
+					JCheckBox chckbxCarteDeFidlit = new JCheckBox("Carte de fidélité");
+					chckbxCarteDeFidlit.setHorizontalAlignment(SwingConstants.CENTER);
+					panel_7.add(chckbxCarteDeFidlit, "cell 4 0,alignx center");
+					
+					JPanel panel_8 = new JPanel();
+					panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panel_6.add(panel_8, "cell 0 1 4 1,grow");
+					panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
+					
+					JLabel lblPrenom = new JLabel("Prénom");
+					panel_8.add(lblPrenom, "cell 0 0,alignx trailing");
+					
+					textField_10 = new JTextField();
+					panel_8.add(textField_10, "cell 1 0,growx");
+					textField_10.setColumns(10);
+					
+					JLabel lblNom = new JLabel("Nom");
+					panel_8.add(lblNom, "cell 2 0,alignx trailing");
+					
+					textField_11 = new JTextField();
+					panel_8.add(textField_11, "cell 3 0,growx");
+					textField_11.setColumns(10);
+					
+					JLabel lblAdresse = new JLabel("Adresse");
+					panel_8.add(lblAdresse, "cell 0 1,alignx trailing");
+					
+					textField_12 = new JTextField();
+					panel_8.add(textField_12, "cell 1 1 3 1,growx");
+					textField_12.setColumns(10);
+					
+					JLabel lblCodePostal = new JLabel("Code postal");
+					panel_8.add(lblCodePostal, "cell 0 2,alignx trailing");
+					
+					textField_13 = new JTextField();
+					panel_8.add(textField_13, "cell 1 2,growx");
+					textField_13.setColumns(10);
+					
+					JLabel lblVille = new JLabel("Ville");
+					panel_8.add(lblVille, "cell 2 2,alignx trailing");
+					
+					textField_14 = new JTextField();
+					panel_8.add(textField_14, "cell 3 2,growx");
+					textField_14.setColumns(10);
+					
+					JPanel panel_9 = new JPanel();
+					panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panel_6.add(panel_9, "cell 0 2 4 1,grow");
+					panel_9.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow]"));
+					
+					JLabel lblFixe = new JLabel("Fixe");
+					panel_9.add(lblFixe, "cell 0 0,alignx trailing");
+					
+					textField_15 = new JTextField();
+					panel_9.add(textField_15, "cell 1 0,growx");
+					textField_15.setColumns(10);
+					
+					JLabel lblMobile = new JLabel("Mobile");
+					panel_9.add(lblMobile, "cell 2 0,alignx trailing");
+					
+					textField_16 = new JTextField();
+					panel_9.add(textField_16, "cell 3 0,growx");
+					textField_16.setColumns(10);
+					
+					JLabel lblEmail = new JLabel("Email");
+					panel_9.add(lblEmail, "cell 0 1,alignx trailing");
+					
+					textField_17 = new JTextField();
+					panel_9.add(textField_17, "cell 1 1 3 1,growx");
+					textField_17.setColumns(10);
+					
+					JPanel panel_10 = new JPanel();
+					panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					panel_6.add(panel_10, "cell 0 3 4 1,grow");
+					panel_10.setLayout(new MigLayout("", "[grow]", "[grow]"));
+					
+					JTextArea textArea_1 = new JTextArea();
+					panel_10.add(textArea_1, "cell 0 0,grow");
+					
+					JButton btnExport = new JButton("Export");
+					btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
+					panel_5.add(btnExport, "cell 0 10,alignx left");
+					
+					JButton btnNewButton = new JButton("Ajouter");
+					btnNewButton.setBackground(new Color(30, 144, 255));
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FClient.setVisible(false);
+							FCAjout.setVisible(true);
+						}
+					});
+					btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Add-New-48.png")));
+					btnNewButton.setBorder(null);	
+					panel.add(btnNewButton, "cell 0 1,alignx left,aligny center");
+					
+					JButton btnNewButton_3 = new JButton("Supprimer");
+					btnNewButton_3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCModifier.setVisible(true);
+							FClient.setVisible(false);
+							
+						}
+					});
+					btnNewButton_3.setBackground(new Color(30, 144, 255));
+					btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton_3.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
+					btnNewButton_3.setBorder(null);
+					panel.add(btnNewButton_3, "cell 0 4,alignx left,aligny center");
+					
+					JButton btnNewButton_1 = new JButton("Rechercher");
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCRecherche.setVisible(true);
+							FClient.setVisible(false);
+							
+						}
+					});
+					btnNewButton_1.setBackground(new Color(30, 144, 255));
+					btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-48.png")));
+					btnNewButton_1.setBorder(null);
+					panel.add(btnNewButton_1, "cell 0 2,alignx left,aligny center");
+					
+					JButton btnNewButton_2 = new JButton("Modifier");
+					btnNewButton_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCModifier.setVisible(true);
+							FClient.setVisible(false);
+							
+						}
+					});
+					btnNewButton_2.setBackground(new Color(30, 144, 255));
+					btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+					btnNewButton_2.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Edit-48.png")));
+					btnNewButton_2.setBorder(null);
+					panel.add(btnNewButton_2, "cell 0 3,alignx left,aligny center");
+					
+					layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
+
 	}
 	
 
