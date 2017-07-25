@@ -24,6 +24,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.JCheckBox;
+import javax.swing.JToolBar;
+import javax.swing.JToggleButton;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Fclients extends JFrame {
 	
@@ -36,7 +41,6 @@ public class Fclients extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
 
 	/**
 	 * Launch the application.
@@ -140,7 +144,7 @@ public class Fclients extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("", "[grow]", "[grow 50][grow 50]"));
+		panel_1.setLayout(new MigLayout("", "[grow]", "[grow 50][grow][]"));
 		
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2, "cell 0 0,grow");
@@ -153,7 +157,7 @@ public class Fclients extends JFrame {
 		panel_2.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
+		JLabel lblNewLabel_7 = new JLabel("Cr\u00E9\u00E9 le");
 		panel_2.add(lblNewLabel_7, "cell 2 0,alignx trailing");
 		
 		textField_5 = new JTextField();
@@ -167,7 +171,7 @@ public class Fclients extends JFrame {
 		panel_2.add(textField_1, "cell 1 1,growx");
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_8 = new JLabel("New label");
+		JLabel lblNewLabel_8 = new JLabel("Nom");
 		panel_2.add(lblNewLabel_8, "cell 2 1,alignx trailing");
 		
 		textField_6 = new JTextField();
@@ -188,7 +192,7 @@ public class Fclients extends JFrame {
 		panel_2.add(textField_3, "cell 1 3,growx");
 		textField_3.setColumns(10);
 		
-		JLabel lblNewLabel_9 = new JLabel("New label");
+		JLabel lblNewLabel_9 = new JLabel("Mobile");
 		panel_2.add(lblNewLabel_9, "cell 2 3,alignx trailing");
 	
 		textField_7 = new JTextField();
@@ -202,22 +206,27 @@ public class Fclients extends JFrame {
 		panel_2.add(textField_4, "cell 1 4,growx");
 		textField_4.setColumns(10);
 		
-		JLabel lblNewLabel_10 = new JLabel("New label");
-		panel_2.add(lblNewLabel_10, "cell 2 4,alignx trailing");
-		
-		textField_8 = new JTextField();
-		panel_2.add(textField_8, "cell 3 4,growx");
-		textField_8.setColumns(10);
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Carte fid\u00E9lit\u00E9");
+		panel_2.add(chckbxNewCheckBox, "flowx,cell 3 4");
 		
 		JLabel lblNewLabel_6 = new JLabel("Remarque");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_2.add(lblNewLabel_6, "cell 0 5,alignx right");
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
 		panel_2.add(textArea, "cell 1 5 3 3,grow");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane, "cell 0 1,grow");
+		
+		JLabel lblNewLabel_10 = new JLabel("Trier la liste par");
+		lblNewLabel_10.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Sort-Ascending-32.png")));
+		panel_1.add(lblNewLabel_10, "flowx,cell 0 2,alignx left");
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"zae", "ezzae", "eazzae", "azaze"}));
+		panel_1.add(comboBox, "cell 0 2");
 	}
 
 }
