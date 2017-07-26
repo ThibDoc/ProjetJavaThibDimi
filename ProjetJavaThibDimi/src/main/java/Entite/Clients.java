@@ -15,10 +15,9 @@ public class Clients {
 	private String remarques;
 	private int carte_fidelite;
 	
-	public Clients(int code, Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
+	public Clients(Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
 			String email, String remarques, int carte_fidelite) {
 		super();
-		this.code = code;
 		this.date_creation = date_creation;
 		this.prenom = prenom;
 		this.nom = nom;

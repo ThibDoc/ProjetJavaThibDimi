@@ -12,10 +12,9 @@ public class Commandes{
 	private int code_article;
 	private int quantite;
 	
-	public Commandes(int code, int code_cli, String mode_payement, double total_ttc, Date date, int code_article,
+	public Commandes(int code_cli, String mode_payement, double total_ttc, Date date, int code_article,
 			int quantite) {
 		super();
-		this.code = code;
 		this.code_cli = code_cli;
 		this.mode_payement = mode_payement;
 		this.total_ttc = total_ttc;

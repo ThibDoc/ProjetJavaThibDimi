@@ -8,9 +8,8 @@ public class Articles {
 	private int quantite;
 	private double prix_unitaire;
 	
-	public Articles(int code, String categorie, String designation, int quantite, double prix_unitaire) {
+	public Articles(String categorie, String designation, int quantite, double prix_unitaire) {
 		super();
-		this.code = code;
 		this.categorie = categorie;
 		this.designation = designation;
 		this.quantite = quantite;
