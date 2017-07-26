@@ -37,6 +37,7 @@ import javax.swing.JRadioButton;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 
 public class Farticles extends JFrame {
 
@@ -56,7 +57,9 @@ public class Farticles extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Farticles frame = new Farticles(new Connexions("Luna","Luna"));
+					Connexions con = new Connexions("Luna","Luna");
+					Connection connect = con.connect(con.getLog(), con.getPass());
+					Farticles frame = new Farticles(connect);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +71,7 @@ public class Farticles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Farticles(Connexions con) {
+	public Farticles(Connection con) {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));

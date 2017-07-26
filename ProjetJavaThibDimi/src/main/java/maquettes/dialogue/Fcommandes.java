@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
@@ -52,7 +53,9 @@ public class Fcommandes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fcommandes frame = new Fcommandes(new Connexions("Luna","Luna"));
+					Connexions con = new Connexions("Luna","Luna");
+					Connection connect = con.connect(con.getLog(), con.getPass());
+					Fcommandes frame = new Fcommandes(connect);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +67,7 @@ public class Fcommandes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fcommandes(Connexions con) {
+	public Fcommandes(Connection con) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);

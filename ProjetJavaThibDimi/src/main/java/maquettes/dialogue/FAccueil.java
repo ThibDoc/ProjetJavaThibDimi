@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -44,7 +45,9 @@ public class FAccueil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FAccueil frame = new FAccueil(new Connexions("Luna","Luna"));
+					Connexions con = new Connexions("Luna","Luna");
+					Connection connect = con.connect(con.getLog(), con.getPass());
+					FAccueil frame = new FAccueil(connect);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +59,7 @@ public class FAccueil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FAccueil(Connexions con) {
+	public FAccueil(Connection con) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Accueil");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));

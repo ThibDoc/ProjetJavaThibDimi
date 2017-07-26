@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -121,8 +122,9 @@ public class Fconnexion extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 try {
-				Connexions con = new Connexions(textField.getText(),textField_1.getText());
-				FAccueil frame = new FAccueil(con);
+				 Connexions con = new Connexions(textField.getText(),textField_1.getText());
+				 Connection connect = con.connect(con.getLog(), con.getPass());
+				FAccueil frame = new FAccueil(connect);
 				frame.setVisible(true);
 				close();
 			} catch (SQLException e1) {

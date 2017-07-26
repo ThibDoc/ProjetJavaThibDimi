@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.Connection;
 import java.util.List;
 
 import Entite.Clients;
@@ -10,5 +11,5 @@ public interface ClientsDAO {
 	public void updateClients(Clients employe);
 	public void removeClients(int code);
 	public Clients getClients(int code);
-	public List<Clients> getAllArticles();
+	public List<Clients> getAllClients(Connection con);
 }

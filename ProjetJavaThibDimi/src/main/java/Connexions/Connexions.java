@@ -8,15 +8,42 @@ import java.sql.Statement;
 
 public class Connexions{
 	
-	public Connexions(String login, String mdp) throws SQLException{
+	private String log;
+	private String pass;
+	
+	
+	public  Connexions(String login, String mdp) throws SQLException {
+		this.log = login;
+		this.pass = mdp;
 		
+		connect(login ,mdp);
+		
+		
+	}
+	
+	public Connection connect(String login, String mdp) throws SQLException{
 		String url = "jdbc:mysql://localhost:3306/luna";
 		
 		Connection con = DriverManager.getConnection(url,login,mdp);
-
-		con.close();
-		
-
+		 
+		return con;
 	}
+
+	public String getLog() {
+		return log;
+	}
+
+	public void setLog(String log) {
+		this.log = log;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	
 
 }

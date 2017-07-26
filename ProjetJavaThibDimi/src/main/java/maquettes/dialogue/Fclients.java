@@ -16,6 +16,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
@@ -93,7 +94,9 @@ public class Fclients extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fclients frame = new Fclients(new Connexions("Luna","Luna"));
+					Connexions con = new Connexions("Luna","Luna");
+					Connection connect = con.connect(con.getLog(), con.getPass());
+					Fclients frame = new Fclients(connect);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,7 +108,7 @@ public class Fclients extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Fclients(Connexions con) {
+	public Fclients(Connection con) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
 		setBounds(100, 100, 845, 718);

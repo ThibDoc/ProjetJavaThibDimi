@@ -29,6 +29,12 @@ public class Clients {
 		this.carte_fidelite = carte_fidelite;
 	}
 	
+	public Clients() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public int getCode() {
 		return code;
 	}
