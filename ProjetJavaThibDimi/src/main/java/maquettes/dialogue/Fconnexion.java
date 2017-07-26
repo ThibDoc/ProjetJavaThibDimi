@@ -137,6 +137,11 @@ public class Fconnexion extends JFrame {
 		panel_1.add(btnValider);
 		
 		JButton btnQuitter = new JButton("Quitter");
+		btnQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				close();
+			}
+		});
 		btnQuitter.setHorizontalAlignment(SwingConstants.LEFT);
 		btnQuitter.setBounds(178, 11, 130, 55);
 		panel_1.add(btnQuitter);

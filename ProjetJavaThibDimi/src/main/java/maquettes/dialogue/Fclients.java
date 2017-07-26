@@ -36,6 +36,8 @@ import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import java.awt.CardLayout;
 import java.awt.SystemColor;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Fclients extends JFrame {
 	
@@ -80,6 +82,9 @@ public class Fclients extends JFrame {
 	private JTextField textField_37;
 	private JTextField textField_38;
 	private JTextField textField_39;
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
 
 	/**
 	 * Launch the application.
@@ -205,6 +210,17 @@ public class Fclients extends JFrame {
 					
 					JScrollPane scrollPane = new JScrollPane();
 					panel_1.add(scrollPane, "cell 0 1,grow");
+					
+					table_1 = new JTable();
+					table_1.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null, null, null},
+						},
+						new String[] {
+							"Code", "Nom", "Prenom", "Carte fidélité", "date de création"
+						}
+					));
+					scrollPane.setViewportView(table_1);
 					
 					JLabel lblNewLabel_10 = new JLabel("Trier la liste par");
 					lblNewLabel_10.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Sort-Ascending-32.png")));
@@ -401,6 +417,19 @@ public class Fclients extends JFrame {
 					JScrollPane scrollPane_1 = new JScrollPane();
 					panel_3.add(scrollPane_1, "cell 0 2,grow");
 					
+					table_2 = new JTable();
+					table_2.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null, null, null},
+						},
+						new String[] {
+							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+						}
+					));
+					scrollPane_1.setViewportView(table_2);
+					
+					
+					
 					JLabel lblTrierLaListe = new JLabel("Trier la liste par");
 					lblTrierLaListe.setVerticalAlignment(SwingConstants.BOTTOM);
 					lblTrierLaListe.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Sort-Ascending-32.png")));
@@ -485,7 +514,7 @@ public class Fclients extends JFrame {
 					panel_14.setBackground(new Color(135, 206, 235));
 					panel_14.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 					panel_13.add(panel_14, "cell 0 1,grow");
-					panel_14.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow][grow][grow]"));
+					panel_14.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow][grow]"));
 					
 					JLabel label = new JLabel("Code");
 					panel_14.add(label, "cell 0 0,alignx right,aligny center");
@@ -551,12 +580,26 @@ public class Fclients extends JFrame {
 					label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 					panel_14.add(label_8, "cell 0 5,alignx left,aligny center");
 					
+					JScrollPane scrollPane_4 = new JScrollPane();
+					panel_14.add(scrollPane_4, "cell 1 5,grow");
+					
 					JTextArea textArea_2 = new JTextArea();
+					scrollPane_4.setViewportView(textArea_2);
 					textArea_2.setLineWrap(true);
-					panel_14.add(textArea_2, "cell 1 5 1 3,grow");
 					
 					JScrollPane scrollPane_2 = new JScrollPane();
 					panel_13.add(scrollPane_2, "cell 0 2,grow");
+					
+					table = new JTable();
+					table.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null, null, null},
+						},
+						new String[] {
+							"Code", "Nom", "Prenom", "Carte Fidélité", "Date de création"
+						}
+					));
+					scrollPane_2.setViewportView(table);
 					
 					JPanel FCAjout = new JPanel(); // panel ajout
 					layeredPane.setLayer(FCAjout, 2);
