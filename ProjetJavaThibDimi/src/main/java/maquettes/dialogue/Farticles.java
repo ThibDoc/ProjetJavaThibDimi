@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
+import util.Connexions;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -29,9 +31,6 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
-import Connexions.Connexions;
-
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import java.awt.Toolkit;

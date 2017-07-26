@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import net.miginfocom.swing.MigLayout;
+import util.Connexions;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -27,9 +29,6 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import Connexions.Connexions;
-
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 

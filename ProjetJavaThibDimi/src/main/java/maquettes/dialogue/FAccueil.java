@@ -6,9 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Connexions.Connexions;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -28,6 +25,8 @@ import javax.swing.JMenu;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
+import util.Connexions;
+
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;

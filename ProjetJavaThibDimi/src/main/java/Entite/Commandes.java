@@ -8,11 +8,11 @@ public class Commandes{
 	private	int code_cli;
 	private String mode_payement;
 	private double total_ttc;
-	private Date date;
+	private String date;
 	private int code_article;
 	private int quantite;
 	
-	public Commandes(int code_cli, String mode_payement, double total_ttc, Date date, int code_article,
+	public Commandes(int code_cli, String mode_payement, double total_ttc, String date, int code_article,
 			int quantite) {
 		super();
 		this.code_cli = code_cli;
@@ -49,10 +49,10 @@ public class Commandes{
 	public void setTotal_ttc(double total_ttc) {
 		this.total_ttc = total_ttc;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public int getCode_article() {

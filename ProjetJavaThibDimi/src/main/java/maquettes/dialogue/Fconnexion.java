@@ -16,7 +16,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import Connexions.Connexions;
+import util.Connexions;
 
 import javax.swing.JTextPane;
 import java.awt.GridBagLayout;
