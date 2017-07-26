@@ -18,6 +18,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
@@ -29,6 +30,12 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import DAO.ClientsDAOMySQL;
+import DAO.CommandesDAOMySQL;
+import Entite.Clients;
+import Entite.Commandes;
+
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 
@@ -200,7 +207,14 @@ public class Fcommandes extends JFrame {
 		panel_3.add(lblNewLabel, "cell 0 1,alignx trailing");
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selectionner un client"}));
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
+		String[] str = new String[cli.size()];
+		int compteur =0;
+		for(Clients unCli : cli){
+			str[compteur] = unCli.getNom();
+			compteur++;
+		}
+		comboBox.setModel(new DefaultComboBoxModel(str));
 		panel_3.add(comboBox, "cell 1 1 3 1,growx");
 		
 		JPanel panel_4 = new JPanel();
