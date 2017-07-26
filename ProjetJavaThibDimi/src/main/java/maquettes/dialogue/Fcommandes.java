@@ -43,6 +43,7 @@ public class Fcommandes extends JFrame {
 	private JTextField textField_5;
 	private JTable table;
 	private JTextField txtDzd;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -76,13 +77,15 @@ public class Fcommandes extends JFrame {
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		layeredPane.add(panel, "name_1909504033885967");
-		panel.setLayout(new BorderLayout(0, 0));
+		JPanel FComPrinc = new JPanel();
+		layeredPane.add(FComPrinc, "name_1909504033885967");
+		FComPrinc.setLayout(new BorderLayout(0, 0));
 		
+		
+		// PANEL 1 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 140, 0));
-		panel.add(panel_1, BorderLayout.WEST);
+		FComPrinc.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
 		
 		JLabel lblCommandes = new JLabel("Commande");
@@ -91,10 +94,6 @@ public class Fcommandes extends JFrame {
 		panel_1.add(lblCommandes, "cell 0 0");
 		
 		JButton btnNewButton = new JButton("Commandes existantes");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton.setBorder(null);
 		btnNewButton.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Receipt-48.png")));
 		btnNewButton.setBackground(new Color(255, 140, 0));
@@ -103,6 +102,7 @@ public class Fcommandes extends JFrame {
 		panel_1.add(btnNewButton, "cell 0 1");
 		
 		JButton btnNewButton_1 = new JButton("Supprimer");
+		
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1.setBackground(new Color(255, 140, 0));
@@ -162,10 +162,11 @@ public class Fcommandes extends JFrame {
 		btnNewButton_7.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Home-48.png")));
 		btnNewButton_7.setBorder(null);
 		panel_1.add(btnNewButton_7, "cell 0 8");
+		// FIN PANEL 1
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 222, 173));
-		panel.add(panel_2, BorderLayout.CENTER);
+		FComPrinc.add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(new MigLayout("", "[grow]", "[150px][350px][grow]"));
 		
 		JPanel panel_3 = new JPanel();
@@ -317,6 +318,130 @@ public class Fcommandes extends JFrame {
 		btnNewButton_11.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Cart-05-48.png")));
 		btnNewButton_11.setBorder(null);
 		panel_5.add(btnNewButton_11, "cell 2 1 2 1,grow");
+		
+		JPanel FComTous = new JPanel();
+		layeredPane.setLayer(FComTous, 1);
+		layeredPane.add(FComTous, "name_1982934410928838");
+		FComTous.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 140, 0));
+		FComTous.add(panel, BorderLayout.WEST);
+		panel.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
+		
+		JLabel lblCommandes2 = new JLabel("Commande");
+		lblCommandes2.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Bag-64-actif.png")));
+		lblCommandes2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		panel.add(lblCommandes2, "cell 0 0");
+		
+		
+		JButton btnNewButton_12 = new JButton("Retour");
+		btnNewButton_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComPrinc.setVisible(true);
+				FComTous.setVisible(false);
+			}
+		});
+		btnNewButton_12.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_12.setForeground(Color.WHITE);
+		btnNewButton_12.setBackground(new Color(255, 140, 0));
+		btnNewButton_12.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Cancel-48.png")));
+		btnNewButton_12.setBorder(null);
+		panel.add(btnNewButton_12, "cell 0 8");
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255, 222, 173));
+		FComTous.add(panel_6, BorderLayout.CENTER);
+		panel_6.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new TitledBorder(new LineBorder(new Color(255, 140, 0), 2), "Toutes les commandes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128)));
+		panel_7.setBackground(new Color(255, 222, 173));
+		panel_6.add(panel_7, "cell 0 0,grow");
+		panel_7.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_7.add(scrollPane_1, "cell 0 0,grow");
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+			},
+			new String[] {
+				"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
+			}
+		));
+		scrollPane_1.setViewportView(table_1);
+		
+		JPanel FComSup = new JPanel();
+		layeredPane.add(FComSup, "name_1984331761169496");
+		FComSup.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 140, 0));
+		panel_8.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
+		FComSup.add(panel_8, BorderLayout.WEST);
+		
+		
+		JLabel lblCommandes3 = new JLabel("Commande");
+		lblCommandes3.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Bag-64-actif.png")));
+		lblCommandes3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		panel_8.add(lblCommandes3, "cell 0 0");
+		
+		
+		JButton btnNewButton_14 = new JButton("Retour");
+		btnNewButton_14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComPrinc.setVisible(true);
+				FComSup.setVisible(false);
+			}
+		});
+		btnNewButton_14.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton_14.setForeground(Color.WHITE);
+		btnNewButton_14.setBackground(new Color(255, 140, 0));
+		btnNewButton_14.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Cancel-48.png")));
+		btnNewButton_14.setBorder(null);
+		panel_8.add(btnNewButton_14, "cell 0 8");
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 222, 173));
+		FComSup.add(panel_9, BorderLayout.CENTER);
+		panel_9.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new TitledBorder(new LineBorder(new Color(255, 140, 0), 2), "Supprimer une commande", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128)));
+		panel_10.setBackground(new Color(255, 222, 173));
+		panel_9.add(panel_10, "cell 0 0,grow");
+		panel_10.setLayout(new MigLayout("", "[300px,right][100px][grow,right]", "[300px][300px,bottom]"));
+		
+		JLabel lblSelectionnerLaCommande = new JLabel("Selectionner la commande a supprimer");
+		lblSelectionnerLaCommande.setFont(new Font("Tahoma", Font.BOLD, 12));
+		panel_10.add(lblSelectionnerLaCommande, "cell 0 0,alignx trailing");
+		
+		JComboBox comboBox_3 = new JComboBox();
+		panel_10.add(comboBox_3, "cell 1 0,growx");
+		
+		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnSupprimer.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
+		panel_10.add(btnSupprimer, "cell 2 1");
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComPrinc.setVisible(false);
+				FComTous.setVisible(true);
+			}
+		});
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComPrinc.setVisible(false);
+				FComSup.setVisible(true);
+			}
+		});
 	}
 	
 	public void CloseFrame(){
