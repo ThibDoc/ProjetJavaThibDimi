@@ -1,6 +1,7 @@
 package Entite;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Clients {
 	
@@ -14,9 +15,10 @@ public class Clients {
 	private String email;
 	private String remarques;
 	private int carte_fidelite;
+	private List<Commandes> listCom;
 	
 	public Clients(Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
-			String email, String remarques, int carte_fidelite) {
+			String email, String remarques, int carte_fidelite,List<Commandes> listCom) {
 		super();
 		this.date_creation = date_creation;
 		this.prenom = prenom;
@@ -27,6 +29,7 @@ public class Clients {
 		this.email = email;
 		this.remarques = remarques;
 		this.carte_fidelite = carte_fidelite;
+		this.listCom = listCom;
 	}
 	
 	public Clients() {
@@ -34,6 +37,8 @@ public class Clients {
 	}
 
 
+
+	
 
 	public int getCode() {
 		return code;
@@ -95,7 +100,13 @@ public class Clients {
 	public void setCarte_fidelite(int carte_fidelite) {
 		this.carte_fidelite = carte_fidelite;
 	}
-	
+	public List<Commandes> getListCom() {
+		return listCom;
+	}
+
+	public void setListCom(List<Commandes> listCom) {
+		this.listCom = listCom;
+	}
 	
 	
 }

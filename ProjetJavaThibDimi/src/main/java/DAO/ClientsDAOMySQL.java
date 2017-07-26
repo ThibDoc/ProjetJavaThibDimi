@@ -82,6 +82,13 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
+				
+				/*Commandes c1 = new Commandes(1, "dd", 55.5,"2017/08/05", 5,10);
+				Commandes c2 = new Commandes(1, "ee", 55.5,"2017/08/05", 5,10);
+				List<Commandes> list = new ArrayList<Commandes>();
+				list.add(c1);
+				list.add(c2);*/
+				client.setListCom(getCommandesCli(con, 1));
 				clients.add(client);
 			}
 
@@ -90,6 +97,61 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		}
 		return clients;
 
+	}
+
+	@Override
+	public List<Commandes> getCommandesCli(Connection con,int cli) {
+		List<Commandes> commandes=new ArrayList<Commandes>();
+		Commandes commande=null;
+		try {
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM commande where code_cli = "+cli);
+
+			while (result.next()) {
+				commande=new Commandes();
+				commande.setCode_cli(result.getInt("code_cli"));
+				commande.setMode_payement(result.getString("mode_payement"));
+				commande.setTotal_ttc(result.getDouble("total_ttc"));
+				commande.setDate(result.getString("date"));
+				commande.setCode_article(result.getInt("code_article"));
+				commande.setQuantite(result.getInt("quantite"));
+				commandes.add(commande);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commandes;
+	}
+
+	@Override
+	public Clients getCliByName(Connection con, String nom) {
+		Clients client=null;
+		try {
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM clients where nom = '"+nom+"'");
+
+			while (result.next()) {
+				client=new Clients();
+				client.setDate_creation(result.getDate("date_creation"));
+				client.setPrenom(result.getString("prenom"));
+				client.setNom(result.getString("nom"));
+				client.setAdresse(result.getString("adresse"));
+				client.setFixe(result.getInt("fixe"));
+				client.setMobile(result.getInt("mobile"));
+				client.setEmail(result.getString("email"));
+				client.setRemarques(result.getString("remarques"));
+				client.setCarte_fidelite(result.getInt("carte_fidelite"));
+				client.setListCom(getCommandesCli(con, result.getInt("code")));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return client;
 	}
 
 }

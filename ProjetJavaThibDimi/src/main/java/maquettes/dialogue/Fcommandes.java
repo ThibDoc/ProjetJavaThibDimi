@@ -77,6 +77,9 @@ public class Fcommandes extends JFrame {
 	public Fcommandes(Connection con) {
 		
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
+		for (Clients clients : cli) {
+			System.out.println(clients.getNom());
+		}
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
@@ -222,7 +225,16 @@ public class Fcommandes extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Selectionner une commande"}));
+		ClientsDAOMySQL dao = new ClientsDAOMySQL();
+		Clients clii = dao.getCliByName(con, comboBox.getSelectedItem().toString());
+		System.out.println(clii.getAdresse());
+		String[] str = new String[clii.getListCom().size()];
+		int compteur =0;
+		for(Commandes uneCom : clii.getListCom()){
+			str[compteur] = Integer.toString(uneCom.getCode());
+			compteur++;
+		}
+		comboBox_1.setModel(new DefaultComboBoxModel(str));
 		comboBox_1.setToolTipText("");
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
