@@ -2,7 +2,7 @@ package Entite;
 
 import java.sql.Date;
 
-public class Client {
+public class Clients {
 	
 	private int code;
 	private Date date_creation;
@@ -15,7 +15,7 @@ public class Client {
 	private String remarques;
 	private int carte_fidelite;
 	
-	public Client(int code, Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
+	public Clients(int code, Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
 			String email, String remarques, int carte_fidelite) {
 		super();
 		this.code = code;
