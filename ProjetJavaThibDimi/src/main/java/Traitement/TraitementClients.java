@@ -1,12 +1,15 @@
 package Traitement;
 
 import Entite.Clients;
+
+import java.util.List;
+
 import DAO.ClientsDAOMySQL;
 
 public class TraitementClients {
 	
-	public Clients clients;
-	public ClientsDAOMySQL ClientsDAOMySQL;
+	public List<Clients> clients;
+	
 	
 	
 }

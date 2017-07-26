@@ -281,11 +281,11 @@ public class Fcommandes extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
+			/*new Object[][] {
 				{null, null, null, null, null, null},
 				{null, null, null, null, null, null},
 				{null, null, null, null, null, null},
-			},
+			}*/,
 			new String[] {
 				"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
 			}
