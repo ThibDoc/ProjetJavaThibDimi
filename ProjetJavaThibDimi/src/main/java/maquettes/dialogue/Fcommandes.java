@@ -35,6 +35,7 @@ import DAO.ClientsDAOMySQL;
 import DAO.CommandesDAOMySQL;
 import Entite.Clients;
 import Entite.Commandes;
+import Traitement.TraitementClients;
 
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
@@ -74,6 +75,10 @@ public class Fcommandes extends JFrame {
 	 * Create the frame.
 	 */
 	public Fcommandes(Connection con) {
+		
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
+		TraitementClients traitementClients =  new TraitementClients(cli);
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);
@@ -207,14 +212,7 @@ public class Fcommandes extends JFrame {
 		panel_3.add(lblNewLabel, "cell 0 1,alignx trailing");
 		
 		JComboBox comboBox = new JComboBox();
-		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
-		String[] str = new String[cli.size()];
-		int compteur =0;
-		for(Clients unCli : cli){
-			str[compteur] = unCli.getNom();
-			compteur++;
-		}
-		comboBox.setModel(new DefaultComboBoxModel(str));
+		comboBox.setModel(new DefaultComboBoxModel(traitementClients.MenuDeroulantClient()));
 		panel_3.add(comboBox, "cell 1 1 3 1,growx");
 		
 		JPanel panel_4 = new JPanel();
