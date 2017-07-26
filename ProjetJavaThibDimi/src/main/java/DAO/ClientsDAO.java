@@ -7,9 +7,9 @@ import Entite.Clients;
 
 public interface ClientsDAO {
 	
-	public void insertClients(Clients employe);
-	public void updateClients(Clients employe);
-	public void removeClients(int code);
-	public Clients getClients(int code);
+	public void insertClients(Clients employe,Connection con);
+	public void updateClients(Clients employe,Connection con);
+	public void removeClients(int code,Connection con);
+	public Clients getClients(int code,Connection con);
 	public List<Clients> getAllClients(Connection con);
 }
