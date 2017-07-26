@@ -22,6 +22,9 @@ public class Commandes{
 		this.code_article = code_article;
 		this.quantite = quantite;
 	}
+	public Commandes() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getCode() {
 		return code;
 	}

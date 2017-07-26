@@ -6,6 +6,7 @@ import java.util.List;
 
 import Connexions.Connexions;
 import Entite.Clients;
+import Entite.Commandes;
 
 public class test {
 
@@ -13,11 +14,11 @@ public class test {
 		// TODO Auto-generated method stub
 		Connexions con = new Connexions("Luna","Luna");
 		Connection connect = con.connect(con.getLog(), con.getPass());
-		List<Clients> list = new ClientsDAOMySQL().getAllClients(connect);
+		Commandes com = new CommandesDAOMySQL().getCommandes(1,connect);
 		
-		for (Clients unClient : list) {
-			System.out.println(unClient.getNom());
-		}
+		
+		System.out.println(com.getTotal_ttc());
+		
 	}
 
 }
