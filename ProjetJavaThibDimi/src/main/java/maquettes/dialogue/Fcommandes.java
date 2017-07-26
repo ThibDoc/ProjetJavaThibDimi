@@ -425,6 +425,12 @@ public class Fcommandes extends JFrame {
 		panel_10.add(comboBox_3, "cell 1 0,growx");
 		
 		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComSup f = new FComSup();
+				f.setVisible(true);
+			}
+		});
 		btnSupprimer.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnSupprimer.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_10.add(btnSupprimer, "cell 2 1");

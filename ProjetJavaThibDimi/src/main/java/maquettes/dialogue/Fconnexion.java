@@ -139,7 +139,8 @@ public class Fconnexion extends JFrame {
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				close();
+				FConExit f = new FConExit();
+				f.setVisible(true);
 			}
 		});
 		btnQuitter.setHorizontalAlignment(SwingConstants.LEFT);
@@ -153,10 +154,6 @@ public class Fconnexion extends JFrame {
 		btnNewButton.setBounds(0, 11, 168, 55);
 		panel_1.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Customize-01-48.png")));
 	}
 	
