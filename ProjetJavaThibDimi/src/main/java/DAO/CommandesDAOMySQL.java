@@ -84,6 +84,7 @@ public class CommandesDAOMySQL implements CommandesDAO{
 
 			while (result.next()) {
 				commande=new Commandes();
+				commande.setCode(result.getInt("code"));
 				commande.setCode_cli(result.getInt("code_cli"));
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));

@@ -33,8 +33,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import DAO.ArticlesDAOMySQL;
 import DAO.ClientsDAOMySQL;
 import DAO.CommandesDAOMySQL;
+import Entite.Articles;
 import Entite.Clients;
 import Entite.Commandes;
 import Traitement.TraitementClients;
@@ -88,6 +90,8 @@ public class Fcommandes extends JFrame {
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		TraitementCommande traitementCommande = new TraitementCommande();
 		ClientsDAOMySQL daoCli = new ClientsDAOMySQL();
+		CommandesDAOMySQL daoCom = new CommandesDAOMySQL();
+		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
@@ -232,8 +236,11 @@ public class Fcommandes extends JFrame {
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
 		
 		JComboBox comboBox_1 = new JComboBox();
+		
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboBox_1.setToolTipText("");
+		Clients leClient = daoCli.getCliByName(conn, comboBox.getSelectedItem().toString());
+		comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxCommandeCli(leClient.getListCom()) ));
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
 		JLabel lblCode = new JLabel("Code");
@@ -484,6 +491,31 @@ public class Fcommandes extends JFrame {
 				}
 				Clients leClien = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
 				comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxCommandeCli(leClien.getListCom()) ));
+			}
+		});
+		
+		comboBox_1.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Commandes comm = daoCom.getCommandes(Integer.parseInt(comboBox_1.getSelectedItem().toString()), conne);
+				Articles art = daoArt.getArticles(conne, comm.getCode_article());
+				textField_2.setText(Integer.toString(art.getCode()));
+				textField_3.setText(art.getCategorie());
+				textField_4.setText(art.getDesignation());
+				textField_5.setText(Double.toString(comm.getTotal_ttc()));
+				spinner.setValue(art.getQuantite());
+				table.setModel(new DefaultTableModel(
+						traitementCommande.TableauArticleCommande(art),
+						new String[] {
+							"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
+						}
+					));
 			}
 		});
 	}

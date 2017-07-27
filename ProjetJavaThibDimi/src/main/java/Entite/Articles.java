@@ -8,6 +8,11 @@ public class Articles {
 	private int quantite;
 	private double prix_unitaire;
 	
+	
+	
+	public Articles() {
+		super();
+	}
 	public Articles(String categorie, String designation, int quantite, double prix_unitaire) {
 		super();
 		this.categorie = categorie;

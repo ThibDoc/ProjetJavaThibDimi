@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entite.Articles;
+import Entite.Commandes;
 
 public class ArticlesDAOMySQL implements ArticlesDAO{
 
@@ -35,9 +36,26 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 	}
 
 	@Override
-	public Articles getArticles(int code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Articles getArticles(Connection con,int code) {
+		Articles article=null;
+		try {
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM article where code = '"+code+"'");
+
+			while (result.next()) {
+				article=new Articles();
+				article.setCode(result.getInt("code"));
+				article.setCategorie(result.getString("categorie"));
+				article.setDesignation(result.getString("designation"));
+				article.setQuantite(result.getInt("quantite"));
+				article.setPrix_unitaire(result.getDouble("prix_unitaire"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return article;
 	}
 
 	@Override
