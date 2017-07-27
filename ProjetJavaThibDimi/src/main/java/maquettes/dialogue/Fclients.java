@@ -224,8 +224,10 @@ public class Fclients extends JFrame {
 					));
 					scrollPane.setViewportView(table_1);
 					
+				
+					
 					table_1.addMouseListener(new MouseAdapter() {
-						public void mouseCliked(MouseEvent evt){
+						public void mouseClicked(MouseEvent evt){
 							int numLigne = table_1.getSelectedRow();
 							if(numLigne >=0 ){
 								Clients result = cli.get(numLigne);
@@ -243,6 +245,11 @@ public class Fclients extends JFrame {
 								textField_5.setText(date_creation);
 								textField_6.setText(result.getNom());
 								textField_7.setText(mobile);
+								textArea.setText(result.getRemarques());
+								if(result.getCarte_fidelite()==1){
+									chckbxNewCheckBox.setSelected(true);
+								}
+								else chckbxNewCheckBox.setSelected(false);
 							}
 						}
 					});

@@ -134,9 +134,7 @@ public class Fconnexion extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-			
+
 			}
 		});
 		btnValider.setHorizontalTextPosition(SwingConstants.LEADING);
