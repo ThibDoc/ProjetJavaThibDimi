@@ -6,10 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import DAO.CommandesDAOMySQL;
+import util.GlobalConnection;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -17,26 +23,13 @@ public class FComSup extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FComSup frame = new FComSup();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public FComSup() {
+	public FComSup(int code){
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FComSup.class.getResource("/images/Moon-32.png")));
 		setTitle("Supprimer une commande");
 		setBounds(100, 100, 450, 175);
@@ -51,6 +44,20 @@ public class FComSup extends JFrame {
 		contentPane.add(lblSupprimerLaCommande);
 		
 		JButton btnNewButton = new JButton("Oui");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection con = null;
+				try {
+					con = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CommandesDAOMySQL com = new CommandesDAOMySQL();
+				com.removeCommandes(code, con);
+				setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(216, 57, 89, 23);
 		contentPane.add(btnNewButton);
 		

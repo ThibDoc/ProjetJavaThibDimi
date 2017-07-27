@@ -22,6 +22,19 @@ public class TraitementCommande {
 		
 	}
 	
+
+	public String[] comboBoxCommande(List<Commandes> list){
+		String[] str = new String[list.size()];
+		int compteur =0;
+		for(Commandes uneCom : list){
+			str[compteur] = Integer.toString(uneCom.getCode());
+			compteur++;
+		}
+		
+		return str;
+		
+	}
+	
 	public Object[][] TableauArticleCommande(List<Articles> list){
 		Object[][] str = new Object[list.size()][6];
 		int compteur =0;

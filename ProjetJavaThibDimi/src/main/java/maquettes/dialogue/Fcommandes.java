@@ -10,6 +10,7 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import net.miginfocom.swing.MigLayout;
 import util.Connexions;
+import util.DateActuel;
 import util.GlobalConnection;
 
 import javax.swing.JLabel;
@@ -148,14 +149,6 @@ public class Fcommandes extends JFrame {
 		btnNewButton_2.setBackground(new Color(255, 140, 0));
 		btnNewButton_2.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_1.add(btnNewButton_2, "cell 0 3");
-		
-		JButton btnNewButton_3 = new JButton("Valider la commande");
-		btnNewButton_3.setForeground(Color.WHITE);
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_3.setBackground(new Color(255, 140, 0));
-		btnNewButton_3.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Cart-05-48.png")));
-		btnNewButton_3.setBorder(null);
-		panel_1.add(btnNewButton_3, "cell 0 4");
 		
 		JButton btnNewButton_4 = new JButton("Aperçu");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -350,6 +343,7 @@ public class Fcommandes extends JFrame {
 		txtDzd.setBorder(new LineBorder(new Color(255, 140, 0), 3));
 		
 		JButton btnNewButton_11 = new JButton("Valider la commande");
+		
 		btnNewButton_11.setBackground(new Color(255, 222, 173));
 		btnNewButton_11.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Cart-05-48.png")));
 		btnNewButton_11.setBorder(null);
@@ -458,15 +452,12 @@ public class Fcommandes extends JFrame {
 		panel_10.add(lblSelectionnerLaCommande, "cell 0 0,alignx trailing");
 		
 		JComboBox comboBox_3 = new JComboBox();
+		com = daoCom.getAllCommandes(conn);
+		comboBox_3.setModel(new DefaultComboBoxModel(traitementCommande.comboBoxCommande(com)));
 		panel_10.add(comboBox_3, "cell 1 0,growx");
 		
 		JButton btnSupprimer = new JButton("Supprimer");
-		btnSupprimer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FComSup f = new FComSup();
-				f.setVisible(true);
-			}
-		});
+		
 		btnSupprimer.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnSupprimer.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_10.add(btnSupprimer, "cell 2 1");
@@ -516,6 +507,7 @@ public class Fcommandes extends JFrame {
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Articles article = new Articles(textField_3.getText(), textField_4.getText(), Integer.parseInt(spinner.getValue().toString()), Double.parseDouble(textField_5.getText()));
+				article.setCode(Integer.parseInt(textField_2.getText()));
 				art.add(article);
 				table.setModel(new DefaultTableModel(
 						traitementCommande.TableauArticleCommande(art),
@@ -533,14 +525,52 @@ public class Fcommandes extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				FComPrinc.setVisible(false);
 				FComTous.setVisible(true);
+				List<Commandes> come = daoCom.getAllCommandes(conne);
 				table_1.setModel(new DefaultTableModel(
-						traitementCommande.TableauToutesCommande(com),
+						traitementCommande.TableauToutesCommande(come),
 						new String[] {
 							"Code", "Code du client", "Mode de payement", "Total TTC", "Date"
 						}
 					));
+			}
+		});
+		
+		Articles artu = daoArt.getArticles(conn, comboBox_1.getSelectedItem().toString());
+		textField_2.setText(Integer.toString(artu.getCode()));
+		textField_3.setText(artu.getCategorie());
+		textField_4.setText(artu.getDesignation());
+		textField_5.setText(Double.toString(artu.getPrix_unitaire()));
+		spinner.setValue(artu.getQuantite());
+		
+		btnNewButton_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				DateActuel d = new DateActuel();
+				Clients leCli = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
+				Commandes com = new Commandes(leCli.getCode(), comboBox_2.getSelectedItem().toString(), Double.parseDouble(txtDzd.getText()), d.dateActuel());
+				daoCom.insertCommandes(com, conne);
+			}
+		});
+		
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComSup f = new FComSup(Integer.parseInt(comboBox_3.getSelectedItem().toString()));
+				f.setVisible(true);
 			}
 		});
 		
