@@ -52,7 +52,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 	}
 
 	@Override
-	public Clients getClients(int code, Connection con) {
+	public Clients getClients(int code,String prenom , String nom, int carte_fidelite,Connection con) {
 		Clients client=null;
 		try {
 			
