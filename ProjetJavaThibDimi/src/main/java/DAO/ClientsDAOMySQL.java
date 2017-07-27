@@ -9,6 +9,7 @@ import java.util.List;
 
 import Entite.Clients;
 import Entite.Commandes;
+import util.Util;
 
 public class ClientsDAOMySQL implements ClientsDAO {
 
@@ -84,7 +85,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
-				//client.setListCom(u.combyname(client.getCode()));
+				Util u = new Util();
+				client.setListCom( u.combyname(client.getCode()) );
 				clients.add(client);
 			}
 
@@ -142,7 +144,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
-				//client.setListCom(u.combyname(1));
+				Util u = new Util();
+				client.setListCom( u.combyname(client.getCode()) );
 				
 			}
 

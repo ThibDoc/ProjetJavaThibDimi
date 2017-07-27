@@ -38,9 +38,12 @@ import DAO.CommandesDAOMySQL;
 import Entite.Clients;
 import Entite.Commandes;
 import Traitement.TraitementClients;
+import Traitement.TraitementCommande;
 
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Fcommandes extends JFrame {
 
@@ -83,6 +86,8 @@ public class Fcommandes extends JFrame {
 		conn = GlobalConnection.getInstance();
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
 		TraitementClients traitementClients =  new TraitementClients(cli);
+		TraitementCommande traitementCommande = new TraitementCommande();
+		ClientsDAOMySQL daoCli = new ClientsDAOMySQL();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
@@ -225,7 +230,9 @@ public class Fcommandes extends JFrame {
 		panel_4.setBackground(new Color(255, 222, 173));
 		panel_2.add(panel_4, "cell 0 1,grow");
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
+		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboBox_1.setToolTipText("");
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
@@ -463,6 +470,20 @@ public class Fcommandes extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FComPrinc.setVisible(false);
 				FComSup.setVisible(true);
+			}
+		});
+		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Clients leClien = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
+				comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxCommandeCli(leClien.getListCom()) ));
 			}
 		});
 	}
