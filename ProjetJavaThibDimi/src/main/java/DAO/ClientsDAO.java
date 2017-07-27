@@ -11,9 +11,10 @@ public interface ClientsDAO {
 	public void insertClients(Clients employe,Connection con);
 	public void updateClients(Clients employe,Connection con);
 	public void removeClients(int code,Connection con);
-	public Clients getClients(int code,String prenom , String nom, int carte_fidelite,Connection con);
+	public List<Clients> getClients(int code, String prenom, String nom, int carte_fidelite, Connection con);
 	public List<Clients> getAllClients(Connection con);
 	public List<Commandes> getCommandesCli(Connection con,int cli);
 	public Clients getCliByName(Connection con,String nom);
+
 	
 }

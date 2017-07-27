@@ -52,12 +52,55 @@ public class ClientsDAOMySQL implements ClientsDAO {
 	}
 
 	@Override
-	public Clients getClients(int code,String prenom , String nom, int carte_fidelite,Connection con) {
+	public List<Clients> getClients(int code, String prenom, String nom, int carte_fidelite, Connection con) {
 		Clients client=null;
 		try {
 			
 			state = con.createStatement();
-			result = state.executeQuery("SELECT * FROM client where code = '"+code+"'");
+			String requete = "";
+			int and = 0;
+			
+			if(code != 0){
+				if( and == 0){
+					requete = "code = "+String.valueOf(code) ;
+				}else{
+					requete = "AND code= "+ String.valueOf(code);
+				}
+				and = 1;
+			}
+			if(prenom != ""){
+				if( and == 0){
+					requete += "prenom= "+prenom;
+				}else{
+					requete += " AND prenom= "+prenom;
+				}
+				and = 1;
+			}
+			if(nom != ""){
+				if( and == 0){
+					requete += " nom= "+nom;
+				}else{
+					requete += " AND nom= "+nom;
+				}
+				and = 1;
+			}
+			if(carte_fidelite == 1){
+				if( and == 0){
+					requete += "carte_fidelite = "+String.valueOf(carte_fidelite);
+				}else{
+					requete += " AND carte_fidelite = "+String.valueOf(carte_fidelite);
+				}
+				and = 1;
+			}else{
+				if( and == 0){
+					requete += "carte_fidelite = "+String.valueOf(carte_fidelite);
+				}else{
+					requete += " AND carte_fidelite = "+String.valueOf(carte_fidelite);
+				}
+				and = 1;
+			}
+			
+			result = state.executeQuery("SELECT * FROM client where " +requete);
 
 			while (result.next()) {
 				client=new Clients();

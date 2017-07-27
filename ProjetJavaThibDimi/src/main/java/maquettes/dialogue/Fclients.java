@@ -221,14 +221,21 @@ public class Fclients extends JFrame {
 					
 					table_1.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt){
+							Connection connec = null;
+							try {
+								connec = GlobalConnection.getInstance();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							List<Clients> clii = new ClientsDAOMySQL().getAllClients(connec);
 							int numLigne = table_1.getSelectedRow();
 							if(numLigne >=0 ){
-								Clients result = cli.get(numLigne);
+								Clients result = clii.get(numLigne);
 								String code = Integer.toString(result.getCode());
 								String fixe = Integer.toString(result.getFixe());
 								String mobile = Integer.toString(result.getMobile());
-								Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-								String date_creation = formatter.format(result.getDate_creation());
+								String date_creation =result.getDate_creation();
 								
 								textField.setText(code);
 								textField_1.setText(result.getPrenom());
@@ -370,6 +377,11 @@ public class Fclients extends JFrame {
 					textField_20.setColumns(10);
 					
 					JButton button = new JButton("Rechercher");
+					button.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							DAOClient.getClients(code, prenom, nom, carte_fidelite, con)
+						}
+					});
 					button.setFont(new Font("Tahoma", Font.BOLD, 12));
 					button.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
 					panel_11.add(button, "cell 1 2 2 1,grow");
@@ -891,7 +903,52 @@ public class Fclients extends JFrame {
 							
 							Clients newClient = new Clients(AjouteDate_creation, ajoutPrenom, ajoutNom, ajoutAdresse, AjoutFixe, AjoutMobile, ajoutEmail, AjoutRemarques, AjoutCarte_fidelite, list);
 							
+							
+							
 							DAOClient.insertClients(newClient, conne);
+							List<Clients> cli = new ClientsDAOMySQL().getAllClients(conne);
+							TraitementClients traitementClients =  new TraitementClients(cli);
+							table_1.setModel(new DefaultTableModel(
+									traitementClients.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+						}
+					});
+					
+					table_2.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt){
+							Connection connect = null;
+							try {
+								connect = GlobalConnection.getInstance();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							List<Clients> cliii = new ClientsDAOMySQL().getAllClients(connect);
+							int numLigne = table_1.getSelectedRow();
+							if(numLigne >=0 ){
+								Clients result = cliii.get(numLigne);
+								String code = Integer.toString(result.getCode());
+								String fixe = Integer.toString(result.getFixe());
+								String mobile = Integer.toString(result.getMobile());
+								String date_creation =result.getDate_creation();
+								
+								textField_32.setText(code);
+								textField_38.setText(result.getPrenom());
+								textField_34.setText(result.getAdresse());
+								textField_35.setText(fixe);
+								textField_36.setText(result.getEmail());
+								textField_37.setText(date_creation);
+								textField_33.setText(result.getNom());
+								textField_39.setText(mobile);
+								textArea_3.setText(result.getRemarques());
+								if(result.getCarte_fidelite()==1){
+									chckbxCarteDeFidlit_1.setSelected(true);
+								}
+								else chckbxCarteDeFidlit_1.setSelected(false);
+							}
 						}
 					});
 	
