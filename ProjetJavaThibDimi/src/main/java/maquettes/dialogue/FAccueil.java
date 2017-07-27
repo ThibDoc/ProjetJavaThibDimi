@@ -114,8 +114,15 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fclients frame = new Fclients();
-				frame.setVisible(true);
+				Fclients frame;
+				try {
+					frame = new Fclients();
+					frame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/People-128.png")));

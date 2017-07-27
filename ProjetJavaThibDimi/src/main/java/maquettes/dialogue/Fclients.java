@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import util.Connexions;
+import util.GlobalConnection;
 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -18,7 +19,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -92,30 +98,16 @@ public class Fclients extends JFrame {
 	private JTable table_1;
 	private JTable table_2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Connexions con = new Connexions("Luna","Luna");
-					Connection connect = con.connect(con.getLog(), con.getPass());
-					Fclients frame = new Fclients(connect);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public Fclients(Connection con) {
+	public Fclients() throws SQLException {
+		Connection conn = null;
+		conn = GlobalConnection.getInstance();
 		
-		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
@@ -231,6 +223,30 @@ public class Fclients extends JFrame {
 						}
 					));
 					scrollPane.setViewportView(table_1);
+					
+					table_1.addMouseListener(new MouseAdapter() {
+						public void mouseCliked(MouseEvent evt){
+							int numLigne = table_1.getSelectedRow();
+							if(numLigne >=0 ){
+								Clients result = cli.get(numLigne);
+								String code = Integer.toString(result.getCode());
+								String fixe = Integer.toString(result.getFixe());
+								String mobile = Integer.toString(result.getMobile());
+								Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+								String date_creation = formatter.format(result.getDate_creation());
+								
+								textField.setText(code);
+								textField_1.setText(result.getPrenom());
+								textField_2.setText(result.getAdresse());
+								textField_3.setText(fixe);
+								textField_4.setText(result.getEmail());
+								textField_5.setText(date_creation);
+								textField_6.setText(result.getNom());
+								textField_7.setText(mobile);
+							}
+						}
+					});
+					
 					
 					JLabel lblNewLabel_10 = new JLabel("Trier la liste par");
 					lblNewLabel_10.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Sort-Ascending-32.png")));
