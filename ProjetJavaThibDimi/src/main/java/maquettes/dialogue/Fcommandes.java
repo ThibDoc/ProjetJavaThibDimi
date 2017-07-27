@@ -287,7 +287,7 @@ public class Fcommandes extends JFrame {
 		JSpinner spinner = new JSpinner();
 		panel_4.add(spinner, "cell 4 1 2 1,growx");
 		
-		JButton btnNewButton_8 = new JButton("Modifier");
+		JButton btnNewButton_8 = new JButton("Ajouter");
 		btnNewButton_8.setBackground(new Color(255, 222, 173));
 		btnNewButton_8.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Add-New-48.png")));
 		btnNewButton_8.setBorder(null);
