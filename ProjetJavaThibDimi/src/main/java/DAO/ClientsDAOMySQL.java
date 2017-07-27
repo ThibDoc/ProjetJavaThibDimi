@@ -45,6 +45,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 			while (result.next()) {
 				client=new Clients();
+				client.setCode(result.getInt("code"));
 				client.setDate_creation(result.getDate("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));

@@ -19,6 +19,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
@@ -32,6 +33,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import DAO.ClientsDAOMySQL;
+import Entite.Clients;
+import Traitement.TraitementClients;
 
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
@@ -109,6 +114,10 @@ public class Fclients extends JFrame {
 	 * Create the frame.
 	 */
 	public Fclients(Connection con) {
+		
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
+		TraitementClients traitementClients =  new TraitementClients(cli);
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
 		setBounds(100, 100, 845, 718);
@@ -216,9 +225,7 @@ public class Fclients extends JFrame {
 					
 					table_1 = new JTable();
 					table_1.setModel(new DefaultTableModel(
-						new Object[][] {
-							{null, null, null, null, null},
-						},
+							traitementClients.TableauAllClient(),
 						new String[] {
 							"Code", "Nom", "Prenom", "Carte fidélité", "date de création"
 						}
