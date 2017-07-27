@@ -36,7 +36,6 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		try {
 			state = con.createStatement();
 			state.executeUpdate("INSERT INTO `clients`VALUES (NULL,"+date_creation+",'"+prenom+"','"+nom+"','"+adresse+"',"+fixe+","+mobile+",'"+email+"','"+remarques+"',"+carte_fidelite+")");
-			System.out.println("Commande ajouter");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

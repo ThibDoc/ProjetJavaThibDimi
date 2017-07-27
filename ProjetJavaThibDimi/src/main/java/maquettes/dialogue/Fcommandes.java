@@ -143,6 +143,7 @@ public class Fcommandes extends JFrame {
 		panel_1.add(btnNewButton_1, "cell 0 2");
 		
 		JButton btnNewButton_2 = new JButton("Supprimer toutes les lignes");
+		
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBorder(null);
@@ -564,13 +565,40 @@ public class Fcommandes extends JFrame {
 				Clients leCli = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
 				Commandes com = new Commandes(leCli.getCode(), comboBox_2.getSelectedItem().toString(), Double.parseDouble(txtDzd.getText()), d.dateActuel());
 				daoCom.insertCommandes(com, conne);
+				List<Commandes> come = daoCom.getAllCommandes(conne);
+				comboBox_3.setModel(new DefaultComboBoxModel(traitementCommande.comboBoxCommande(come)));
 			}
 		});
 		
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				FComSup f = new FComSup(Integer.parseInt(comboBox_3.getSelectedItem().toString()));
 				f.setVisible(true);
+				List<Commandes> com = daoCom.getAllCommandes(conne);
+				comboBox_3.setModel(new DefaultComboBoxModel(traitementCommande.comboBoxCommande(com)));
+			}
+		});
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null, null, null, null},
+							{null, null, null, null, null, null},
+							{null, null, null, null, null, null},
+						},
+						new String[] {
+							"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
+						}
+					));
+				art.clear();
 			}
 		});
 		
