@@ -1,6 +1,5 @@
 package Entite;
 
-import java.sql.Date;
 import java.util.List;
 
 public class Clients {

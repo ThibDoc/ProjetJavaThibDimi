@@ -12,4 +12,5 @@ public interface CommandesDAO {
 	public void removeCommandes(int code,Connection con);
 	public Commandes getCommandes(int code,Connection con);
 	public List<Commandes> getAllCommandes(Connection con);
+	
 }

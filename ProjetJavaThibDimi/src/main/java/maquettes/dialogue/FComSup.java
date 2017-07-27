@@ -1,15 +1,11 @@
 package maquettes.dialogue;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import DAO.CommandesDAOMySQL;
 import util.GlobalConnection;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;

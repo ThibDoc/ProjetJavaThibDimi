@@ -1,18 +1,13 @@
 package maquettes.dialogue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import net.miginfocom.swing.MigLayout;
-import util.Connexions;
 import util.DateActuel;
 import util.GlobalConnection;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -25,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -34,7 +28,6 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import DAO.ArticlesDAOMySQL;
 import DAO.ClientsDAOMySQL;
 import DAO.CommandesDAOMySQL;
@@ -43,7 +36,6 @@ import Entite.Clients;
 import Entite.Commandes;
 import Traitement.TraitementClients;
 import Traitement.TraitementCommande;
-
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.event.ItemListener;
@@ -62,23 +54,6 @@ public class Fcommandes extends JFrame {
 	private JTextField txtDzd;
 	private JTable table_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Connexions con = new Connexions("Luna","Luna");
-					Connection connect = con.connect(con.getLog(), con.getPass());
-					Fcommandes frame = new Fcommandes();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

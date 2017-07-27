@@ -1,22 +1,16 @@
 package maquettes.dialogue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
-import util.Connexions;
 import util.GlobalConnection;
-
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -34,19 +28,14 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
-import javax.swing.JToolBar;
-import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-
 import DAO.ClientsDAOMySQL;
 import Entite.Clients;
 import Entite.Commandes;
 import Traitement.TraitementClients;
-
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import java.awt.CardLayout;

@@ -1,35 +1,17 @@
 package maquettes.dialogue;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.SwingConstants;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import java.awt.Insets;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
-import util.Connexions;
-
-import java.awt.Component;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -37,24 +19,6 @@ import java.awt.Toolkit;
 public class FAccueil extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Connexions con = new Connexions("Luna","Luna");
-					Connection connect = con.connect(con.getLog(), con.getPass());
-					FAccueil frame = new FAccueil();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

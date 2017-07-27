@@ -15,4 +15,5 @@ public interface ClientsDAO {
 	public List<Clients> getAllClients(Connection con);
 	public List<Commandes> getCommandesCli(Connection con,int cli);
 	public Clients getCliByName(Connection con,String nom);
+	
 }

@@ -12,4 +12,5 @@ public interface ArticlesDAO {
 	public void removeArticles(int code);
 	public Articles getArticles(Connection con, String name);
 	public List<Articles> getAllArticles(Connection con);
+	
 }

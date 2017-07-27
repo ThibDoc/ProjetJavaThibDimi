@@ -1,6 +1,5 @@
 package Entite;
 
-import java.util.Date;
 
 public class Commandes{
 	

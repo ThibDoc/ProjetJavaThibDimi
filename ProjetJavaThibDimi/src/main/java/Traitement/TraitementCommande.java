@@ -1,9 +1,7 @@
 package Traitement;
 
 import java.util.List;
-
 import Entite.Articles;
-import Entite.Clients;
 import Entite.Commandes;
 
 public class TraitementCommande {

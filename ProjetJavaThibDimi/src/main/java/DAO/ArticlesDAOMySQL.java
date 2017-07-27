@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import Entite.Articles;
-import Entite.Commandes;
 
 public class ArticlesDAOMySQL implements ArticlesDAO{
 
@@ -37,6 +35,7 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 
 	@Override
 	public Articles getArticles(Connection con,String name) {
+		
 		Articles article=null;
 		try {
 			
@@ -60,6 +59,7 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 
 	@Override
 	public List<Articles> getAllArticles(Connection con) {
+		
 		List<Articles> articles=new ArrayList<Articles>();
 		Articles article=null;
 		try {

@@ -5,9 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import Entite.Clients;
 import Entite.Commandes;
 import util.Util;
@@ -22,7 +20,6 @@ public class ClientsDAOMySQL implements ClientsDAO {
 	@Override
 	public void insertClients(Clients client, Connection con) {
 		
-		int code = client.getCode();
 		String date_creation = client.getDate_creation();
 		String prenom = client.getPrenom();
 		String nom = client.getNom();
