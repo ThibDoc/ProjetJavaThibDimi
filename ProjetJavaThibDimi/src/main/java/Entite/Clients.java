@@ -6,7 +6,7 @@ import java.util.List;
 public class Clients {
 	
 	private int code;
-	private Date date_creation;
+	private String date_creation;
 	private String prenom;
 	private String nom;
 	private String adresse;
@@ -17,7 +17,7 @@ public class Clients {
 	private int carte_fidelite;
 	private List<Commandes> listCom;
 	
-	public Clients(Date date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
+	public Clients(String date_creation, String prenom, String nom, String adresse, int fixe, int mobile,
 			String email, String remarques, int carte_fidelite,List<Commandes> listCom) {
 		super();
 		this.date_creation = date_creation;
@@ -46,10 +46,10 @@ public class Clients {
 	public void setCode(int code) {
 		this.code = code;
 	}
-	public Date getDate_creation() {
+	public String getDate_creation() {
 		return date_creation;
 	}
-	public void setDate_creation(Date date_creation) {
+	public void setDate_creation(String date_creation) {
 		this.date_creation = date_creation;
 	}
 	public String getPrenom() {

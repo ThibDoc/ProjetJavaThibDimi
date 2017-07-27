@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Entite.Clients;
@@ -19,9 +20,27 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 	
 	@Override
-	public void insertClients(Clients employe, Connection con) {
-		// TODO Auto-generated method stub
+	public void insertClients(Clients client, Connection con) {
 		
+		int code = client.getCode();
+		String date_creation = client.getDate_creation();
+		String prenom = client.getPrenom();
+		String nom = client.getNom();
+		String adresse = client.getAdresse();
+		int fixe = client.getFixe();
+		int mobile = client.getMobile();
+		String email = client.getEmail();
+		String remarques = client.getRemarques();
+		int carte_fidelite = client.getCarte_fidelite();
+		
+		try {
+			state = con.createStatement();
+			state.executeUpdate("INSERT INTO `clients`VALUES (NULL,"+date_creation+",'"+prenom+"','"+nom+"','"+adresse+"',"+fixe+","+mobile+",'"+email+"','"+remarques+"',"+carte_fidelite+")");
+			System.out.println("Commande ajouter");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -47,7 +66,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 			while (result.next()) {
 				client=new Clients();
 				client.setCode(result.getInt("code"));
-				client.setDate_creation(result.getDate("date_creation"));
+				client.setDate_creation(result.getString("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));
 				client.setAdresse(result.getString("adresse"));
@@ -76,7 +95,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 			while (result.next()) {
 				client=new Clients();
 				client.setCode(result.getInt("code"));
-				client.setDate_creation(result.getDate("date_creation"));
+				client.setDate_creation(result.getString("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));
 				client.setAdresse(result.getString("adresse"));
@@ -113,8 +132,6 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));
 				commande.setDate(result.getString("date"));
-				commande.setCode_article(result.getInt("code_article"));
-				commande.setQuantite(result.getInt("quantite"));
 				commandes.add(commande);
 			}
 
@@ -135,7 +152,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 			while (result.next()) {
 				client=new Clients();
 				client.setCode(result.getInt("code"));
-				client.setDate_creation(result.getDate("date_creation"));
+				client.setDate_creation(result.getString("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));
 				client.setAdresse(result.getString("adresse"));

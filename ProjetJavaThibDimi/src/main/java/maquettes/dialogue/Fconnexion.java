@@ -55,6 +55,9 @@ public class Fconnexion extends JFrame {
 	 * Create the frame.
 	 */
 	public Fconnexion() {
+		
+		
+		
 		setTitle("SARL LUNA");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fconnexion.class.getResource("/images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,6 +80,8 @@ public class Fconnexion extends JFrame {
 		panel.setBounds(15, 64, 417, 121);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		
 		
 		JLabel lblNomDutilisateur = new JLabel("Nom D'utilisateur");
 		lblNomDutilisateur.setHorizontalAlignment(SwingConstants.LEFT);
@@ -131,8 +136,8 @@ public class Fconnexion extends JFrame {
 					frame.setVisible(true);
 					close();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					FLoginMdp f = new FLoginMdp();
+					f.setVisible(true);
 				}
 
 			}
@@ -163,6 +168,8 @@ public class Fconnexion extends JFrame {
 		panel_1.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Customize-01-48.png")));
+	
+		panel.getRootPane().setDefaultButton(btnValider);
 	}
 	
 	public void close(){

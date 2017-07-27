@@ -25,6 +25,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -40,8 +41,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+
 import DAO.ClientsDAOMySQL;
 import Entite.Clients;
+import Entite.Commandes;
 import Traitement.TraitementClients;
 
 import java.awt.Component;
@@ -62,16 +65,16 @@ public class Fclients extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
+	private JTextField code;
+	private JTextField date_creation;
+	private JTextField prenom;
+	private JTextField nom;
+	private JTextField adresse;
+	private JTextField code_postal;
+	private JTextField ville;
+	private JTextField fixe;
+	private JTextField mobile;
+	private JTextField email;
 	private JTextField textField_18;
 	private JTextField textField_19;
 	private JTextField textField_20;
@@ -107,6 +110,7 @@ public class Fclients extends JFrame {
 		Connection conn = null;
 		conn = GlobalConnection.getInstance();
 		
+		ClientsDAOMySQL DAOClient = new  ClientsDAOMySQL();
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		
@@ -650,6 +654,7 @@ public class Fclients extends JFrame {
 					panel_5.add(lblNewLabel_11, "cell 0 0,alignx left,aligny top");
 					
 					JButton btnNewButton_8 = new JButton("Sauvegarder");
+					
 					btnNewButton_8.setBackground(new Color(30, 144, 255));
 					btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_8.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
@@ -684,20 +689,20 @@ public class Fclients extends JFrame {
 					JLabel lblNewLabel_12 = new JLabel("Code");
 					panel_7.add(lblNewLabel_12, "cell 0 0,alignx trailing");
 					
-					textField_8 = new JTextField();
-					panel_7.add(textField_8, "cell 1 0,growx");
-					textField_8.setColumns(10);
+					code = new JTextField();
+					panel_7.add(code, "cell 1 0,growx");
+					code.setColumns(10);
 					
 					JLabel lblNewLabel_13 = new JLabel("Créé le");
 					panel_7.add(lblNewLabel_13, "cell 2 0,alignx trailing");
 					
-					textField_9 = new JTextField();
-					panel_7.add(textField_9, "cell 3 0,growx");
-					textField_9.setColumns(10);
+					date_creation = new JTextField();
+					panel_7.add(date_creation, "cell 3 0,growx");
+					date_creation.setColumns(10);
 					
-					JCheckBox chckbxCarteDeFidlit = new JCheckBox("Carte de fidélité");
-					chckbxCarteDeFidlit.setHorizontalAlignment(SwingConstants.CENTER);
-					panel_7.add(chckbxCarteDeFidlit, "cell 4 0,alignx center");
+					JCheckBox carte_fidelite = new JCheckBox("Carte de fidélité");
+					carte_fidelite.setHorizontalAlignment(SwingConstants.CENTER);
+					panel_7.add(carte_fidelite, "cell 4 0,alignx center");
 					
 					JPanel panel_8 = new JPanel();
 					panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -707,37 +712,37 @@ public class Fclients extends JFrame {
 					JLabel lblPrenom = new JLabel("Prénom");
 					panel_8.add(lblPrenom, "cell 0 0,alignx trailing");
 					
-					textField_10 = new JTextField();
-					panel_8.add(textField_10, "cell 1 0,growx");
-					textField_10.setColumns(10);
+					prenom = new JTextField();
+					panel_8.add(prenom, "cell 1 0,growx");
+					prenom.setColumns(10);
 					
 					JLabel lblNom = new JLabel("Nom");
 					panel_8.add(lblNom, "cell 2 0,alignx trailing");
 					
-					textField_11 = new JTextField();
-					panel_8.add(textField_11, "cell 3 0,growx");
-					textField_11.setColumns(10);
+					nom = new JTextField();
+					panel_8.add(nom, "cell 3 0,growx");
+					nom.setColumns(10);
 					
 					JLabel lblAdresse = new JLabel("Adresse");
 					panel_8.add(lblAdresse, "cell 0 1,alignx trailing");
 					
-					textField_12 = new JTextField();
-					panel_8.add(textField_12, "cell 1 1 3 1,growx");
-					textField_12.setColumns(10);
+					adresse = new JTextField();
+					panel_8.add(adresse, "cell 1 1 3 1,growx");
+					adresse.setColumns(10);
 					
 					JLabel lblCodePostal = new JLabel("Code postal");
 					panel_8.add(lblCodePostal, "cell 0 2,alignx trailing");
 					
-					textField_13 = new JTextField();
-					panel_8.add(textField_13, "cell 1 2,growx");
-					textField_13.setColumns(10);
+					code_postal = new JTextField();
+					panel_8.add(code_postal, "cell 1 2,growx");
+					code_postal.setColumns(10);
 					
 					JLabel lblVille = new JLabel("Ville");
 					panel_8.add(lblVille, "cell 2 2,alignx trailing");
 					
-					textField_14 = new JTextField();
-					panel_8.add(textField_14, "cell 3 2,growx");
-					textField_14.setColumns(10);
+					ville = new JTextField();
+					panel_8.add(ville, "cell 3 2,growx");
+					ville.setColumns(10);
 					
 					JPanel panel_9 = new JPanel();
 					panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -747,31 +752,31 @@ public class Fclients extends JFrame {
 					JLabel lblFixe = new JLabel("Fixe");
 					panel_9.add(lblFixe, "cell 0 0,alignx trailing");
 					
-					textField_15 = new JTextField();
-					panel_9.add(textField_15, "cell 1 0,growx");
-					textField_15.setColumns(10);
+					fixe = new JTextField();
+					panel_9.add(fixe, "cell 1 0,growx");
+					fixe.setColumns(10);
 					
 					JLabel lblMobile = new JLabel("Mobile");
 					panel_9.add(lblMobile, "cell 2 0,alignx trailing");
 					
-					textField_16 = new JTextField();
-					panel_9.add(textField_16, "cell 3 0,growx");
-					textField_16.setColumns(10);
+					mobile = new JTextField();
+					panel_9.add(mobile, "cell 3 0,growx");
+					mobile.setColumns(10);
 					
 					JLabel lblEmail = new JLabel("Email");
 					panel_9.add(lblEmail, "cell 0 1,alignx trailing");
 					
-					textField_17 = new JTextField();
-					panel_9.add(textField_17, "cell 1 1 3 1,growx");
-					textField_17.setColumns(10);
+					email = new JTextField();
+					panel_9.add(email, "cell 1 1 3 1,growx");
+					email.setColumns(10);
 					
 					JPanel panel_10 = new JPanel();
 					panel_10.setBorder(new TitledBorder(null, "Remarques", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 					panel_6.add(panel_10, "cell 0 3 4 1,grow");
 					panel_10.setLayout(new MigLayout("", "[grow]", "[grow]"));
 					
-					JTextArea textArea_1 = new JTextArea();
-					panel_10.add(textArea_1, "cell 0 0,grow");
+					JTextArea remarques = new JTextArea();
+					panel_10.add(remarques, "cell 0 0,grow");
 					
 					JButton btnExport = new JButton("Export");
 					btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -866,6 +871,35 @@ public class Fclients extends JFrame {
 					
 					layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
 
+					btnNewButton_8.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							Connection conne = null;
+							try {
+								conne = GlobalConnection.getInstance();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							String ajoutNom = nom.getText();
+							String ajoutPrenom = prenom.getText();
+							String ajoutAdresse = adresse.getText();
+							String ajoutEmail = email.getText();
+							int AjoutMobile = Integer.parseInt(mobile.getText());
+							int AjoutFixe = Integer.parseInt(fixe.getText());
+							String AjouteDate_creation = date_creation.getText();
+							String AjoutRemarques = remarques.getText();
+							int AjoutCarte_fidelite = Integer.parseInt(carte_fidelite.getText());
+							List<Commandes> list= new ArrayList<Commandes>();
+							
+							Clients newClient = new Clients(AjouteDate_creation, ajoutPrenom, ajoutNom, ajoutAdresse, AjoutFixe, AjoutMobile, ajoutEmail, AjoutRemarques, AjoutCarte_fidelite, list);
+							
+							DAOClient.insertClients(newClient, conne);
+						}
+					});
+	
+	
 	}
 	
 	public void CloseFrame(){
