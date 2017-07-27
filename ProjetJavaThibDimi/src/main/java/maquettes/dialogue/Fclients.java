@@ -890,7 +890,14 @@ public class Fclients extends JFrame {
 							int AjoutFixe = Integer.parseInt(fixe.getText());
 							String AjouteDate_creation = date_creation.getText();
 							String AjoutRemarques = remarques.getText();
-							int AjoutCarte_fidelite = Integer.parseInt(carte_fidelite.getText());
+							
+							int AjoutCarte_fidelite;
+							
+							if(carte_fidelite.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;}
+							
 							List<Commandes> list= new ArrayList<Commandes>();
 							
 							Clients newClient = new Clients(AjouteDate_creation, ajoutPrenom, ajoutNom, ajoutAdresse, AjoutFixe, AjoutMobile, ajoutEmail, AjoutRemarques, AjoutCarte_fidelite, list);
