@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 import util.Connexions;
+import util.GlobalConnection;
 
 import javax.swing.JTextPane;
 import java.awt.GridBagLayout;
@@ -121,14 +122,21 @@ public class Fconnexion extends JFrame {
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 try {
-				 Connexions con = new Connexions(textField.getText(),textField_1.getText());
-				 Connection connect = con.connect(con.getLog(), con.getPass());
-				FAccueil frame = new FAccueil(connect);
-				frame.setVisible(true);
-				close();
-			} catch (SQLException e1) {
-			}
+				 
+				Connection conn = null;
+				try {
+					GlobalConnection con = new GlobalConnection(textField.getText(),textField_1.getText());
+					conn = GlobalConnection.getInstance();
+					FAccueil frame = new FAccueil();
+					frame.setVisible(true);
+					close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			
 			}
 		});
 		btnValider.setHorizontalTextPosition(SwingConstants.LEADING);

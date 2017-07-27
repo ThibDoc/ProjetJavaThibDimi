@@ -58,7 +58,7 @@ public class Farticles extends JFrame {
 				try {
 					Connexions con = new Connexions("Luna","Luna");
 					Connection connect = con.connect(con.getLog(), con.getPass());
-					Farticles frame = new Farticles(connect);
+					Farticles frame = new Farticles();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,7 +70,7 @@ public class Farticles extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Farticles(Connection con) {
+	public Farticles() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));

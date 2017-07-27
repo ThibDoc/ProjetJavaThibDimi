@@ -84,15 +84,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
-				
-				/*Commandes c1 = new Commandes(1, "dd", 55.5,"2017/08/05", 5,10);
-				Commandes c2 = new Commandes(1, "ee", 55.5,"2017/08/05", 5,10);
-				List<Commandes> list = new ArrayList<Commandes>();
-				list.add(c1);
-				list.add(c2);*/
-				Util u = new Util();
-				System.out.println(client.getCode());
-				client.setListCom(u.combyname(client.getCode()));
+				//client.setListCom(u.combyname(client.getCode()));
 				clients.add(client);
 			}
 
@@ -150,8 +142,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
-				Util u = new Util();
-				client.setListCom(u.combyname(1));
+				//client.setListCom(u.combyname(1));
 				
 			}
 

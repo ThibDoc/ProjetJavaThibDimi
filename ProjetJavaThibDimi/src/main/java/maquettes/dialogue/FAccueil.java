@@ -30,6 +30,7 @@ import util.Connexions;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -46,7 +47,7 @@ public class FAccueil extends JFrame {
 				try {
 					Connexions con = new Connexions("Luna","Luna");
 					Connection connect = con.connect(con.getLog(), con.getPass());
-					FAccueil frame = new FAccueil(connect);
+					FAccueil frame = new FAccueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +59,7 @@ public class FAccueil extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FAccueil(Connection con) {
+	public FAccueil() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Accueil");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FAccueil.class.getResource("/images/Moon-32.png")));
@@ -103,7 +104,7 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Farticles frame = new Farticles(con);
+				Farticles frame = new Farticles();
 				frame.setVisible(true);
 			}
 		});
@@ -113,7 +114,7 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fclients frame = new Fclients(con);
+				Fclients frame = new Fclients();
 				frame.setVisible(true);
 			}
 		});
@@ -127,8 +128,15 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_5 = new JButton("");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fcommandes frame = new Fcommandes(con);
-				frame.setVisible(true);
+				Fcommandes frame;
+				try {
+					frame = new Fcommandes();
+					frame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_5.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Shopping-Bag-128.png")));

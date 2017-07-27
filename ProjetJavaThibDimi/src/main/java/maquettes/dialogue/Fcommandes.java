@@ -10,6 +10,7 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import net.miginfocom.swing.MigLayout;
 import util.Connexions;
+import util.GlobalConnection;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -18,6 +19,7 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
@@ -62,7 +64,7 @@ public class Fcommandes extends JFrame {
 				try {
 					Connexions con = new Connexions("Luna","Luna");
 					Connection connect = con.connect(con.getLog(), con.getPass());
-					Fcommandes frame = new Fcommandes(connect);
+					Fcommandes frame = new Fcommandes();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,13 +75,13 @@ public class Fcommandes extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public Fcommandes(Connection con) {
+	public Fcommandes() throws SQLException {
 		
-		List<Clients> cli = new ClientsDAOMySQL().getAllClients(con);
-		for (Clients clients : cli) {
-			System.out.println(clients.getNom());
-		}
+		Connection conn = null;
+		conn = GlobalConnection.getInstance();
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
@@ -224,15 +226,6 @@ public class Fcommandes extends JFrame {
 		panel_2.add(panel_4, "cell 0 1,grow");
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
 		JComboBox comboBox_1 = new JComboBox();
-		ClientsDAOMySQL dao = new ClientsDAOMySQL();
-		Clients clii = dao.getCliByName(con, comboBox.getSelectedItem().toString());
-		String[] str = new String[clii.getListCom().size()];
-		int compteur =0;
-		for(Commandes uneCom : clii.getListCom()){
-			str[compteur] = Integer.toString(uneCom.getCode());
-			compteur++;
-		}
-		comboBox_1.setModel(new DefaultComboBoxModel(str));
 		comboBox_1.setToolTipText("");
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
