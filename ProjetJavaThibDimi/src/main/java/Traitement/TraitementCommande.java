@@ -10,11 +10,11 @@ public class TraitementCommande {
 	
 	
 	
-	public String[] comboBoxCommandeCli(List<Commandes> list){
+	public String[] comboBoxArticle(List<Articles> list){
 		String[] str = new String[list.size()];
 		int compteur =0;
-		for(Commandes uneCommande : list){
-			str[compteur] = Integer.toString(uneCommande.getCode());
+		for(Articles unArt : list){
+			str[compteur] = unArt.getDesignation();
 			compteur++;
 		}
 		
@@ -22,11 +22,26 @@ public class TraitementCommande {
 		
 	}
 	
-	public Object[][] TableauArticleCommande(Articles art){
-		Object[][] str = new Object[1][6];
-		str[0] = new Object[] {art.getCode(),art.getCategorie(),art.getDesignation(),art.getQuantite(),art.getPrix_unitaire(),art.getQuantite() *art.getPrix_unitaire()  };
-	
+	public Object[][] TableauArticleCommande(List<Articles> list){
+		Object[][] str = new Object[list.size()][6];
+		int compteur =0;
+		for(Articles unArt : list){
+			
+			str[compteur] = new Object[] {unArt.getCode(),unArt.getCategorie(),unArt.getDesignation(),unArt.getQuantite(),unArt.getPrix_unitaire(),unArt.getQuantite() * unArt.getPrix_unitaire()  };
+			compteur++;
+		}
 		return str;
 	}
 
+	public Object[][] TableauToutesCommande(List<Commandes> list){
+		Object[][] str = new Object[list.size()][5];
+		int compteur =0;
+		for(Commandes uneCom : list){
+			
+			str[compteur] = new Object[] {uneCom.getCode(),uneCom.getCode_cli(),uneCom.getMode_payement(),uneCom.getTotal_ttc(),uneCom.getDate()};
+			compteur++;
+		}
+		return str;
+	}
+	
 }

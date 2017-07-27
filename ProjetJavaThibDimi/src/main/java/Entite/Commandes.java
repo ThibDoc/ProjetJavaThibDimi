@@ -9,18 +9,13 @@ public class Commandes{
 	private String mode_payement;
 	private double total_ttc;
 	private String date;
-	private int code_article;
-	private int quantite;
 	
-	public Commandes(int code_cli, String mode_payement, double total_ttc, String date, int code_article,
-			int quantite) {
+	public Commandes(int code_cli, String mode_payement, double total_ttc, String date) {
 		super();
 		this.code_cli = code_cli;
 		this.mode_payement = mode_payement;
 		this.total_ttc = total_ttc;
 		this.date = date;
-		this.code_article = code_article;
-		this.quantite = quantite;
 	}
 	public Commandes() {
 		// TODO Auto-generated constructor stub
@@ -54,18 +49,6 @@ public class Commandes{
 	}
 	public void setDate(String date) {
 		this.date = date;
-	}
-	public int getCode_article() {
-		return code_article;
-	}
-	public void setCode_article(int code_article) {
-		this.code_article = code_article;
-	}
-	public int getQuantite() {
-		return quantite;
-	}
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
 	}
 	
 	

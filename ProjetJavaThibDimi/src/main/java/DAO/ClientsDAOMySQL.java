@@ -113,8 +113,6 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));
 				commande.setDate(result.getString("date"));
-				commande.setCode_article(result.getInt("code_article"));
-				commande.setQuantite(result.getInt("quantite"));
 				commandes.add(commande);
 			}
 

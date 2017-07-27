@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
@@ -87,12 +88,14 @@ public class Fcommandes extends JFrame {
 		Connection conn = null;
 		conn = GlobalConnection.getInstance();
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
+		List<Articles> art = new ArrayList<Articles>();
+		
 		TraitementClients traitementClients =  new TraitementClients(cli);
 		TraitementCommande traitementCommande = new TraitementCommande();
 		ClientsDAOMySQL daoCli = new ClientsDAOMySQL();
 		CommandesDAOMySQL daoCom = new CommandesDAOMySQL();
 		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL();
-		
+		List<Commandes> com = daoCom.getAllCommandes(conn);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);
@@ -240,7 +243,7 @@ public class Fcommandes extends JFrame {
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboBox_1.setToolTipText("");
 		Clients leClient = daoCli.getCliByName(conn, comboBox.getSelectedItem().toString());
-		comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxCommandeCli(leClient.getListCom()) ));
+		comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxArticle(daoArt.getAllArticles(conn)) ));
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
 		JLabel lblCode = new JLabel("Code");
@@ -271,7 +274,7 @@ public class Fcommandes extends JFrame {
 		panel_4.add(textField_4, "cell 0 1,growx");
 		textField_4.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Montant");
+		JLabel lblNewLabel_2 = new JLabel("Prix unitaire");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_4.add(lblNewLabel_2, "cell 1 1,alignx trailing");
 		
@@ -288,6 +291,7 @@ public class Fcommandes extends JFrame {
 		panel_4.add(spinner, "cell 4 1 2 1,growx");
 		
 		JButton btnNewButton_8 = new JButton("Ajouter");
+		
 		btnNewButton_8.setBackground(new Color(255, 222, 173));
 		btnNewButton_8.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Add-New-48.png")));
 		btnNewButton_8.setBorder(null);
@@ -332,6 +336,7 @@ public class Fcommandes extends JFrame {
 		panel_5.add(lblNewLabel_3, "cell 0 0,alignx trailing");
 		
 		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Carte bleu", "Especes", "Cheque"}));
 		panel_5.add(comboBox_2, "cell 1 0,growx");
 		
 		txtDzd = new JTextField();
@@ -402,7 +407,7 @@ public class Fcommandes extends JFrame {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
+				"Code", "Code du client", "Mode de payement", "Total TTC", "Date"
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
@@ -466,12 +471,7 @@ public class Fcommandes extends JFrame {
 		btnSupprimer.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_10.add(btnSupprimer, "cell 2 1");
 		
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FComPrinc.setVisible(false);
-				FComTous.setVisible(true);
-			}
-		});
+		
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -490,7 +490,8 @@ public class Fcommandes extends JFrame {
 					e1.printStackTrace();
 				}
 				Clients leClien = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
-				comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxCommandeCli(leClien.getListCom()) ));
+				comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxArticle(daoArt.getAllArticles(conne)) ));
+
 			}
 		});
 		
@@ -503,21 +504,46 @@ public class Fcommandes extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				Commandes comm = daoCom.getCommandes(Integer.parseInt(comboBox_1.getSelectedItem().toString()), conne);
-				Articles art = daoArt.getArticles(conne, comm.getCode_article());
+				Articles art = daoArt.getArticles(conne, comboBox_1.getSelectedItem().toString());
 				textField_2.setText(Integer.toString(art.getCode()));
 				textField_3.setText(art.getCategorie());
 				textField_4.setText(art.getDesignation());
-				textField_5.setText(Double.toString(comm.getTotal_ttc()));
+				textField_5.setText(Double.toString(art.getPrix_unitaire()));
 				spinner.setValue(art.getQuantite());
+			}
+		});
+		
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Articles article = new Articles(textField_3.getText(), textField_4.getText(), Integer.parseInt(spinner.getValue().toString()), Double.parseDouble(textField_5.getText()));
+				art.add(article);
 				table.setModel(new DefaultTableModel(
 						traitementCommande.TableauArticleCommande(art),
 						new String[] {
 							"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
 						}
 					));
+				double total = 0;
+				for (Articles articles : art) {
+					total += articles.getQuantite() * articles.getPrix_unitaire();
+				}
+				txtDzd.setText(Double.toString(total));
 			}
 		});
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FComPrinc.setVisible(false);
+				FComTous.setVisible(true);
+				table_1.setModel(new DefaultTableModel(
+						traitementCommande.TableauToutesCommande(com),
+						new String[] {
+							"Code", "Code du client", "Mode de payement", "Total TTC", "Date"
+						}
+					));
+			}
+		});
+		
 	}
 	
 	public void CloseFrame(){
