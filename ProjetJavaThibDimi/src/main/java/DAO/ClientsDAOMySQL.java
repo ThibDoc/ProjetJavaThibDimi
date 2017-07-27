@@ -53,6 +53,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 	@Override
 	public List<Clients> getClients(int code, String prenom, String nom, int carte_fidelite, Connection con) {
+		List<Clients> clients=new ArrayList<Clients>();
 		Clients client=null;
 		try {
 			
@@ -119,7 +120,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return client;
+		return clients;
 	}
 
 	@Override

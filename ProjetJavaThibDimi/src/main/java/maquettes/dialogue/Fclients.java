@@ -89,7 +89,7 @@ public class Fclients extends JFrame {
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
-
+	public List<Clients> Rcli = new ArrayList<Clients>();
 
 	/**
 	 * Create the frame.
@@ -98,6 +98,8 @@ public class Fclients extends JFrame {
 	public Fclients() throws SQLException {
 		Connection conn = null;
 		conn = GlobalConnection.getInstance();
+		
+		
 		
 		ClientsDAOMySQL DAOClient = new  ClientsDAOMySQL();
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
@@ -379,7 +381,29 @@ public class Fclients extends JFrame {
 					JButton button = new JButton("Rechercher");
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							DAOClient.getClients(code, prenom, nom, carte_fidelite, con)
+							
+							Connection connecti = null;
+							
+							try {
+								connecti = GlobalConnection.getInstance();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							int code = Integer.parseInt((textField_18.getText()));
+							String nom = textField_19.getText();
+							String prenom = textField_20.getText();
+							
+							int AjoutCarte_fidelite;
+							
+							if(chckbxCarteDeFidlit_1.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;}
+							
+							List<Clients> Rcli = new ClientsDAOMySQL().getClients(code, prenom, nom, AjoutCarte_fidelite, connecti);
+							setRClients(Rcli);
 						}
 					});
 					button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -926,10 +950,10 @@ public class Fclients extends JFrame {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							List<Clients> cliii = new ClientsDAOMySQL().getAllClients(connect);
-							int numLigne = table_1.getSelectedRow();
+							
+							int numLigne = table_2.getSelectedRow();
 							if(numLigne >=0 ){
-								Clients result = cliii.get(numLigne);
+								Clients result = getRClients().get(numLigne);
 								String code = Integer.toString(result.getCode());
 								String fixe = Integer.toString(result.getFixe());
 								String mobile = Integer.toString(result.getMobile());
@@ -953,6 +977,15 @@ public class Fclients extends JFrame {
 					});
 	
 	
+	}
+	
+	
+	public void setRClients(List<Clients> Rlist){
+		Rcli = Rlist;
+	}
+	
+	public List<Clients> getRClients(){
+		return Rcli;
 	}
 	
 	public void CloseFrame(){
