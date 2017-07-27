@@ -24,12 +24,10 @@ public class CommandesDAOMySQL implements CommandesDAO{
 		String mode_payement = commande.getMode_payement();
 		double total_ttc = commande.getTotal_ttc();
 		String date = commande.getDate();
-		int code_article = commande.getCode_article();
-		int quantite = commande.getQuantite();
 		
 		try {
 			state = con.createStatement();
-			state.executeUpdate("INSERT INTO `commande`(`code_cli`, `mode_payement`, `total_ttc`, `date`, `code_article`, `quantite`) VALUES ("+code_cli+",'"+mode_payement+"',"+total_ttc+",'"+date+"',"+code_article+","+quantite+")");
+			state.executeUpdate("INSERT INTO `commande`(`code_cli`, `mode_payement`, `total_ttc`, `date`) VALUES ("+code_cli+",'"+mode_payement+"',"+total_ttc+",'"+date+"')");
 			System.out.println("Commande ajouter");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -45,12 +43,10 @@ public class CommandesDAOMySQL implements CommandesDAO{
 		String mode_payement = commande.getMode_payement();
 		double total_ttc = commande.getTotal_ttc();
 		String date = commande.getDate();
-		int code_article = commande.getCode_article();
-		int quantite = commande.getQuantite();
 		
 		try {
 			state = con.createStatement();
-			state.executeUpdate("UPDATE `commande` SET `code`="+code+",`code_cli`="+code_cli+",`mode_payement`=\""+mode_payement+"\",`total_ttc`="+total_ttc+",`date`="+date+",`code_article`="+code_article+",`quantite`="+quantite+" WHERE code = '"+code+"'");
+			state.executeUpdate("UPDATE `commande` SET `code`="+code+",`code_cli`="+code_cli+",`mode_payement`=\""+mode_payement+"\",`total_ttc`="+total_ttc+",`date`="+date+" WHERE code = '"+code+"'");
 			System.out.println("Commande n°"+code+" modifier");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -89,8 +85,6 @@ public class CommandesDAOMySQL implements CommandesDAO{
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));
 				commande.setDate(result.getString("date"));
-				commande.setCode_article(result.getInt("code_article"));
-				commande.setQuantite(result.getInt("quantite"));
 			}
 
 		} catch (SQLException e) {
@@ -110,12 +104,11 @@ public class CommandesDAOMySQL implements CommandesDAO{
 
 			while (result.next()) {
 				commande=new Commandes();
+				commande.setCode(result.getInt("code"));
 				commande.setCode_cli(result.getInt("code_cli"));
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));
 				commande.setDate(result.getString("date"));
-				commande.setCode_article(result.getInt("code_article"));
-				commande.setQuantite(result.getInt("quantite"));
 				commandes.add(commande);
 			}
 

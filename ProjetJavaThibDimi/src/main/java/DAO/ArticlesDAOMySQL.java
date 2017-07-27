@@ -36,12 +36,12 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 	}
 
 	@Override
-	public Articles getArticles(Connection con,int code) {
+	public Articles getArticles(Connection con,String name) {
 		Articles article=null;
 		try {
 			
 			state = con.createStatement();
-			result = state.executeQuery("SELECT * FROM article where code = '"+code+"'");
+			result = state.executeQuery("SELECT * FROM article where designation = '"+name+"'");
 
 			while (result.next()) {
 				article=new Articles();
@@ -59,19 +59,28 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 	}
 
 	@Override
-	public List<Articles> getAllArticles() {
-		List<Articles> employes=new ArrayList<Articles>();
-		Articles Articles=null;
+	public List<Articles> getAllArticles(Connection con) {
+		List<Articles> articles=new ArrayList<Articles>();
+		Articles article=null;
 		try {
 			
-			state = conn.createStatement();
-			result = state.executeQuery("SELECT * FROM employe");
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM article");
 
+			while (result.next()) {
+				article=new Articles();
+				article.setCode(result.getInt("code"));
+				article.setCategorie(result.getString("categorie"));
+				article.setDesignation(result.getString("designation"));
+				article.setQuantite(result.getInt("quantite"));
+				article.setPrix_unitaire(result.getDouble("prix_unitaire"));
+				articles.add(article);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return employes;
+		return articles;
 
 	}
 
