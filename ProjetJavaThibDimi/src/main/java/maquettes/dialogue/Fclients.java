@@ -219,7 +219,7 @@ public class Fclients extends JFrame {
 					table_1.setModel(new DefaultTableModel(
 							traitementClients.TableauAllClient(),
 						new String[] {
-							"Code", "Nom", "Prenom", "Carte fidélité", "date de création"
+							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
 						}
 					));
 					scrollPane.setViewportView(table_1);
