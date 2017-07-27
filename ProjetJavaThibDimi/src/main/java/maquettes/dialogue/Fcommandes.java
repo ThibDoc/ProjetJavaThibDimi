@@ -223,11 +223,9 @@ public class Fcommandes extends JFrame {
 		panel_4.setBackground(new Color(255, 222, 173));
 		panel_2.add(panel_4, "cell 0 1,grow");
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
-		
 		JComboBox comboBox_1 = new JComboBox();
 		ClientsDAOMySQL dao = new ClientsDAOMySQL();
 		Clients clii = dao.getCliByName(con, comboBox.getSelectedItem().toString());
-		System.out.println(clii.getAdresse());
 		String[] str = new String[clii.getListCom().size()];
 		int compteur =0;
 		for(Commandes uneCom : clii.getListCom()){

@@ -73,6 +73,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 			while (result.next()) {
 				client=new Clients();
+				client.setCode(result.getInt("code"));
 				client.setDate_creation(result.getDate("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));
@@ -88,7 +89,9 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				List<Commandes> list = new ArrayList<Commandes>();
 				list.add(c1);
 				list.add(c2);*/
-				client.setListCom(getCommandesCli(con, 1));
+				Util u = new Util();
+				System.out.println(client.getCode());
+				client.setListCom(u.combyname(client.getCode()));
 				clients.add(client);
 			}
 
@@ -110,6 +113,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 			while (result.next()) {
 				commande=new Commandes();
+				commande.setCode(result.getInt("code"));
 				commande.setCode_cli(result.getInt("code_cli"));
 				commande.setMode_payement(result.getString("mode_payement"));
 				commande.setTotal_ttc(result.getDouble("total_ttc"));
@@ -135,6 +139,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 
 			while (result.next()) {
 				client=new Clients();
+				client.setCode(result.getInt("code"));
 				client.setDate_creation(result.getDate("date_creation"));
 				client.setPrenom(result.getString("prenom"));
 				client.setNom(result.getString("nom"));
@@ -144,7 +149,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
-				client.setListCom(getCommandesCli(con, result.getInt("code")));
+				Util u = new Util();
+				client.setListCom(u.combyname(1));
 				
 			}
 

@@ -9,11 +9,16 @@ import util.Connexions;
 
 public class Util {
 	
-	public List<Commandes> combyname() throws SQLException{
+	
+	public Util(){
+		
+	}
+	
+	public List<Commandes> combyname(int i) throws SQLException{
 		ClientsDAOMySQL com = new ClientsDAOMySQL();
 		Connexions con = new Connexions("Luna","Luna");
 		Connection connect = con.connect(con.getLog(), con.getPass());
-		return com.getCommandesCli(connect, 1);
+		return com.getCommandesCli(connect, i);
 	}
 
 	
