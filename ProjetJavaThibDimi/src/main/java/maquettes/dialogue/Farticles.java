@@ -4,12 +4,17 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
+import util.GlobalConnection;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
@@ -18,6 +23,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import DAO.ArticlesDAOMySQL;
+import Entite.Articles;
+import Traitement.TraitementArticle;
+
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import java.awt.Toolkit;
@@ -36,8 +46,16 @@ public class Farticles extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public Farticles() {
+	public Farticles() throws SQLException {
+		
+		Connection conn = null;
+		conn = GlobalConnection.getInstance();
+		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL();
+		TraitementArticle t = new TraitementArticle();
+		List<Articles> art = daoArt.getAllArticles(conn);
+		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Farticles.class.getResource("/images/Moon-32.png")));
@@ -187,11 +205,7 @@ public class Farticles extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
+			t.TableauArticleCommande(art),
 			new String[] {
 				"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 			}

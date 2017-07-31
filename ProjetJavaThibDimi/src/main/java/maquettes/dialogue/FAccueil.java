@@ -68,8 +68,15 @@ public class FAccueil extends JFrame {
 		JButton btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Farticles frame = new Farticles();
-				frame.setVisible(true);
+				Farticles frame;
+				try {
+					frame = new Farticles();
+					frame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_4.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Product-128.png")));

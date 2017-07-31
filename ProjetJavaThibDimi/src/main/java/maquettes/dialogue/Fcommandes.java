@@ -284,14 +284,13 @@ public class Fcommandes extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
+				
 			},
 			new String[] {
 				"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
 			}
 		));
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_5 = new JPanel();
@@ -372,14 +371,13 @@ public class Fcommandes extends JFrame {
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
+				
 			},
 			new String[] {
 				"Code", "Code du client", "Mode de payement", "Total TTC", "Date"
 			}
 		));
+		table_1.setEnabled(false);
 		scrollPane_1.setViewportView(table_1);
 		
 		JPanel FComSup = new JPanel();
@@ -491,6 +489,7 @@ public class Fcommandes extends JFrame {
 							"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
 						}
 					));
+				table.setEnabled(false);
 				double total = 0;
 				for (Articles articles : art) {
 					total += articles.getQuantite() * articles.getPrix_unitaire();
@@ -517,6 +516,7 @@ public class Fcommandes extends JFrame {
 							"Code", "Code du client", "Mode de payement", "Total TTC", "Date"
 						}
 					));
+				table_1.setEnabled(false);
 			}
 		});
 		
@@ -565,15 +565,23 @@ public class Fcommandes extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				table.setModel(new DefaultTableModel(
 						new Object[][] {
-							{null, null, null, null, null, null},
-							{null, null, null, null, null, null},
-							{null, null, null, null, null, null},
+							
 						},
 						new String[] {
 							"Code", "Code catégorie", "Désignation", "Quantité", "Prix unitaire", "Total"
 						}
 					));
+				table.setEnabled(false);
 				art.clear();
+			}
+		});
+		
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.removeRow(art.size() - 1);
+				table.setModel(model);
+				art.remove(art.size() - 1);
 			}
 		});
 		
