@@ -63,45 +63,47 @@ public class ClientsDAOMySQL implements ClientsDAO {
 			
 			if(code != 0){
 				if( and == 0){
-					requete = "code = "+String.valueOf(code) ;
+					requete = "code = '"+String.valueOf(code)+"'" ;
 				}else{
-					requete = "AND code= "+ String.valueOf(code);
+					requete = "AND code= '"+ String.valueOf(code)+"'";
 				}
 				and = 1;
 			}
 			if(prenom != ""){
 				if( and == 0){
-					requete += "prenom= "+prenom;
+					requete += "prenom= '"+prenom+"'";
 				}else{
-					requete += " AND prenom= "+prenom;
+					requete += " AND prenom= '"+prenom+"'";
 				}
 				and = 1;
 			}
 			if(nom != ""){
 				if( and == 0){
-					requete += " nom= "+nom;
+					requete += " nom= '"+nom+"'";
 				}else{
-					requete += " AND nom= "+nom;
+					requete += " AND nom= '"+nom+"'";
 				}
 				and = 1;
 			}
 			if(carte_fidelite == 1){
 				if( and == 0){
-					requete += "carte_fidelite = "+String.valueOf(carte_fidelite);
+					requete += "carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
 				}else{
-					requete += " AND carte_fidelite = "+String.valueOf(carte_fidelite);
+					requete += " AND carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
 				}
 				and = 1;
 			}else{
 				if( and == 0){
-					requete += "carte_fidelite = "+String.valueOf(carte_fidelite);
+					requete += "carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
 				}else{
-					requete += " AND carte_fidelite = "+String.valueOf(carte_fidelite);
+					requete += " AND carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
 				}
 				and = 1;
 			}
 			
-			result = state.executeQuery("SELECT * FROM client where " +requete);
+			System.out.println(requete);
+			
+			result = state.executeQuery("SELECT * FROM clients where " +requete);
 
 			while (result.next()) {
 				client=new Clients();
