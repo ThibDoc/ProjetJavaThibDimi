@@ -40,15 +40,39 @@ public class ClientsDAOMySQL implements ClientsDAO {
 	}
 
 	@Override
-	public void updateClients(Clients employe, Connection con) {
+	public void updateClients(Clients client,int code, Connection con) {
 		// TODO Auto-generated method stub
+
+		String date_creation = client.getDate_creation();
+		String prenom = client.getPrenom();
+		String nom = client.getNom();
+		String adresse = client.getAdresse();
+		int fixe = client.getFixe();
+		int mobile = client.getMobile();
+		String email = client.getEmail();
+		String remarques = client.getRemarques();
+		int carte_fidelite = client.getCarte_fidelite();
 		
+		
+		try {
+			state = con.createStatement();
+			state.executeUpdate("UPDATE clients SET date_creation="+date_creation+",prenom='"+prenom+"',nom='"+nom+"',adresse='"+adresse+"',fixe="+fixe+",mobile="+mobile+",email='"+email+"',remarques='"+remarques+"',carte_fidelite="+carte_fidelite+"  WHERE code = "+code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void removeClients(int code, Connection con) {
 		// TODO Auto-generated method stub
-		
+		try {
+			state = con.createStatement();
+			state.executeUpdate("DELETE FROM `clients` WHERE code ="+code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -69,7 +93,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				}
 				and = 1;
 			}
-			if(prenom != ""){
+			if(!prenom.equals("") ){
 				if( and == 0){
 					requete += "prenom= '"+prenom+"'";
 				}else{
@@ -77,7 +101,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				}
 				and = 1;
 			}
-			if(nom != ""){
+			if(!nom.equals("")){
 				if( and == 0){
 					requete += " nom= '"+nom+"'";
 				}else{
@@ -99,10 +123,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 					requete += " AND carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
 				}
 				and = 1;
-			}
-			
-			System.out.println(requete);
-			
+			}			
+						
 			result = state.executeQuery("SELECT * FROM clients where " +requete);
 
 			while (result.next()) {
@@ -117,6 +139,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 				client.setEmail(result.getString("email"));
 				client.setRemarques(result.getString("remarques"));
 				client.setCarte_fidelite(result.getInt("carte_fidelite"));
+				clients.add(client);
+				
 			}
 
 		} catch (SQLException e) {
@@ -124,6 +148,8 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		}
 		return clients;
 	}
+	
+
 
 	@Override
 	public List<Clients> getAllClients(Connection con) {

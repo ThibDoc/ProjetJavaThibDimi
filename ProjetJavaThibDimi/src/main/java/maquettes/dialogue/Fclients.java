@@ -378,6 +378,18 @@ public class Fclients extends JFrame {
 					panel_11.add(textField_20, "cell 3 1,growx");
 					textField_20.setColumns(10);
 					
+					table_2 = new JTable();
+					table_2.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null, null, null},
+						},
+						new String[] {
+							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+						}
+					));
+					
+					
+					
 					JButton button = new JButton("Rechercher");
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -390,8 +402,9 @@ public class Fclients extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							
-							int code = Integer.parseInt((textField_18.getText()));
+							int id;
+							if(textField_18.getText().equals("") ){ id = 0;}
+							else { id = Integer.parseInt((textField_18.getText())); }
 							String nom = textField_19.getText();
 							String prenom = textField_20.getText();
 							
@@ -402,10 +415,21 @@ public class Fclients extends JFrame {
 							}
 							else{  AjoutCarte_fidelite = 0;}
 							
-							List<Clients> Rcli = new ClientsDAOMySQL().getClients(code, prenom, nom, AjoutCarte_fidelite, connecti);
+							List<Clients> Rcli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connecti);
 							setRClients(Rcli);
+							
+							
+							TraitementClients traitementClients =  new TraitementClients(getRClients());
+							table_2.setModel(new DefaultTableModel(
+									traitementClients.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
 						}
 					});
+					
+					
 					button.setFont(new Font("Tahoma", Font.BOLD, 12));
 					button.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
 					panel_11.add(button, "cell 1 2 2 1,grow");
@@ -479,18 +503,7 @@ public class Fclients extends JFrame {
 					JScrollPane scrollPane_1 = new JScrollPane();
 					panel_3.add(scrollPane_1, "cell 0 2,grow");
 					
-					table_2 = new JTable();
-					table_2.setModel(new DefaultTableModel(
-						new Object[][] {
-							{null, null, null, null, null},
-						},
-						new String[] {
-							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
-						}
-					));
 					scrollPane_1.setViewportView(table_2);
-					
-					
 					
 					JLabel lblTrierLaListe = new JLabel("Trier la liste par");
 					lblTrierLaListe.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -509,7 +522,7 @@ public class Fclients extends JFrame {
 					JPanel panel_12 = new JPanel();
 					panel_12.setBackground(new Color(30, 144, 255));
 					FCModifier.add(panel_12, BorderLayout.WEST);
-					panel_12.setLayout(new MigLayout("", "[142px]", "[64px][][][][][][][][][][][][][][]"));
+					panel_12.setLayout(new MigLayout("", "[142px]", "[64px][][][][][][][][][][][][][][][][]"));
 					
 					JLabel lblSupprimer = new JLabel("Modifier");
 					lblSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Modify-64.png")));
@@ -518,6 +531,7 @@ public class Fclients extends JFrame {
 					
 					
 					JButton btnNewButton_13 = new JButton("Enregistrer");
+					
 					btnNewButton_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_13.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
 					btnNewButton_13.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
@@ -525,11 +539,22 @@ public class Fclients extends JFrame {
 					
 					
 					JButton btnSupprimer = new JButton("Supprimer");
+					
 					btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
 					
 					
 					panel_12.add(btnSupprimer, "cell 0 3");
+					
+					JButton btnAnnuler = new JButton("Annuler");
+					panel_12.add(btnAnnuler, "cell 0 13");
+					btnAnnuler.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCModifier.setVisible(false);
+							FClient.setVisible(true);
+						}
+					});
+					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
 					
 					
 					
@@ -567,6 +592,43 @@ public class Fclients extends JFrame {
 					panel_15.add(chckbxCarteDeFidlit_2, "cell 3 1");
 					
 					JButton btnNewButton_14 = new JButton("Rechercher");
+					btnNewButton_14.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							Connection connectio = null;
+							
+							try {
+								connectio = GlobalConnection.getInstance();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							int id;
+							if(textField_31.getText().equals("") ){ id = 0;}
+							else { id = Integer.parseInt((textField_18.getText())); }
+							String nom = textField_29.getText();
+							String prenom = textField_30.getText();
+							
+							int AjoutCarte_fidelite;
+							
+							if(chckbxCarteDeFidlit_2.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;}
+							
+							List<Clients> AScli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connectio);
+							setRClients(AScli);
+							
+							
+							TraitementClients traitementClients =  new TraitementClients(getRClients());
+							table.setModel(new DefaultTableModel(
+									traitementClients.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+						}
+					});
 					btnNewButton_14.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
 					btnNewButton_14.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_14.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
@@ -873,16 +935,6 @@ public class Fclients extends JFrame {
 					btnNewButton_12.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
 					panel_4.add(btnNewButton_12, "cell 0 21");
 					
-					JButton btnAnnuler = new JButton("Annuler");
-					btnAnnuler.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							FCModifier.setVisible(false);
-							FClient.setVisible(true);
-						}
-					});
-					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_12.add(btnAnnuler, "cell 0 14");
-					
 					
 					JButton btnNewButton_9 = new JButton("Annuler");
 					btnNewButton_9.addActionListener(new ActionListener() {
@@ -973,6 +1025,149 @@ public class Fclients extends JFrame {
 								}
 								else chckbxCarteDeFidlit_1.setSelected(false);
 							}
+						}
+					});
+					
+					table.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt){
+							Connection connect = null;
+							try {
+								connect = GlobalConnection.getInstance();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							int numLigne = table.getSelectedRow();
+							if(numLigne >=0 ){
+								Clients result = getRClients().get(numLigne);
+								String code = Integer.toString(result.getCode());
+								String fixe = Integer.toString(result.getFixe());
+								String mobile = Integer.toString(result.getMobile());
+								String date_creation =result.getDate_creation();
+								
+								textField_21.setText(code);
+								textField_23.setText(result.getPrenom());
+								textField_25.setText(result.getAdresse());
+								textField_26.setText(fixe);
+								textField_28.setText(result.getEmail());
+								textField_22.setText(date_creation);
+								textField_24.setText(result.getNom());
+								textField_27.setText(mobile);
+								textArea_2.setText(result.getRemarques());
+								if(result.getCarte_fidelite()==1){
+									checkBox.setSelected(true);
+								}
+								else checkBox.setSelected(false);
+							}
+						}
+					});
+					
+					btnNewButton_13.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							
+							Connection connection = null;
+							try {
+								connection = GlobalConnection.getInstance();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							int code = Integer.parseInt(textField_21.getText());
+							String updateNom = textField_24.getText();
+							String updatePrenom = textField_23.getText();
+							String updateAdresse = textField_25.getText();
+							String updateEmail = textField_28.getText();
+							int updateMobile = Integer.parseInt(textField_27.getText());
+							int updateFixe = Integer.parseInt(textField_26.getText());
+							String updateDate_creation = textField_22.getText();
+							String updateRemarques = textArea_2.getText();
+							
+							
+							
+							int UpdateCarte_fidelite;
+							
+							if(checkBox.isSelected()){
+								UpdateCarte_fidelite = 1;
+							}
+							else{  UpdateCarte_fidelite = 0;}
+							
+							List<Commandes> list= new ArrayList<Commandes>();
+							
+							Clients newClient = new Clients(updateDate_creation, updatePrenom, updateNom, updateAdresse, updateFixe, updateMobile, updateEmail, updateRemarques, UpdateCarte_fidelite, list);
+							
+							int id;
+							if(textField_18.getText().equals("") ){ id = 0;}
+							else { id = Integer.parseInt((textField_18.getText())); }
+							String nom = textField_29.getText();
+							String prenom = textField_30.getText();
+							
+							int AjoutCarte_fidelite;
+							
+							if(chckbxCarteDeFidlit_2.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;}
+							
+							DAOClient.updateClients(newClient,code, connection);
+							
+							List<Clients> AScli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connection);
+							setRClients(AScli);
+							
+							
+							TraitementClients traitementClients =  new TraitementClients(getRClients());
+							table.setModel(new DefaultTableModel(
+									traitementClients.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+						}
+					});
+					
+					btnSupprimer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							Connection connection = null;
+							try {
+								connection = GlobalConnection.getInstance();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							int code = Integer.parseInt(textField_21.getText());
+							
+							
+							List<Commandes> list= new ArrayList<Commandes>();
+							
+							DAOClient.removeClients(code, connection);
+							
+							int AjoutCarte_fidelite;
+							
+							if(chckbxCarteDeFidlit_2.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;}
+							String nom = textField_29.getText();
+							String prenom = textField_30.getText();
+							int id;
+							if(textField_18.getText().equals("") ){ id = 0;}
+							else { id = Integer.parseInt((textField_18.getText())); }
+							
+							List<Clients> AScli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connection);
+							setRClients(AScli);
+							
+							
+							TraitementClients traitementClients =  new TraitementClients(getRClients());
+							table.setModel(new DefaultTableModel(
+									traitementClients.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+							
 						}
 					});
 	
