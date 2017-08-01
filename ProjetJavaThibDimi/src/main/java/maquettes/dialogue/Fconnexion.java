@@ -132,7 +132,8 @@ public class Fconnexion extends JFrame {
 					close();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					FLoginMdp log = new FLoginMdp();
+					log.setVisible(true);
 				}
 
 			}
@@ -163,6 +164,8 @@ public class Fconnexion extends JFrame {
 		panel_1.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Customize-01-48.png")));
+		
+		contentPane.getRootPane().setDefaultButton(btnValider);
 	}
 	
 	public void close(){
