@@ -452,7 +452,7 @@ public class Fcommandes extends JFrame {
 					conne = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				Clients leClien = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
 				comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxArticle(daoArt.getAllArticles(conne)) ));
@@ -467,7 +467,7 @@ public class Fcommandes extends JFrame {
 					conne = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				Articles art = daoArt.getArticles(conne, comboBox_1.getSelectedItem().toString());
 				textField_2.setText(Integer.toString(art.getCode()));
@@ -494,7 +494,7 @@ public class Fcommandes extends JFrame {
 				for (Articles articles : art) {
 					total += articles.getQuantite() * articles.getPrix_unitaire();
 				}
-				txtDzd.setText(Double.toString(total));
+				txtDzd.setText(Double.toString(total)+"€");
 			}
 		});
 		
@@ -505,7 +505,7 @@ public class Fcommandes extends JFrame {
 					conne = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				FComPrinc.setVisible(false);
 				FComTous.setVisible(true);
@@ -534,7 +534,7 @@ public class Fcommandes extends JFrame {
 					conne = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				DateActuel d = new DateActuel();
 				Clients leCli = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
@@ -552,7 +552,7 @@ public class Fcommandes extends JFrame {
 					conne = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
 				FComSup f = new FComSup(Integer.parseInt(comboBox_3.getSelectedItem().toString()));
 				f.setVisible(true);
@@ -573,15 +573,26 @@ public class Fcommandes extends JFrame {
 					));
 				table.setEnabled(false);
 				art.clear();
+				txtDzd.setText("0.0€");
 			}
 		});
 		
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				try{
 				model.removeRow(art.size() - 1);
 				table.setModel(model);
 				art.remove(art.size() - 1);
+				double total = 0;
+				for (Articles articles : art) {
+					total += articles.getQuantite() * articles.getPrix_unitaire();
+				}
+				txtDzd.setText(Double.toString(total)+"€");
+				}catch(ArrayIndexOutOfBoundsException r){
+					
+				}
+				
 			}
 		});
 		
