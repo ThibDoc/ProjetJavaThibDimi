@@ -5,13 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import util.GlobalConnection;
-
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,11 +24,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import DAO.ArticlesDAOMySQL;
+import DAO.ClientsDAOMySQL;
 import Entite.Articles;
+import Entite.Clients;
 import Traitement.TraitementArticle;
-
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
 import java.awt.Toolkit;
@@ -120,6 +121,7 @@ public class Farticles extends JFrame {
 		panel_2.add(lblNewLabel_1, "cell 0 0,alignx trailing,aligny top");
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		panel_2.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
 		
@@ -207,9 +209,36 @@ public class Farticles extends JFrame {
 		table.setModel(new DefaultTableModel(
 			t.TableauArticleCommande(art),
 			new String[] {
-				"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+				"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 			}
 		));
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt){
+				int numLigne = table.getSelectedRow();
+				if(numLigne >=0 ){
+					Connection conne = null;
+					try {
+						conne = GlobalConnection.getInstance();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						
+					}
+					List<Articles> artu = daoArt.getAllArticles(conne);
+					Articles result = artu.get(numLigne);
+					String code = Integer.toString(result.getCode());
+					String categorie = result.getCategorie();
+					String designation = result.getDesignation();
+					String quantite =Integer.toString(result.getQuantite());
+					String prix_unitaire = Double.toString(result.getPrix_unitaire());
+					
+					textField.setText(code);
+					textField_1.setText(categorie);
+					textField_2.setText(designation);
+					textField_3.setText(quantite);
+					textField_4.setText(prix_unitaire);
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_4 = new JPanel();
@@ -250,6 +279,95 @@ public class Farticles extends JFrame {
 		textField_5 = new JTextField();
 		panel_4.add(textField_5, "cell 4 0,growx");
 		textField_5.setColumns(10);
+		
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+			}
+		});
+		
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					
+				}
+				List<Articles> arti = daoArt.getAllArticles(conne);
+				int numLigne = table.getSelectedRow();
+				Articles artADel = arti.get(numLigne);
+				
+				daoArt.removeArticles(artADel.getCode(), conne);
+				arti.remove(artADel);
+				
+				table.setModel(new DefaultTableModel(
+						t.TableauArticleCommande(arti),
+						new String[] {
+							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+						}
+					));
+			}
+		});
+		
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					
+				}
+				int updateCode = Integer.parseInt(textField.getText());
+				String updateCateg = textField_1.getText();
+				String updateDesignation = textField_2.getText();
+				int updateQuantite= Integer.parseInt(textField_3.getText());
+				Double updatePrixUnit = Double.parseDouble(textField_4.getText());
+				
+				Articles updArt = new Articles(updateCateg, updateDesignation, updateQuantite, updatePrixUnit);
+				updArt.setCode(updateCode);
+				daoArt.updateArticles(updArt, conne);
+				List<Articles> arto = daoArt.getAllArticles(conne);
+				table.setModel(new DefaultTableModel(
+						t.TableauArticleCommande(arto),
+						new String[] {
+							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+						}
+					));
+			}
+		});
+		
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					
+				}
+				String newCateg = textField_1.getText();
+				String newDesignation = textField_2.getText();
+				int newQuantite= Integer.parseInt(textField_3.getText());
+				Double newPrixUnit = Double.parseDouble(textField_4.getText());
+				
+				Articles newArt = new Articles(newCateg, newDesignation, newQuantite, newPrixUnit);
+				daoArt.insertArticles(newArt, conne);
+				List<Articles> arty = daoArt.getAllArticles(conne);
+				table.setModel(new DefaultTableModel(
+						t.TableauArticleCommande(arty),
+						new String[] {
+							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+						}
+					));
+			}
+		});
 	}
 	
 	public void CloseFrame(){

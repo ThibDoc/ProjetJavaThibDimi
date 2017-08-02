@@ -7,9 +7,9 @@ import Entite.Articles;
 
 public interface ArticlesDAO {
 	
-	public void insertArticles(Articles employe);
-	public void updateArticles(Articles employe);
-	public void removeArticles(int code);
+	public void insertArticles(Articles art,Connection con);
+	public void updateArticles(Articles art,Connection con);
+	public void removeArticles(int code, Connection con);
 	public Articles getArticles(Connection con, String name);
 	public List<Articles> getAllArticles(Connection con);
 	

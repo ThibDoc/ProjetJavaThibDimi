@@ -16,20 +16,51 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 
 	
 	@Override
-	public void insertArticles(Articles employe) {
-		// TODO Auto-generated method stub
+	public void insertArticles(Articles art,Connection con) {
+		
+		String newCateg = art.getCategorie();
+		String newDesignation = art.getDesignation();
+		int newQuantite= art.getQuantite();
+		Double newPrixUnit = art.getPrix_unitaire();
+		
+		try {
+			state = con.createStatement();
+			state.executeUpdate("INSERT INTO `article`VALUES (NULL,'"+newCateg+"','"+newDesignation+"',"+newQuantite+","+newPrixUnit+")");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void updateArticles(Articles employe) {
-		// TODO Auto-generated method stub
+	public void updateArticles(Articles art,Connection con) {
+
+		int updateCode =art.getCode();
+		String updateCateg = art.getCategorie();
+		String updateDesignation =art.getDesignation();
+		int updateQuantite= art.getQuantite();
+		Double updatePrixUnit = art.getPrix_unitaire();
+		
+		try {
+			state = con.createStatement();
+			state.executeUpdate("UPDATE article SET categorie='"+updateCateg+"',designation='"+updateDesignation+"',quantite="+updateQuantite+",prix_unitaire="+updatePrixUnit+"  WHERE code = "+updateCode);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
-	public void removeArticles(int code) {
-		// TODO Auto-generated method stub
+	public void removeArticles(int code,Connection con) {
+		try {
+			state = con.createStatement();
+			state.executeUpdate("DELETE FROM `article` WHERE code ="+code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
