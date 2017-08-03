@@ -140,4 +140,6 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 		return articles;
 	}
 
+	
+
 }

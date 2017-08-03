@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -43,7 +44,7 @@ public class Farticles extends JFrame {
 	private JTextField textField_4;
 	private JTable table;
 	private JTextField textField_5;
-
+	private List<Articles> listeA = new ArrayList<Articles>();
 
 	/**
 	 * Create the frame.
@@ -55,7 +56,7 @@ public class Farticles extends JFrame {
 		conn = GlobalConnection.getInstance();
 		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL();
 		TraitementArticle t = new TraitementArticle();
-		List<Articles> art = daoArt.getAllArticles(conn);
+		listeA = daoArt.getAllArticles(conn);
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Gestion des articles");
@@ -207,7 +208,7 @@ public class Farticles extends JFrame {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			t.TableauArticleCommande(art),
+			t.TableauArticleCommande(listeA),
 			new String[] {
 				"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 			}
@@ -223,8 +224,7 @@ public class Farticles extends JFrame {
 						// TODO Auto-generated catch block
 						
 					}
-					List<Articles> artu = daoArt.getAllArticles(conne);
-					Articles result = artu.get(numLigne);
+					Articles result = listeA.get(numLigne);
 					String code = Integer.toString(result.getCode());
 					String categorie = result.getCategorie();
 					String designation = result.getDesignation();
@@ -275,6 +275,7 @@ public class Farticles extends JFrame {
 		textField_5.setColumns(10);
 		
 		JButton btnRechercher = new JButton("Rechercher");
+		
 		btnRechercher.setBackground(new Color(153, 204, 102));
 		panel_4.add(btnRechercher, "cell 5 0");
 		
@@ -297,15 +298,15 @@ public class Farticles extends JFrame {
 					// TODO Auto-generated catch block
 					
 				}
-				List<Articles> arti = daoArt.getAllArticles(conne);
+				listeA = daoArt.getAllArticles(conne);
 				int numLigne = table.getSelectedRow();
-				Articles artADel = arti.get(numLigne);
+				Articles artADel = listeA.get(numLigne);
 				
 				daoArt.removeArticles(artADel.getCode(), conne);
-				arti.remove(artADel);
+				listeA.remove(artADel);
 				
 				table.setModel(new DefaultTableModel(
-						t.TableauArticleCommande(arti),
+						t.TableauArticleCommande(listeA),
 						new String[] {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
@@ -331,9 +332,9 @@ public class Farticles extends JFrame {
 				Articles updArt = new Articles(updateCateg, updateDesignation, updateQuantite, updatePrixUnit);
 				updArt.setCode(updateCode);
 				daoArt.updateArticles(updArt, conne);
-				List<Articles> arto = daoArt.getAllArticles(conne);
+				listeA = daoArt.getAllArticles(conne);
 				table.setModel(new DefaultTableModel(
-						t.TableauArticleCommande(arto),
+						t.TableauArticleCommande(listeA),
 						new String[] {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
@@ -357,9 +358,9 @@ public class Farticles extends JFrame {
 				
 				Articles newArt = new Articles(newCateg, newDesignation, newQuantite, newPrixUnit);
 				daoArt.insertArticles(newArt, conne);
-				List<Articles> arty = daoArt.getAllArticles(conne);
+				listeA = daoArt.getAllArticles(conne);
 				table.setModel(new DefaultTableModel(
-						t.TableauArticleCommande(arty),
+						t.TableauArticleCommande(listeA),
 						new String[] {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
@@ -374,9 +375,9 @@ public class Farticles extends JFrame {
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 			}
-			List<Articles> arte = daoArt.getAllArticleOrderCateg(conne);
+			listeA = daoArt.getAllArticleOrderCateg(conne);
 			table.setModel(new DefaultTableModel(
-					t.TableauArticleCommande(arte),
+					t.TableauArticleCommande(listeA),
 					new String[] {
 						"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 					}
@@ -390,13 +391,34 @@ public class Farticles extends JFrame {
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 			}
-			List<Articles> arte = daoArt.getAllArticles(conne);
+			listeA = daoArt.getAllArticles(conne);
 			table.setModel(new DefaultTableModel(
-					t.TableauArticleCommande(arte),
+					t.TableauArticleCommande(listeA),
 					new String[] {
 						"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 					}
 				));
+		});
+		
+		btnRechercher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conne = null;
+				try {
+					conne = GlobalConnection.getInstance();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+				}
+				
+				Articles laRecherche = daoArt.getArticles(conne, textField_5.getText());
+				listeA.clear();
+				listeA.add(laRecherche);
+				table.setModel(new DefaultTableModel(
+						t.TableauArticleCommande(listeA),
+						new String[] {
+							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+						}
+					));
+			}
 		});
 		
 	}

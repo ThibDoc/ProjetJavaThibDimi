@@ -13,5 +13,4 @@ public interface ArticlesDAO {
 	public Articles getArticles(Connection con, String name);
 	public List<Articles> getAllArticles(Connection con);
 	public List<Articles> getAllArticleOrderCateg(Connection con);
-	
 }
