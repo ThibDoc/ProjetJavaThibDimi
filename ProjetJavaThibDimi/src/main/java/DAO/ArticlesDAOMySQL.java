@@ -115,4 +115,29 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 
 	}
 
+	@Override
+	public List<Articles> getAllArticleOrderCateg(Connection con) {
+		List<Articles> articles=new ArrayList<Articles>();
+		Articles article=null;
+		try {
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM `article` ORDER BY categorie");
+
+			while (result.next()) {
+				article=new Articles();
+				article.setCode(result.getInt("code"));
+				article.setCategorie(result.getString("categorie"));
+				article.setDesignation(result.getString("designation"));
+				article.setQuantite(result.getInt("quantite"));
+				article.setPrix_unitaire(result.getDouble("prix_unitaire"));
+				articles.add(article);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articles;
+	}
+
 }

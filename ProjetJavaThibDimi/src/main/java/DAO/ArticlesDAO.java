@@ -12,5 +12,6 @@ public interface ArticlesDAO {
 	public void removeArticles(int code, Connection con);
 	public Articles getArticles(Connection con, String name);
 	public List<Articles> getAllArticles(Connection con);
+	public List<Articles> getAllArticleOrderCateg(Connection con);
 	
 }

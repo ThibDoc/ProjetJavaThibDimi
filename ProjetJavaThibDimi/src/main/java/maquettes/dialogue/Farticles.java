@@ -244,7 +244,7 @@ public class Farticles extends JFrame {
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(153, 204, 102));
 		panel_1.add(panel_4, "cell 0 2,grow");
-		panel_4.setLayout(new MigLayout("", "[150px,right][][][][300px]", "[]"));
+		panel_4.setLayout(new MigLayout("", "[150px,right][][][][300px][]", "[]"));
 		
 		JLabel lblNewLabel_6 = new JLabel("Trier par");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -255,17 +255,11 @@ public class Farticles extends JFrame {
 		rdbtnNewRadioButton.setBackground(new Color(153, 204, 102));
 		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_4.add(rdbtnNewRadioButton, "cell 1 0");
-		rdbtnNewRadioButton.addActionListener((ActionEvent e) ->{
-			System.out.println();
-		});
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Catégorie");
 		rdbtnNewRadioButton_1.setBackground(new Color(153, 204, 102));
 		rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_4.add(rdbtnNewRadioButton_1, "cell 2 0");
-		rdbtnNewRadioButton_1.addActionListener((ActionEvent e) ->{
-			System.out.println();
-		});
 		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnNewRadioButton);
@@ -279,6 +273,10 @@ public class Farticles extends JFrame {
 		textField_5 = new JTextField();
 		panel_4.add(textField_5, "cell 4 0,growx");
 		textField_5.setColumns(10);
+		
+		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.setBackground(new Color(153, 204, 102));
+		panel_4.add(btnRechercher, "cell 5 0");
 		
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -368,6 +366,39 @@ public class Farticles extends JFrame {
 					));
 			}
 		});
+		
+		rdbtnNewRadioButton_1.addActionListener((ActionEvent e) ->{
+			Connection conne = null;
+			try {
+				conne = GlobalConnection.getInstance();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+			}
+			List<Articles> arte = daoArt.getAllArticleOrderCateg(conne);
+			table.setModel(new DefaultTableModel(
+					t.TableauArticleCommande(arte),
+					new String[] {
+						"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+					}
+				));
+		});
+		
+		rdbtnNewRadioButton.addActionListener((ActionEvent e) ->{
+			Connection conne = null;
+			try {
+				conne = GlobalConnection.getInstance();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+			}
+			List<Articles> arte = daoArt.getAllArticles(conne);
+			table.setModel(new DefaultTableModel(
+					t.TableauArticleCommande(arte),
+					new String[] {
+						"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+					}
+				));
+		});
+		
 	}
 	
 	public void CloseFrame(){
