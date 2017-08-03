@@ -17,6 +17,10 @@ import java.awt.Toolkit;
 
 public class FComSup extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 

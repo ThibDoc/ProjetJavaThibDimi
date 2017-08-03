@@ -1,11 +1,8 @@
 package maquettes.dialogue;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -14,16 +11,9 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-
-import util.Connexions;
 import util.GlobalConnection;
-
 import javax.swing.JTextPane;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class Fconnexion extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;

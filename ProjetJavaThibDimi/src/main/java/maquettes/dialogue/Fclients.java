@@ -17,8 +17,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -45,6 +43,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class Fclients extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -995,14 +997,7 @@ public class Fclients extends JFrame {
 					
 					table_2.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt){
-							Connection connect = null;
-							try {
-								connect = GlobalConnection.getInstance();
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
+
 							int numLigne = table_2.getSelectedRow();
 							if(numLigne >=0 ){
 								Clients result = getRClients().get(numLigne);
@@ -1030,13 +1025,6 @@ public class Fclients extends JFrame {
 					
 					table.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt){
-							Connection connect = null;
-							try {
-								connect = GlobalConnection.getInstance();
-							} catch (SQLException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 							
 							int numLigne = table.getSelectedRow();
 							if(numLigne >=0 ){
@@ -1138,9 +1126,6 @@ public class Fclients extends JFrame {
 							}
 							
 							int code = Integer.parseInt(textField_21.getText());
-							
-							
-							List<Commandes> list= new ArrayList<Commandes>();
 							
 							DAOClient.removeClients(code, connection);
 							

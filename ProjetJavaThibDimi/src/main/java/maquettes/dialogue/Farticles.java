@@ -26,9 +26,7 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import DAO.ArticlesDAOMySQL;
-import DAO.ClientsDAOMySQL;
 import Entite.Articles;
-import Entite.Clients;
 import Traitement.TraitementArticle;
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
@@ -36,6 +34,10 @@ import java.awt.Toolkit;
 
 public class Farticles extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -217,13 +219,6 @@ public class Farticles extends JFrame {
 			public void mouseClicked(MouseEvent evt){
 				int numLigne = table.getSelectedRow();
 				if(numLigne >=0 ){
-					Connection conne = null;
-					try {
-						conne = GlobalConnection.getInstance();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						
-					}
 					Articles result = listeA.get(numLigne);
 					String code = Integer.toString(result.getCode());
 					String categorie = result.getCategorie();
