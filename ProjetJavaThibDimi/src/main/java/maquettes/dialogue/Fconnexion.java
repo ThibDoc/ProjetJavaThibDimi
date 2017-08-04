@@ -57,6 +57,7 @@ public class Fconnexion extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// Label qui contient le titre en haut
 		JLabel lblNewLabel = new JLabel("Connexion au programme");
 		lblNewLabel.setBounds(5, 5, 432, 48);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -72,6 +73,7 @@ public class Fconnexion extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		// Label texte du  nom d'utilisateur
 		JLabel lblNomDutilisateur = new JLabel("Nom D'utilisateur");
 		lblNomDutilisateur.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNomDutilisateur.setHorizontalTextPosition(SwingConstants.LEADING);
@@ -80,6 +82,7 @@ public class Fconnexion extends JFrame {
 		lblNomDutilisateur.setBounds(10, 9, 132, 16);
 		panel.add(lblNomDutilisateur);
 		
+		// Label texte du mot de passe
 		JLabel lblNewLabel_1 = new JLabel("Mot de passe");
 		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -88,18 +91,21 @@ public class Fconnexion extends JFrame {
 		lblNewLabel_1.setBounds(28, 36, 108, 14);
 		panel.add(lblNewLabel_1);
 		
+		// Textefield du nom d'utilisateur
 		textField = new JTextField();
 		lblNomDutilisateur.setLabelFor(textField);
 		textField.setBounds(146, 9, 261, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
+		// Textefield du mot de passe
 		textField_1 = new JTextField();
 		lblNewLabel_1.setLabelFor(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setBounds(146, 33, 261, 20);
 		panel.add(textField_1);
 		
+		// Texte qui contient la phrase veuillez saisir ...
 		JTextPane txtpnVeuillezSaisirLe = new JTextPane();
 		txtpnVeuillezSaisirLe.setForeground(new Color(128, 128, 128));
 		txtpnVeuillezSaisirLe.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -112,6 +118,7 @@ public class Fconnexion extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
+		//Boutton valider
 		JButton btnValider = new JButton("Valider");
 		btnValider.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnValider.addActionListener(new ActionListener() {
@@ -139,6 +146,7 @@ public class Fconnexion extends JFrame {
 		btnValider.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel_1.add(btnValider);
 		
+		//Boutton quitter
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,6 +160,7 @@ public class Fconnexion extends JFrame {
 		btnQuitter.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Stop-48.png")));
 		btnQuitter.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	
+		//Boutton parametre
 		JButton btnNewButton = new JButton("Param\u00E8tres");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setBounds(0, 11, 168, 55);
@@ -159,6 +168,7 @@ public class Fconnexion extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setIcon(new ImageIcon(Fconnexion.class.getResource("/images/connection/Customize-01-48.png")));
 		
+		//Appuis sur entrer appuie sur le bouton entre
 		contentPane.getRootPane().setDefaultButton(btnValider);
 	}
 	

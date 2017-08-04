@@ -31,11 +31,13 @@ public class FConExit extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// Label qui contient le texte
 		JLabel lblQuitterLaplication = new JLabel("Quitter l'aplication ?");
 		lblQuitterLaplication.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblQuitterLaplication.setBounds(50, 65, 130, 14);
 		contentPane.add(lblQuitterLaplication);
 		
+		//Boutton oui
 		JButton btnNewButton = new JButton("Oui");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -45,6 +47,7 @@ public class FConExit extends JFrame {
 		btnNewButton.setBounds(184, 62, 89, 23);
 		contentPane.add(btnNewButton);
 		
+		// Bouton non
 		JButton btnNewButton_1 = new JButton("Non");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

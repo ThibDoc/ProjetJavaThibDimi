@@ -38,11 +38,13 @@ public class FComSup extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//Label qui contient le texte 
 		JLabel lblSupprimerLaCommande = new JLabel("Supprimer la commande ?");
 		lblSupprimerLaCommande.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblSupprimerLaCommande.setBounds(41, 60, 165, 14);
 		contentPane.add(lblSupprimerLaCommande);
 		
+		//Boutton oui
 		JButton btnNewButton = new JButton("Oui");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -51,7 +53,8 @@ public class FComSup extends JFrame {
 					con = GlobalConnection.getInstance();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					FErreur log = new FErreur("Erreur lors de la suppression de la commande");
+					log.setVisible(true);
 				}
 				CommandesDAOMySQL com = new CommandesDAOMySQL();
 				com.removeCommandes(code, con);
@@ -61,6 +64,7 @@ public class FComSup extends JFrame {
 		btnNewButton.setBounds(216, 57, 89, 23);
 		contentPane.add(btnNewButton);
 		
+		//Boutton Non
 		JButton btnNewButton_1 = new JButton("Non");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

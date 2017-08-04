@@ -67,15 +67,18 @@ public class Fcommandes extends JFrame {
 		
 		Connection conn = null;
 		conn = GlobalConnection.getInstance();
-		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
-		List<Articles> art = new ArrayList<Articles>();
 		
-		TraitementClients traitementClients =  new TraitementClients(cli);
-		TraitementCommande traitementCommande = new TraitementCommande();
-		ClientsDAOMySQL daoCli = new ClientsDAOMySQL();
-		CommandesDAOMySQL daoCom = new CommandesDAOMySQL();
-		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL();
-		List<Commandes> com = daoCom.getAllCommandes(conn);
+		ClientsDAOMySQL daoCli = new ClientsDAOMySQL(); // Dao pour les clients
+		CommandesDAOMySQL daoCom = new CommandesDAOMySQL(); // Dao pour les commandes
+		ArticlesDAOMySQL daoArt = new ArticlesDAOMySQL(); // Dao pour les articles 
+		
+		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn); // List de tous les clients 
+		List<Articles> art = new ArrayList<Articles>();// List qui va acceuillir les articles 
+		List<Commandes> com = daoCom.getAllCommandes(conn); // List de toutes les commande de la base
+		
+		TraitementClients traitementClients =  new TraitementClients(cli); // Objet qui nous permetra de generer les tableau ou les menus deroullant lié au clients
+		TraitementCommande traitementCommande = new TraitementCommande(); // Obket qui nous permetra de generer les combobox et tableau lié au commande
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fcommandes.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des commandes");
 		setBounds(100, 100, 924, 734);
@@ -99,11 +102,13 @@ public class Fcommandes extends JFrame {
 		FComPrinc.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
 		
+		// Label du titre de la page
 		JLabel lblCommandes = new JLabel("Commande");
 		lblCommandes.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Bag-64-actif.png")));
 		lblCommandes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lblCommandes, "cell 0 0");
 		
+		//Boutton qui redirige vers la page qui affiche toutes les commande existante
 		JButton btnNewButton = new JButton("Commandes existantes");
 		btnNewButton.setBorder(null);
 		btnNewButton.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Receipt-48.png")));
@@ -112,8 +117,8 @@ public class Fcommandes extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_1.add(btnNewButton, "cell 0 1");
 		
+		//Boutton qui redirige vers la page qui supprime une commande
 		JButton btnNewButton_1 = new JButton("Supprimer");
-		
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_1.setBackground(new Color(255, 140, 0));
@@ -121,8 +126,8 @@ public class Fcommandes extends JFrame {
 		btnNewButton_1.setBorder(null);
 		panel_1.add(btnNewButton_1, "cell 0 2");
 		
+		// Boutton qui supprime toutes les lignes du tableau de la nouvelle commande
 		JButton btnNewButton_2 = new JButton("Supprimer toutes les lignes");
-		
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBorder(null);
@@ -130,6 +135,7 @@ public class Fcommandes extends JFrame {
 		btnNewButton_2.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_1.add(btnNewButton_2, "cell 0 3");
 		
+		//Boutton qui fera un aperçu avant impression
 		JButton btnNewButton_4 = new JButton("Aperçu");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_4.setForeground(Color.WHITE);
@@ -138,6 +144,7 @@ public class Fcommandes extends JFrame {
 		btnNewButton_4.setBorder(null);
 		panel_1.add(btnNewButton_4, "cell 0 5");
 		
+		// Boutton qui imprime la commande
 		JButton btnNewButton_5 = new JButton("Imprimer");
 		btnNewButton_5.setForeground(Color.WHITE);
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -146,6 +153,7 @@ public class Fcommandes extends JFrame {
 		btnNewButton_5.setBorder(null);
 		panel_1.add(btnNewButton_5, "cell 0 6");
 		
+		// Boutton qui export en fichier
 		JButton btnNewButton_6 = new JButton("Export");
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_6.setForeground(Color.WHITE);
@@ -154,6 +162,7 @@ public class Fcommandes extends JFrame {
 		btnNewButton_6.setBorder(null);
 		panel_1.add(btnNewButton_6, "cell 0 7");
 		
+		// Boutton qui renvoie a l'accueil
 		JButton btnNewButton_7 = new JButton("Accueil");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,28 +188,34 @@ public class Fcommandes extends JFrame {
 		panel_2.add(panel_3, "cell 0 0,grow");
 		panel_3.setLayout(new MigLayout("", "[150px,right][200px,grow][80px,right][grow]", "[][grow]"));
 		
+		// Label de la commande en cours
 		JLabel lblCommande = new JLabel("Commande en cours");
 		lblCommande.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_3.add(lblCommande, "cell 0 0,alignx trailing");
 		
+		// Texte field de commande en cour
 		textField = new JTextField();
 		textField.setEditable(false);
 		panel_3.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
 		
+		// Label de date
 		JLabel lblDate = new JLabel("Date");
 		lblDate.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_3.add(lblDate, "cell 2 0,alignx trailing");
 		
+		// Texte field de date
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
 		panel_3.add(textField_1, "cell 3 0,growx");
 		textField_1.setColumns(10);
 		
+		// Label Nom client
 		JLabel lblNewLabel = new JLabel("Nom du client");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_3.add(lblNewLabel, "cell 0 1,alignx trailing");
 		
+		//Combobox qui contient tout les client
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(traitementClients.MenuDeroulantClient()));
 		panel_3.add(comboBox, "cell 1 1 3 1,growx");
@@ -211,6 +226,7 @@ public class Fcommandes extends JFrame {
 		panel_2.add(panel_4, "cell 0 1,grow");
 		panel_4.setLayout(new MigLayout("", "[200px,grow][80px,right][grow][100px,right][grow][]", "[40px,top][][80px][grow]"));
 		
+		// Combobox qui affiche tous les articles 
 		JComboBox comboBox_1 = new JComboBox();
 		
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {""}));

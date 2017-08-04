@@ -26,16 +26,19 @@ public class FErreur extends JFrame {
 		setTitle("Luna");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FErreur.class.getResource("/images/Moon-32.png")));
 		setBounds(100, 100, 388, 237);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// Label du texte d'erreur
 		JLabel lblMauvaisLoginOu = new JLabel(texte);
 		lblMauvaisLoginOu.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMauvaisLoginOu.setBounds(54, 43, 283, 49);
 		contentPane.add(lblMauvaisLoginOu);
 		
+		// Boutton Ok
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -45,6 +48,7 @@ public class FErreur extends JFrame {
 		btnNewButton.setBounds(138, 118, 101, 37);
 		contentPane.add(btnNewButton);
 		
+		// Appuie sur ok sa appuie sur le boutton ok
 		contentPane.getRootPane().setDefaultButton(btnNewButton);
 	}
 }
