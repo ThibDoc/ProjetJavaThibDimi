@@ -228,79 +228,92 @@ public class Fcommandes extends JFrame {
 		
 		// Combobox qui affiche tous les articles 
 		JComboBox comboBox_1 = new JComboBox();
-		
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {""}));
 		comboBox_1.setToolTipText("");
 		Clients leClient = daoCli.getCliByName(conn, comboBox.getSelectedItem().toString());
 		comboBox_1.setModel(new DefaultComboBoxModel( traitementCommande.comboBoxArticle(daoArt.getAllArticles(conn)) ));
 		panel_4.add(comboBox_1, "cell 0 0,growx");
 		
+		// Label code
 		JLabel lblCode = new JLabel("Code");
 		lblCode.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_4.add(lblCode, "cell 1 0,alignx trailing");
 		
+		// Textfield du code
 		textField_2 = new JTextField();
 		textField_2.setEditable(false);
 		panel_4.add(textField_2, "cell 2 0,growx");
 		textField_2.setColumns(10);
 		
+		//Label categorie
 		JLabel lblNewLabel_1 = new JLabel("Catégorie");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setForeground(new Color(0, 0, 0));
 		panel_4.add(lblNewLabel_1, "cell 3 0,alignx trailing");
 		
+		// texte field categorie
 		textField_3 = new JTextField();
 		textField_3.setEditable(false);
 		panel_4.add(textField_3, "cell 4 0 2 1,growx");
 		textField_3.setColumns(10);
 		
+		// label designation
 		JLabel lblDsignation = new JLabel("Désignation");
 		lblDsignation.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_4.add(lblDsignation, "flowx,cell 0 1");
 		
+		// textefield de designation
 		textField_4 = new JTextField();
 		textField_4.setEditable(false);
 		panel_4.add(textField_4, "cell 0 1,growx");
 		textField_4.setColumns(10);
 		
+		// label prix unitaire
 		JLabel lblNewLabel_2 = new JLabel("Prix unitaire");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_4.add(lblNewLabel_2, "cell 1 1,alignx trailing");
 		
+		// Textefield prix unitaire
 		textField_5 = new JTextField();
 		textField_5.setEditable(false);
 		panel_4.add(textField_5, "cell 2 1,growx");
 		textField_5.setColumns(10);
 		
+		// Label quantite
 		JLabel lblQuantit = new JLabel("Quantité");
 		lblQuantit.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_4.add(lblQuantit, "cell 3 1,alignx trailing");
 		
+		// Spinner quantite
 		JSpinner spinner = new JSpinner();
 		panel_4.add(spinner, "cell 4 1 2 1,growx");
 		
+		// Boutton ajouter
 		JButton btnNewButton_8 = new JButton("Ajouter");
-		
 		btnNewButton_8.setBackground(new Color(255, 222, 173));
 		btnNewButton_8.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Add-New-48.png")));
 		btnNewButton_8.setBorder(null);
 		panel_4.add(btnNewButton_8, "cell 0 2,alignx right");
 		
+		//Boutton modifier
 		JButton btnNewButton_9 = new JButton("Modifier");
 		btnNewButton_9.setBackground(new Color(255, 222, 173));
 		btnNewButton_9.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Data-Edit-48.png")));
 		btnNewButton_9.setBorder(null);
 		panel_4.add(btnNewButton_9, "cell 1 2 2 1,alignx center");
 		
+		//Boutton supprimer
 		JButton btnNewButton_10 = new JButton("Supprimer");
 		btnNewButton_10.setBackground(new Color(255, 222, 173));
 		btnNewButton_10.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Cancel-48.png")));
 		btnNewButton_10.setBorder(null);
 		panel_4.add(btnNewButton_10, "cell 3 2");
 		
+		//scrol qui contient le tableau
 		JScrollPane scrollPane = new JScrollPane();
 		panel_4.add(scrollPane, "cell 0 3 6 1,grow");
 		
+		// tableau qui contiendra les commande
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -318,15 +331,18 @@ public class Fcommandes extends JFrame {
 		panel_2.add(panel_5, "cell 0 2,grow");
 		panel_5.setLayout(new MigLayout("", "[300px,right][150px,left][50px][80px,right]", "[80px][]"));
 		
+		// label mode reglement
 		JLabel lblNewLabel_3 = new JLabel("Mode de réglement");
 		lblNewLabel_3.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/ATM-32.png")));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_5.add(lblNewLabel_3, "cell 0 0,alignx trailing");
 		
+		//combobox reglement
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Carte bleu", "Especes", "Cheque"}));
 		panel_5.add(comboBox_2, "cell 1 0,growx");
 		
+		//Textfield qui contient le prix total
 		txtDzd = new JTextField();
 		txtDzd.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDzd.setBackground(new Color(255, 215, 0));
@@ -337,13 +353,14 @@ public class Fcommandes extends JFrame {
 		txtDzd.setColumns(10);
 		txtDzd.setBorder(new LineBorder(new Color(255, 140, 0), 3));
 		
+		// Boutton valider la com
 		JButton btnNewButton_11 = new JButton("Valider la commande");
-		
 		btnNewButton_11.setBackground(new Color(255, 222, 173));
 		btnNewButton_11.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Cart-05-48.png")));
 		btnNewButton_11.setBorder(null);
 		panel_5.add(btnNewButton_11, "cell 2 1 2 1,grow");
 		
+		//Panel qui affiche toute les commande existante
 		JPanel FComTous = new JPanel();
 		layeredPane.setLayer(FComTous, 1);
 		layeredPane.add(FComTous, "name_1982934410928838");
@@ -354,12 +371,13 @@ public class Fcommandes extends JFrame {
 		FComTous.add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
 		
+		//Label Commande de fcomtous
 		JLabel lblCommandes2 = new JLabel("Commande");
 		lblCommandes2.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Bag-64-actif.png")));
 		lblCommandes2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel.add(lblCommandes2, "cell 0 0");
 		
-		
+		//Boutton retour pour retourner a l'acceuil de fcommande
 		JButton btnNewButton_12 = new JButton("Retour");
 		btnNewButton_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -388,6 +406,7 @@ public class Fcommandes extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_7.add(scrollPane_1, "cell 0 0,grow");
 		
+		// Tableau des commandes existante
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -400,6 +419,7 @@ public class Fcommandes extends JFrame {
 		table_1.setEnabled(false);
 		scrollPane_1.setViewportView(table_1);
 		
+		//Panel de la page pour supprimer une commande
 		JPanel FComSup = new JPanel();
 		layeredPane.add(FComSup, "name_1984331761169496");
 		FComSup.setLayout(new BorderLayout(0, 0));
@@ -409,13 +429,13 @@ public class Fcommandes extends JFrame {
 		panel_8.setLayout(new MigLayout("", "[left]", "[100px][][][][][100px,bottom][][][grow,bottom]"));
 		FComSup.add(panel_8, BorderLayout.WEST);
 		
-		
+		//Label commande de fcomsup
 		JLabel lblCommandes3 = new JLabel("Commande");
 		lblCommandes3.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/commande/Shopping-Bag-64-actif.png")));
 		lblCommandes3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_8.add(lblCommandes3, "cell 0 0");
 		
-		
+		//Boutton pour retourner a l'acceuil de la page commande
 		JButton btnNewButton_14 = new JButton("Retour");
 		btnNewButton_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -441,23 +461,24 @@ public class Fcommandes extends JFrame {
 		panel_9.add(panel_10, "cell 0 0,grow");
 		panel_10.setLayout(new MigLayout("", "[300px,right][100px][grow,right]", "[300px][300px,bottom]"));
 		
+		//Label selectioner com
 		JLabel lblSelectionnerLaCommande = new JLabel("Selectionner la commande a supprimer");
 		lblSelectionnerLaCommande.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_10.add(lblSelectionnerLaCommande, "cell 0 0,alignx trailing");
 		
+		//Combobox qui contient les id des commande
 		JComboBox comboBox_3 = new JComboBox();
 		com = daoCom.getAllCommandes(conn);
 		comboBox_3.setModel(new DefaultComboBoxModel(traitementCommande.comboBoxCommande(com)));
 		panel_10.add(comboBox_3, "cell 1 0,growx");
 		
+		//Boutton supprimer de fcomsup
 		JButton btnSupprimer = new JButton("Supprimer");
-		
 		btnSupprimer.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnSupprimer.setIcon(new ImageIcon(Fcommandes.class.getResource("/images/gestion/Garbage-Open-48.png")));
 		panel_10.add(btnSupprimer, "cell 2 1");
 		
-		
-		
+		// Boutton quiredirige vers fcomsup
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FComPrinc.setVisible(false);
@@ -465,6 +486,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// Traitement du combobox qui affiche tout les client
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Connection conne = null;
@@ -480,6 +502,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		//traitement du combobox qui affiche tous les articles
 		comboBox_1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Connection conne = null;
@@ -498,6 +521,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// Traitement du boutton ajouter une comm
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Articles article = new Articles(textField_3.getText(), textField_4.getText(), Integer.parseInt(spinner.getValue().toString()), Double.parseDouble(textField_5.getText()));
@@ -518,6 +542,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// Traitement du bouton qui redirige vers la page qui affiche toute les comande
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection conne = null;
@@ -540,6 +565,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		//Affichage par defaut des champ ou il y a ajout de la commande
 		Articles artu = daoArt.getArticles(conn, comboBox_1.getSelectedItem().toString());
 		textField_2.setText(Integer.toString(artu.getCode()));
 		textField_3.setText(artu.getCategorie());
@@ -547,6 +573,7 @@ public class Fcommandes extends JFrame {
 		textField_5.setText(Double.toString(artu.getPrix_unitaire()));
 		spinner.setValue(artu.getQuantite());
 		
+		//traitement du boutton qui valide la commande et l'ajoute dans la bdd
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection conne = null;
@@ -565,6 +592,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// traitement du boutton qui redirige vers la page fcmsup
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection conne = null;
@@ -581,6 +609,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// traitement du bouton qui vide toute les lignes du tableau de la commande
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				table.setModel(new DefaultTableModel(
@@ -597,6 +626,7 @@ public class Fcommandes extends JFrame {
 			}
 		});
 		
+		// Traitement du boutton qui supprime la derniere ligne du tableau
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
