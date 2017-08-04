@@ -126,7 +126,7 @@ public class Fconnexion extends JFrame {
 					close();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					FLoginMdp log = new FLoginMdp();
+					FErreur log = new FErreur("Mauvais login ou mot de passe !");
 					log.setVisible(true);
 				}
 
