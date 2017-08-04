@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import Entite.Articles;
+import maquettes.dialogue.FErreur;
 
 public class ArticlesDAOMySQL implements ArticlesDAO{
 
@@ -27,8 +28,7 @@ public class ArticlesDAOMySQL implements ArticlesDAO{
 			state = con.createStatement();
 			state.executeUpdate("INSERT INTO `article`VALUES (NULL,'"+newCateg+"','"+newDesignation+"',"+newQuantite+","+newPrixUnit+")");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		
 	}

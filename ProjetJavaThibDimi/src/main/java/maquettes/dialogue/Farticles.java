@@ -293,6 +293,7 @@ public class Farticles extends JFrame {
 					// TODO Auto-generated catch block
 					
 				}
+				try{
 				listeA = daoArt.getAllArticles(conne);
 				int numLigne = table.getSelectedRow();
 				Articles artADel = listeA.get(numLigne);
@@ -306,6 +307,10 @@ public class Farticles extends JFrame {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
 					));
+				}catch(ArrayIndexOutOfBoundsException ee){
+					FErreur log = new FErreur("Aucun articles n'est selectionner");
+					log.setVisible(true);
+				}
 			}
 		});
 		
@@ -318,6 +323,7 @@ public class Farticles extends JFrame {
 					// TODO Auto-generated catch block
 					
 				}
+				try{
 				int updateCode = Integer.parseInt(textField.getText());
 				String updateCateg = textField_1.getText();
 				String updateDesignation = textField_2.getText();
@@ -334,6 +340,10 @@ public class Farticles extends JFrame {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
 					));
+				}catch(NumberFormatException eeee){
+					FErreur log = new FErreur("Aucun article selectionner ou un champ est vide !");
+					log.setVisible(true);
+				}
 			}
 		});
 		
@@ -346,6 +356,7 @@ public class Farticles extends JFrame {
 					// TODO Auto-generated catch block
 					
 				}
+				try{
 				String newCateg = textField_1.getText();
 				String newDesignation = textField_2.getText();
 				int newQuantite= Integer.parseInt(textField_3.getText());
@@ -360,6 +371,10 @@ public class Farticles extends JFrame {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
 					));
+				}catch(NumberFormatException eeee){
+					FErreur log = new FErreur("Un ou plusieurs champs sont vides");
+					log.setVisible(true);
+				}
 			}
 		});
 		
@@ -404,6 +419,7 @@ public class Farticles extends JFrame {
 					// TODO Auto-generated catch block
 				}
 				
+				try{
 				Articles laRecherche = daoArt.getArticles(conne, textField_5.getText());
 				listeA.clear();
 				listeA.add(laRecherche);
@@ -413,6 +429,10 @@ public class Farticles extends JFrame {
 							"Code", "Catégorie", "Désignation", "Quantité", "Prix Unitaire"
 						}
 					));
+				}catch(NullPointerException exxx){
+					FErreur log = new FErreur("Article introuvable");
+					log.setVisible(true);
+				}
 			}
 		});
 		

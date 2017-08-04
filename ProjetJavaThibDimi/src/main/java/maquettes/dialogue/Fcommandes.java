@@ -585,10 +585,17 @@ public class Fcommandes extends JFrame {
 				}
 				DateActuel d = new DateActuel();
 				Clients leCli = daoCli.getCliByName(conne, comboBox.getSelectedItem().toString());
+				
+				try{
 				Commandes com = new Commandes(leCli.getCode(), comboBox_2.getSelectedItem().toString(), Double.parseDouble(txtDzd.getText()), d.dateActuel());
 				daoCom.insertCommandes(com, conne);
 				List<Commandes> come = daoCom.getAllCommandes(conne);
 				comboBox_3.setModel(new DefaultComboBoxModel(traitementCommande.comboBoxCommande(come)));
+				}catch(NumberFormatException ex){
+					FErreur log = new FErreur("Veuillez ajouter des articles dans la commandes !");
+					log.setVisible(true);
+				}
+				
 			}
 		});
 		
@@ -640,7 +647,8 @@ public class Fcommandes extends JFrame {
 				}
 				txtDzd.setText(Double.toString(total)+"€");
 				}catch(ArrayIndexOutOfBoundsException r){
-					
+					FErreur log = new FErreur("Il n'y a aucune ligne a supprimer !");
+					log.setVisible(true);
 				}
 				
 			}
