@@ -61,8 +61,6 @@ public class Fclients extends JFrame {
 	private JTextField prenom;
 	private JTextField nom;
 	private JTextField adresse;
-	private JTextField code_postal;
-	private JTextField ville;
 	private JTextField fixe;
 	private JTextField mobile;
 	private JTextField email;
@@ -105,7 +103,10 @@ public class Fclients extends JFrame {
 		
 		ClientsDAOMySQL DAOClient = new  ClientsDAOMySQL();
 		List<Clients> cli = new ClientsDAOMySQL().getAllClients(conn);
-		TraitementClients traitementClients =  new TraitementClients(cli);
+		setAllClients(cli);
+		setRClients(cli);
+		cli = getAllClients();
+		TraitementClients traitementClients =  new TraitementClients(getAllClients());
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Fclients.class.getResource("/images/Moon-32.png")));
 		setTitle("Gestion des clients");
@@ -141,6 +142,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_1, "cell 0 0,alignx trailing");
 				
 				textField = new JTextField();
+				textField.setEditable(false);
 				panel_2.add(textField, "cell 1 0,growx");
 				textField.setColumns(10);
 				
@@ -148,6 +150,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_7, "cell 2 0,alignx trailing");
 				
 				textField_5 = new JTextField();
+				textField_5.setEditable(false);
 				panel_2.add(textField_5, "cell 3 0,growx");
 				textField_5.setColumns(10);
 				
@@ -155,6 +158,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_2, "cell 0 1,alignx trailing");
 				
 				textField_1 = new JTextField();
+				textField_1.setEditable(false);
 				panel_2.add(textField_1, "cell 1 1,growx");
 				textField_1.setColumns(10);
 				
@@ -162,6 +166,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_8, "cell 2 1,alignx trailing");
 				
 				textField_6 = new JTextField();
+				textField_6.setEditable(false);
 				panel_2.add(textField_6, "cell 3 1,growx");
 				textField_6.setColumns(10);
 				
@@ -169,6 +174,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_3, "cell 0 2,alignx trailing");
 				
 				textField_2 = new JTextField();
+				textField_2.setEditable(false);
 				panel_2.add(textField_2, "cell 1 2 3 1,growx");
 				textField_2.setColumns(10);
 				
@@ -176,6 +182,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_4, "cell 0 3,alignx trailing");
 				
 				textField_3 = new JTextField();
+				textField_3.setEditable(false);
 				panel_2.add(textField_3, "cell 1 3,growx");
 				textField_3.setColumns(10);
 				
@@ -183,6 +190,7 @@ public class Fclients extends JFrame {
 				panel_2.add(lblNewLabel_9, "cell 2 3,alignx trailing");
 				
 					textField_7 = new JTextField();
+					textField_7.setEditable(false);
 					panel_2.add(textField_7, "cell 3 3,growx");
 					textField_7.setColumns(10);
 					
@@ -190,6 +198,7 @@ public class Fclients extends JFrame {
 					panel_2.add(lblNewLabel_5, "cell 0 4,alignx trailing");
 					
 					textField_4 = new JTextField();
+					textField_4.setEditable(false);
 					panel_2.add(textField_4, "cell 1 4,growx");
 					textField_4.setColumns(10);
 					
@@ -205,6 +214,7 @@ public class Fclients extends JFrame {
 					panel_2.add(scrollPane_3, "cell 1 5 3 1,grow");
 					
 					JTextArea textArea = new JTextArea();
+					textArea.setEditable(false);
 					scrollPane_3.setViewportView(textArea);
 					textArea.setLineWrap(true);
 					
@@ -232,7 +242,8 @@ public class Fclients extends JFrame {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							List<Clients> clii = new ClientsDAOMySQL().getAllClients(connec);
+							
+							List<Clients> clii=getAllClients();
 							int numLigne = table_1.getSelectedRow();
 							if(numLigne >=0 ){
 								Clients result = clii.get(numLigne);
@@ -264,8 +275,11 @@ public class Fclients extends JFrame {
 					panel_1.add(lblNewLabel_10, "flowx,cell 0 2,alignx left");
 					
 					JComboBox comboBox = new JComboBox();
-					comboBox.setModel(new DefaultComboBoxModel(new String[] {"zae", "ezzae", "eazzae", "azaze"}));
+					comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Nom", "Prenom", "Carte_fidelite", "Date_de_creation"}));
 					panel_1.add(comboBox, "cell 0 2");
+					
+					
+					
 					
 					JPanel panel = new JPanel();
 					FClient.add(panel, BorderLayout.WEST);
@@ -291,21 +305,21 @@ public class Fclients extends JFrame {
 					btnNewButton_5.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Preview-48.png")));
 					btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_5.setBorder(null);
-					panel.add(btnNewButton_5, "cell 0 6,alignx left");
+					panel.add(btnNewButton_5, "cell 0 6,grow");
 					
 					JButton btnNewButton_6 = new JButton("Imprimer");
 					btnNewButton_6.setBackground(new Color(30, 144, 255));
 					btnNewButton_6.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Printer-48.png")));
 					btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_6.setBorder(null);
-					panel.add(btnNewButton_6, "cell 0 7,alignx left");
+					panel.add(btnNewButton_6, "cell 0 7,grow");
 					
 					JButton btnNewButton_7 = new JButton("Export");
 					btnNewButton_7.setBackground(new Color(30, 144, 255));
 					btnNewButton_7.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Export-48.png")));
 					btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_7.setBorder(null);
-					panel.add(btnNewButton_7, "cell 0 8,alignx left,aligny center");
+					panel.add(btnNewButton_7, "cell 0 8,grow");
 					
 					JButton btnNewButton_4 = new JButton("Accueil");
 					btnNewButton_4.addActionListener(new ActionListener() {
@@ -317,7 +331,7 @@ public class Fclients extends JFrame {
 					btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_4.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Home-48.png")));
 					btnNewButton_4.setBorder(null);
-					panel.add(btnNewButton_4, "cell 0 10,alignx left,aligny center");
+					panel.add(btnNewButton_4, "cell 0 10,grow");
 					
 					JPanel FCRecherche = new JPanel();
 					layeredPane.setLayer(FCRecherche, 4);
@@ -327,7 +341,7 @@ public class Fclients extends JFrame {
 					JPanel panel_4 = new JPanel();
 					panel_4.setBackground(new Color(30, 144, 255));
 					FCRecherche.add(panel_4, BorderLayout.WEST);
-					panel_4.setLayout(new MigLayout("", "[46px]", "[14px][][][][][][][][][][][][][][][][][][][][][]"));
+					panel_4.setLayout(new MigLayout("", "[46px]", "[14px][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
 					
 					JLabel lblNewLabel_14 = new JLabel("Recherche");
 					lblNewLabel_14.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -335,14 +349,35 @@ public class Fclients extends JFrame {
 					panel_4.add(lblNewLabel_14, "cell 0 0,alignx left,aligny top");
 					
 					JButton btnAperu_1 = new JButton("Aperçu");
+					btnAperu_1.setBorder(null);
+					btnAperu_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+						}
+					});
+					btnAperu_1.setBackground(new Color(30, 144, 255));
 					btnAperu_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Preview-48.png")));
-					panel_4.add(btnAperu_1, "cell 0 7");
+					panel_4.add(btnAperu_1, "cell 0 7,grow");
 					
 					JButton btnNewButton_11 = new JButton("Imprimer");
-					panel_4.add(btnNewButton_11, "cell 0 8");
+					btnNewButton_11.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Printer-48.png")));
+					btnNewButton_11.setFont(new Font("Tahoma", Font.PLAIN, 12));
+					btnNewButton_11.setBorder(null);
+					btnNewButton_11.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnNewButton_11.setBackground(new Color(30, 144, 255));
+					panel_4.add(btnNewButton_11, "cell 0 8,grow");
 					
 					JButton btnExport_1 = new JButton("Export");
-					panel_4.add(btnExport_1, "cell 0 9");
+					btnExport_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Export-48.png")));
+					btnExport_1.setBorder(null);
+					btnExport_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnExport_1.setBackground(new Color(30, 144, 255));
+					panel_4.add(btnExport_1, "cell 0 9,grow");
 					
 					
 					
@@ -383,7 +418,7 @@ public class Fclients extends JFrame {
 					table_2 = new JTable();
 					table_2.setModel(new DefaultTableModel(
 						new Object[][] {
-							{null, null, null, null, null},
+							
 						},
 						new String[] {
 							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
@@ -444,6 +479,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblCode_2, "cell 0 0,alignx trailing");
 					
 					textField_32 = new JTextField();
+					textField_32.setEditable(false);
 					panel_16.add(textField_32, "cell 1 0,growx");
 					textField_32.setColumns(10);
 					
@@ -451,6 +487,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblCrLe, "cell 2 0,alignx trailing");
 					
 					textField_37 = new JTextField();
+					textField_37.setEditable(false);
 					panel_16.add(textField_37, "cell 3 0,growx");
 					textField_37.setColumns(10);
 					
@@ -458,6 +495,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblNom_3, "cell 0 1,alignx trailing");
 					
 					textField_33 = new JTextField();
+					textField_33.setEditable(false);
 					panel_16.add(textField_33, "cell 1 1,growx");
 					textField_33.setColumns(10);
 					
@@ -465,6 +503,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblPrenom_3, "cell 2 1,alignx trailing");
 					
 					textField_38 = new JTextField();
+					textField_38.setEditable(false);
 					panel_16.add(textField_38, "cell 3 1,growx");
 					textField_38.setColumns(10);
 					
@@ -472,6 +511,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblAdresse_1, "cell 0 2,alignx trailing");
 					
 					textField_34 = new JTextField();
+					textField_34.setEditable(false);
 					panel_16.add(textField_34, "cell 1 2 3 1,growx");
 					textField_34.setColumns(10);
 					
@@ -479,6 +519,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblFixe_1, "cell 0 3,alignx trailing");
 					
 					textField_35 = new JTextField();
+					textField_35.setEditable(false);
 					panel_16.add(textField_35, "cell 1 3,growx");
 					textField_35.setColumns(10);
 					
@@ -486,6 +527,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblMobile_1, "cell 2 3,alignx trailing");
 					
 					textField_39 = new JTextField();
+					textField_39.setEditable(false);
 					panel_16.add(textField_39, "cell 3 3,growx");
 					textField_39.setColumns(10);
 					
@@ -493,6 +535,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblEmail_1, "cell 0 4,alignx trailing");
 					
 					textField_36 = new JTextField();
+					textField_36.setEditable(false);
 					panel_16.add(textField_36, "cell 1 4 3 1,growx");
 					textField_36.setColumns(10);
 					
@@ -500,6 +543,7 @@ public class Fclients extends JFrame {
 					panel_16.add(lblRemarques, "cell 0 5,alignx right");
 					
 					JTextArea textArea_3 = new JTextArea();
+					textArea_3.setEditable(false);
 					panel_16.add(textArea_3, "cell 1 5 3 3,grow");
 					
 					JScrollPane scrollPane_1 = new JScrollPane();
@@ -513,6 +557,7 @@ public class Fclients extends JFrame {
 					panel_3.add(lblTrierLaListe, "flowx,cell 0 3,aligny center");
 					
 					JComboBox comboBox_1 = new JComboBox();
+					comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Nom", "Prenom", "Carte_fidelite", "Date_de_creation"}));
 					panel_3.add(comboBox_1, "cell 0 3");
 					
 					/* --- Fin fenêtre principal ---- */
@@ -524,7 +569,7 @@ public class Fclients extends JFrame {
 					JPanel panel_12 = new JPanel();
 					panel_12.setBackground(new Color(30, 144, 255));
 					FCModifier.add(panel_12, BorderLayout.WEST);
-					panel_12.setLayout(new MigLayout("", "[142px]", "[64px][][][][][][][][][][][][][][][][]"));
+					panel_12.setLayout(new MigLayout("", "[142px]", "[64px][][][][][][][][][][][][][][][][][]"));
 					
 					JLabel lblSupprimer = new JLabel("Modifier");
 					lblSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/client/User-Modify-64.png")));
@@ -533,30 +578,23 @@ public class Fclients extends JFrame {
 					
 					
 					JButton btnNewButton_13 = new JButton("Enregistrer");
+					btnNewButton_13.setBorder(null);
+					btnNewButton_13.setBackground(new Color(30, 144, 255));
 					
 					btnNewButton_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_13.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
 					btnNewButton_13.setSelectedIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
-					panel_12.add(btnNewButton_13, "cell 0 2");
+					panel_12.add(btnNewButton_13, "cell 0 2,grow");
 					
 					
 					JButton btnSupprimer = new JButton("Supprimer");
+					btnSupprimer.setBackground(new Color(30, 144, 255));
 					
 					btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnSupprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
 					
 					
-					panel_12.add(btnSupprimer, "cell 0 3");
-					
-					JButton btnAnnuler = new JButton("Annuler");
-					panel_12.add(btnAnnuler, "cell 0 13");
-					btnAnnuler.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							FCModifier.setVisible(false);
-							FClient.setVisible(true);
-						}
-					});
-					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					panel_12.add(btnSupprimer, "cell 0 3,grow");
 					
 					
 					
@@ -646,11 +684,12 @@ public class Fclients extends JFrame {
 					panel_14.add(label, "cell 0 0,alignx right,aligny center");
 					
 					textField_21 = new JTextField();
+					textField_21.setEditable(false);
 					textField_21.setColumns(10);
 					panel_14.add(textField_21, "cell 1 0,growx,aligny center");
 					
 					JLabel label_1 = new JLabel("Créé le");
-					panel_14.add(label_1, "cell 2 0,alignx left,aligny center");
+					panel_14.add(label_1, "cell 2 0,alignx right,aligny center");
 					
 					textField_22 = new JTextField();
 					textField_22.setColumns(10);
@@ -719,10 +758,9 @@ public class Fclients extends JFrame {
 					table = new JTable();
 					table.setModel(new DefaultTableModel(
 						new Object[][] {
-							{null, null, null, null, null},
 						},
 						new String[] {
-							"Code", "Nom", "Prenom", "Carte Fidélité", "Date de création"
+							"Code", "Nom", "Prenom", "Carte Fid\u00E9lit\u00E9", "Date de cr\u00E9ation"
 						}
 					));
 					scrollPane_2.setViewportView(table);
@@ -735,7 +773,7 @@ public class Fclients extends JFrame {
 					JPanel panel_5 = new JPanel();
 					panel_5.setBackground(new Color(30, 144, 255));
 					FCAjout.add(panel_5, BorderLayout.WEST);
-					panel_5.setLayout(new MigLayout("", "[117px]", "[64px][][][][][][][][grow,center][center][center][][][][][][][][][][]"));
+					panel_5.setLayout(new MigLayout("", "[117px]", "[grow][grow][grow][grow][grow][grow][grow][grow][grow,center][grow,center][grow,center][grow][grow][grow][grow][grow][grow][grow][grow][grow][grow]"));
 					
 					JLabel lblNewLabel_11 = new JLabel("Ajout");
 					lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -747,20 +785,29 @@ public class Fclients extends JFrame {
 					btnNewButton_8.setBackground(new Color(30, 144, 255));
 					btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_8.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Save-48.png")));
-					panel_5.add(btnNewButton_8, "cell 0 2,alignx center");
+					panel_5.add(btnNewButton_8, "cell 0 2,grow");
 					
 					JButton btnAperu = new JButton("Aperçu");
+					btnAperu.setBorder(null);
+					btnAperu.setBackground(new Color(30, 144, 255));
 					btnAperu.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-32.png")));
 					btnAperu.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 						}
 					});
 					btnAperu.setFont(new Font("Tahoma", Font.BOLD, 12));
-					panel_5.add(btnAperu, "cell 0 8,alignx left,aligny center");
+					panel_5.add(btnAperu, "cell 0 8,grow");
 					
 					JButton btnImprimer = new JButton("Imprimer");
+					btnImprimer.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Printer-48.png")));
+					btnImprimer.setBorder(null);
+					btnImprimer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnImprimer.setBackground(new Color(30, 144, 255));
 					btnImprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
-					panel_5.add(btnImprimer, "cell 0 9,alignx left");
+					panel_5.add(btnImprimer, "cell 0 9,grow");
 					
 					
 					
@@ -779,6 +826,7 @@ public class Fclients extends JFrame {
 					panel_7.add(lblNewLabel_12, "cell 0 0,alignx trailing");
 					
 					code = new JTextField();
+					code.setEditable(false);
 					panel_7.add(code, "cell 1 0,growx");
 					code.setColumns(10);
 					
@@ -786,6 +834,14 @@ public class Fclients extends JFrame {
 					panel_7.add(lblNewLabel_13, "cell 2 0,alignx trailing");
 					
 					date_creation = new JTextField();
+					String format = "dd/MM/yy HH:mm:ss";
+
+					java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format );
+					java.util.Date date = new java.util.Date();
+
+					
+					date_creation.setEditable(false);
+					date_creation.setText(formater.format( date ) );
 					panel_7.add(date_creation, "cell 3 0,growx");
 					date_creation.setColumns(10);
 					
@@ -796,7 +852,7 @@ public class Fclients extends JFrame {
 					JPanel panel_8 = new JPanel();
 					panel_8.setBorder(new TitledBorder(null, "Etat Civil", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 					panel_6.add(panel_8, "cell 0 1 4 1,grow");
-					panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow]"));
+					panel_8.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow]"));
 					
 					JLabel lblPrenom = new JLabel("Prénom");
 					panel_8.add(lblPrenom, "cell 0 0,alignx trailing");
@@ -818,20 +874,6 @@ public class Fclients extends JFrame {
 					adresse = new JTextField();
 					panel_8.add(adresse, "cell 1 1 3 1,growx");
 					adresse.setColumns(10);
-					
-					JLabel lblCodePostal = new JLabel("Code postal");
-					panel_8.add(lblCodePostal, "cell 0 2,alignx trailing");
-					
-					code_postal = new JTextField();
-					panel_8.add(code_postal, "cell 1 2,growx");
-					code_postal.setColumns(10);
-					
-					JLabel lblVille = new JLabel("Ville");
-					panel_8.add(lblVille, "cell 2 2,alignx trailing");
-					
-					ville = new JTextField();
-					panel_8.add(ville, "cell 3 2,growx");
-					ville.setColumns(10);
 					
 					JPanel panel_9 = new JPanel();
 					panel_9.setBorder(new TitledBorder(null, "Coordonn\u00E9s", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -868,27 +910,37 @@ public class Fclients extends JFrame {
 					panel_10.add(remarques, "cell 0 0,grow");
 					
 					JButton btnExport = new JButton("Export");
+					btnExport.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Export-48.png")));
+					btnExport.setBackground(new Color(30, 144, 255));
+					btnExport.setBorder(null);
+					btnExport.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
 					btnExport.setFont(new Font("Tahoma", Font.BOLD, 12));
-					panel_5.add(btnExport, "cell 0 10,alignx left");
+					panel_5.add(btnExport, "cell 0 10,grow");
 					
 					JButton btnNewButton = new JButton("Ajouter");
 					btnNewButton.setBackground(new Color(30, 144, 255));
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							FClient.setVisible(false);
+							prenom.requestFocus();
 							FCAjout.setVisible(true);
+							prenom.requestFocus();
 						}
 					});
 					btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Add-New-48.png")));
 					btnNewButton.setBorder(null);	
-					panel.add(btnNewButton, "cell 0 1,alignx left,aligny center");
+					panel.add(btnNewButton, "cell 0 1,alignx center,growy");
 					
 					JButton btnNewButton_3 = new JButton("Supprimer");
 					btnNewButton_3.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							FCModifier.setVisible(true);
 							FClient.setVisible(false);
+							textField_29.requestFocus();
 							
 						}
 					});
@@ -896,12 +948,13 @@ public class Fclients extends JFrame {
 					btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_3.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
 					btnNewButton_3.setBorder(null);
-					panel.add(btnNewButton_3, "cell 0 4,alignx left,aligny center");
+					panel.add(btnNewButton_3, "cell 0 4,grow");
 					
 					JButton btnNewButton_1 = new JButton("Rechercher");
 					btnNewButton_1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							FCRecherche.setVisible(true);
+							textField_19.requestFocus();
 							FClient.setVisible(false);
 							
 						}
@@ -910,12 +963,13 @@ public class Fclients extends JFrame {
 					btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_1.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Search-48.png")));
 					btnNewButton_1.setBorder(null);
-					panel.add(btnNewButton_1, "cell 0 2,alignx left,aligny center");
+					panel.add(btnNewButton_1, "cell 0 2,alignx center,growy");
 					
 					JButton btnNewButton_2 = new JButton("Modifier");
 					btnNewButton_2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							FCModifier.setVisible(true);
+							textField_29.requestFocus();
 							FClient.setVisible(false);
 							
 						}
@@ -924,21 +978,33 @@ public class Fclients extends JFrame {
 					btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnNewButton_2.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Data-Edit-48.png")));
 					btnNewButton_2.setBorder(null);
-					panel.add(btnNewButton_2, "cell 0 3,alignx left,aligny center");
+					panel.add(btnNewButton_2, "cell 0 3,grow");
 					
 					JButton btnNewButton_12 = new JButton("Annuler");
+					btnNewButton_12.setBackground(new Color(30, 144, 255));
+					btnNewButton_12.setBorder(null);
 					btnNewButton_12.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							table_2.setModel(new DefaultTableModel(
+									new Object[][] {
+										
+									},
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
 							FCRecherche.setVisible(false);
 							FClient.setVisible(true);
 							
 						}
 					});
 					btnNewButton_12.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_4.add(btnNewButton_12, "cell 0 21");
+					panel_4.add(btnNewButton_12, "cell 0 21,grow");
 					
 					
 					JButton btnNewButton_9 = new JButton("Annuler");
+					btnNewButton_9.setBorder(null);
+					btnNewButton_9.setBackground(new Color(30, 144, 255));
 					btnNewButton_9.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							FCAjout.setVisible(false);
@@ -946,10 +1012,11 @@ public class Fclients extends JFrame {
 						}
 					});
 					btnNewButton_9.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
-					panel_5.add(btnNewButton_9, "cell 0 20,alignx left");
+					panel_5.add(btnNewButton_9, "cell 0 20,grow");
 					
 					layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel_1, panel_1, FClient, panel_2, textField, lblNewLabel_7, textField_5, lblNewLabel_2, textField_1, lblNewLabel_8, textField_6, lblNewLabel_3, textField_2, lblNewLabel_4, textField_3, lblNewLabel_9, textField_7, lblNewLabel_5, textField_4, chckbxNewCheckBox, lblNewLabel_6, textArea, scrollPane, lblNewLabel_10, comboBox, panel, lblNewLabel, btnNewButton, btnNewButton_1, btnNewButton_2, btnNewButton_3, btnNewButton_5, btnNewButton_6, btnNewButton_7, btnNewButton_4}));
-
+					
+					btnNewButton_8.setBorder(null);
 					btnNewButton_8.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
@@ -959,6 +1026,26 @@ public class Fclients extends JFrame {
 							} catch (SQLException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
+								FErreur log = new FErreur("Problème de connexion à la base de données, veuillez contacter un admistrateur");
+								log.setVisible(true);
+							}
+							
+							try {
+								if(nom.getText().equals("") || prenom.getText().equals("")|| adresse.getText().equals("") || email.getText().equals("")|| mobile.getText().equals("")|| fixe.getText().equals("") ){
+									throw new Exception();
+								}
+								String ajoutNom = nom.getText();
+								String ajoutPrenom = prenom.getText();
+								String ajoutAdresse = adresse.getText();
+								String ajoutEmail = email.getText();
+								int AjoutMobile = Integer.parseInt(mobile.getText());
+								int AjoutFixe = Integer.parseInt(fixe.getText());
+								String AjouteDate_creation = date_creation.getText();
+								String AjoutRemarques = remarques.getText();
+							} catch (Exception e2) {
+								// TODO: handle exception
+								FErreur log = new FErreur("Veuillez remplir tout les champs correctement, seul les remarques sont facultatives");
+								log.setVisible(true);
 							}
 							
 							String ajoutNom = nom.getText();
@@ -982,10 +1069,28 @@ public class Fclients extends JFrame {
 							Clients newClient = new Clients(AjouteDate_creation, ajoutPrenom, ajoutNom, ajoutAdresse, AjoutFixe, AjoutMobile, ajoutEmail, AjoutRemarques, AjoutCarte_fidelite, list);
 							
 							
+							try {
+								DAOClient.insertClients(newClient, conne);
+								FErreur log = new FErreur("Enregistrement réussi");
+								log.setVisible(true);
+								
+								nom.setText("");
+								prenom.setText("");
+								adresse.setText("");
+								email.setText("");
+								mobile.setText("");
+								fixe.setText("");
+								date_creation.setText("");
+								remarques.setText("");
+							} catch (Exception e2) {
+								FErreur log = new FErreur("Une erreur s'est produite pendant l'enregistrement, veuillez contacter un admistrateur");
+								log.setVisible(true);
+							}
 							
-							DAOClient.insertClients(newClient, conne);
 							List<Clients> cli = new ClientsDAOMySQL().getAllClients(conne);
-							TraitementClients traitementClients =  new TraitementClients(cli);
+							setAllClients(cli);
+							
+							TraitementClients traitementClients =  new TraitementClients(getAllClients());
 							table_1.setModel(new DefaultTableModel(
 									traitementClients.TableauAllClient(),
 								new String[] {
@@ -1061,8 +1166,13 @@ public class Fclients extends JFrame {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							
-							int code = Integer.parseInt(textField_21.getText());
+							int code = 0;
+							try {
+								code = Integer.parseInt(textField_21.getText());
+							} catch (Exception e) {
+								FErreur log = new FErreur("Veuillez selectionner un client à modifier");
+								log.setVisible(true);
+							}	
 							String updateNom = textField_24.getText();
 							String updatePrenom = textField_23.getText();
 							String updateAdresse = textField_25.getText();
@@ -1083,6 +1193,7 @@ public class Fclients extends JFrame {
 							
 							List<Commandes> list= new ArrayList<Commandes>();
 							
+							
 							Clients newClient = new Clients(updateDate_creation, updatePrenom, updateNom, updateAdresse, updateFixe, updateMobile, updateEmail, updateRemarques, UpdateCarte_fidelite, list);
 							
 							int id;
@@ -1098,10 +1209,32 @@ public class Fclients extends JFrame {
 							}
 							else{  AjoutCarte_fidelite = 0;}
 							
-							DAOClient.updateClients(newClient,code, connection);
+							try {
+								DAOClient.updateClients(newClient,code, connection);
+								FErreur log = new FErreur("Modification réussie !");
+								log.setVisible(true);
+								textField_21.setText("");
+								textField_22.setText("");
+								textField_23.setText("");
+								textField_24.setText("");
+								textField_25.setText("");
+								textField_26.setText("");
+								textField_27.setText("");
+								textField_28.setText("");
+								textArea_2.setText("");
+								
+							} catch (Exception e2) {
+								FErreur log = new FErreur("Une erreur s'est produite pendant la modification, veuillez contacter un admistrateur");
+								log.setVisible(true);
+							}
+							
 							
 							List<Clients> AScli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connection);
 							setRClients(AScli);
+							
+							List<Clients> Resetcli = new ClientsDAOMySQL().getAllClients(connection);
+							setAllClients(Resetcli);
+									
 							
 							
 							TraitementClients traitementClients =  new TraitementClients(getRClients());
@@ -1111,11 +1244,66 @@ public class Fclients extends JFrame {
 									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
 								}
 							));
+							
+							
+							
+							
+							
 						}
 					});
+					btnSupprimer.setBorder(null);
 					
-					btnSupprimer.addActionListener(new ActionListener() {
+					JButton btnAnnuler = new JButton("Annuler");
+					btnAnnuler.setBorder(null);
+					btnAnnuler.setBackground(new Color(30, 144, 255));
+					panel_12.add(btnAnnuler, "cell 0 17,grow");
+					btnAnnuler.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							
+							table.setModel(new DefaultTableModel(
+									new Object[][] {
+										
+									},
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+							FCModifier.setVisible(false);
+							FClient.setVisible(true);
+							TraitementClients traitementClient =  new TraitementClients(getAllClients());
+							table_1.setModel(new DefaultTableModel(
+									traitementClient.TableauAllClient(),
+								new String[] {
+									"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+								}
+							));
+						}
+					});
+					btnAnnuler.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					
+					JPanel FCConfirm = new JPanel();
+					layeredPane.add(FCConfirm, "name_114192853502264");
+					FCConfirm.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][grow][grow][grow][grow]"));
+					
+					JLabel lblNewLabel_15 = new JLabel("Veuillez valider la suppression");
+					lblNewLabel_15.setFont(new Font("Tahoma", Font.PLAIN, 12));
+					FCConfirm.add(lblNewLabel_15, "cell 1 1 2 1,alignx center,aligny bottom");
+					
+					JButton btnNewButton_10 = new JButton("Annuler");
+					btnNewButton_10.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							FCModifier.setVisible(true);
+							
+							FCConfirm.setVisible(false);
+						}
+					});
+					btnNewButton_10.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Cancel-48.png")));
+					FCConfirm.add(btnNewButton_10, "cell 1 2,alignx center");
+					
+					JButton btnNewButton_15 = new JButton("Valider");
+					btnNewButton_15.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
 							
 							Connection connection = null;
 							try {
@@ -1144,6 +1332,12 @@ public class Fclients extends JFrame {
 							List<Clients> AScli = new ClientsDAOMySQL().getClients(id, prenom, nom, AjoutCarte_fidelite, connection);
 							setRClients(AScli);
 							
+							List<Clients> Resetcli = new ClientsDAOMySQL().getAllClients(connection);
+							setAllClients(Resetcli);
+						
+							
+							
+						
 							
 							TraitementClients traitementClients =  new TraitementClients(getRClients());
 							table.setModel(new DefaultTableModel(
@@ -1153,14 +1347,211 @@ public class Fclients extends JFrame {
 								}
 							));
 							
+							textField_21.setText("");
+							textField_22.setText("");
+							textField_23.setText("");
+							textField_24.setText("");
+							textField_25.setText("");
+							textField_26.setText("");
+							textField_27.setText("");
+							textField_28.setText("");
+							textArea_2.setText("");
+							
+							FCModifier.setVisible(true);
+							
+							FCConfirm.setVisible(false);
 						}
 					});
+					
+					
+					btnNewButton_15.setIcon(new ImageIcon(Fclients.class.getResource("/images/gestion/Garbage-Open-48.png")));
+					FCConfirm.add(btnNewButton_15, "cell 2 2,alignx center");
+					btnSupprimer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							FCModifier.setVisible(false);
+							
+							FCConfirm.setVisible(true);
+						}
+					});
+					
+					comboBox_1.addActionListener(new ActionListener() {
+			            public void actionPerformed(ActionEvent event) {
+			            	
+			            	Connection conne = null;
+			            	try {
+			    				conne = GlobalConnection.getInstance();
+			    			} catch (SQLException e1) {
+			    				// TODO Auto-generated catch block
+			    			}
+			                JComboBox comboBox_1 = (JComboBox) event.getSource();
+
+			                Object selected = comboBox_1.getSelectedItem();
+			                
+			                int id;
+							if(textField_18.getText().equals("") ){ id = 0;}
+							else { id = Integer.parseInt((textField_18.getText())); }
+							String nom = textField_19.getText();
+							String prenom = textField_20.getText();
+							
+							int AjoutCarte_fidelite;
+							
+							if(chckbxCarteDeFidlit_1.isSelected()){
+								AjoutCarte_fidelite = 1;
+							}
+							else{  AjoutCarte_fidelite = 0;} 
+			                
+			                
+			                if(selected.toString().equals("Nom")){
+			                	
+			                	Rcli = DAOClient.getTriClient(id, prenom, nom, AjoutCarte_fidelite, conne, "nom");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_2.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                
+			                else if(selected.toString().equals("Prenom")){
+			                	Rcli = DAOClient.getTriClient(id, prenom, nom, AjoutCarte_fidelite, conne, "prenom");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_2.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                else if(selected.toString().equals("Carte_fidelite")){
+			                	Rcli = DAOClient.getTriClient(id, prenom, nom, AjoutCarte_fidelite, conne, "carte_fidelite");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_2.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                else if(selected.toString().equals("Date_de_creation")){
+			                	Rcli = DAOClient.getTriClient(id, prenom, nom, AjoutCarte_fidelite, conne, "date_creation");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_2.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                   
+
+			            }
+			        });
+					
+					comboBox.addActionListener(new ActionListener() {
+			            public void actionPerformed(ActionEvent event) {
+							comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Nom", "Prenom", "Carte_fidelite", "Date_de_creation"}));
+
+			            	Connection conne = null;
+			            	try {
+			    				conne = GlobalConnection.getInstance();
+			    			} catch (SQLException e1) {
+			    				// TODO Auto-generated catch block
+			    			}
+			                JComboBox comboBox_1 = (JComboBox) event.getSource();
+
+			                Object selected = comboBox_1.getSelectedItem();
+			                
+			               
+			                
+			                
+			                if(selected.toString().equals("Nom")){
+			                	
+			                	Rcli = DAOClient.getTriAllClients(conne, "nom");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_1.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                
+			                else if(selected.toString().equals("Prenom")){
+			                	Rcli = DAOClient.getTriAllClients(conne, "prenom");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_1.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                else if(selected.toString().equals("Carte_fidelite")){
+			                	Rcli = DAOClient.getTriAllClients(conne, "carte_fidelite");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_1.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                else if(selected.toString().equals("Date_de_creation")){
+			                	Rcli = DAOClient.getTriAllClients(conne, "date_creation");
+			                	setRClients(Rcli);
+								
+								TraitementClients traitementClients =  new TraitementClients(getRClients());
+			                	
+								table_1.setModel(new DefaultTableModel(
+			        				traitementClients.TableauAllClient(),
+			        					new String[] {
+			        							"Code", "Nom", "Prenom", "Carte fidélité", "Date de création"
+			        					}
+			        				));
+			                }
+			                   
+
+			            }
+			        });
 	
+					 
+					 prenom.requestFocus();
 	
 	}
 	
 	
 	public void setRClients(List<Clients> Rlist){
+		Rcli = Rlist;
+	}
+	
+	public List<Clients> getAllClients(){
+		return Rcli;
+	}
+	
+	public void setAllClients(List<Clients> Rlist){
 		Rcli = Rlist;
 	}
 	

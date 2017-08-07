@@ -54,7 +54,7 @@ public class FAccueil extends JFrame {
 		lblSarlLuna.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel.setLayout(new MigLayout("", "[92px]", "[21px][grow][100px]"));
 		
-		JButton btnNewButton = new JButton("Quittez");
+		JButton btnNewButton = new JButton("Quitter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -125,6 +125,12 @@ public class FAccueil extends JFrame {
 		panel_1.add(btnNewButton_5, "cell 2 1");
 		
 		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Fparametres frame = new Fparametres();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton_3.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Settings-02-128.png")));
 		panel_1.add(btnNewButton_3, "cell 1 2");
 	}

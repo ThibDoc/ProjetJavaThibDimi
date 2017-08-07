@@ -193,7 +193,7 @@ public class Farticles extends JFrame {
 		btnNewButton_5.setBorder(null);
 		panel_2.add(btnNewButton_5, "cell 1 4,alignx center");
 		
-		JButton btnNewButton_6 = new JButton("Effacer");
+		JButton btnNewButton_6 = new JButton("Effacer les champs");
 		btnNewButton_6.setBackground(new Color(153, 204, 102));
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_6.setIcon(new ImageIcon(Farticles.class.getResource("/images/gestion/Cancel-48.png")));
@@ -308,7 +308,7 @@ public class Farticles extends JFrame {
 						}
 					));
 				}catch(ArrayIndexOutOfBoundsException ee){
-					FErreur log = new FErreur("Aucun articles n'est selectionner");
+					FErreur log = new FErreur("Aucun article n'est selectionné");
 					log.setVisible(true);
 				}
 			}
@@ -341,7 +341,7 @@ public class Farticles extends JFrame {
 						}
 					));
 				}catch(NumberFormatException eeee){
-					FErreur log = new FErreur("Aucun article selectionner ou un champ est vide !");
+					FErreur log = new FErreur("Aucun article selectionné ou un champ est vide !");
 					log.setVisible(true);
 				}
 			}
@@ -435,6 +435,8 @@ public class Farticles extends JFrame {
 				}
 			}
 		});
+		
+		textField_2.requestFocus();
 		
 	}
 	

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entite.Clients;
 import Entite.Commandes;
 
 public class CommandesDAOMySQL implements CommandesDAO{
@@ -13,6 +15,8 @@ public class CommandesDAOMySQL implements CommandesDAO{
 	Connection conn = null;
 	Statement state = null;
 	ResultSet result = null;
+	Statement state1 = null;
+	ResultSet result1 = null;
 	
 	
 	@Override
@@ -89,6 +93,36 @@ public class CommandesDAOMySQL implements CommandesDAO{
 		}
 		return commande;
 	}
+	
+
+	public List<Commandes> getCommandesClient(String nom,Connection con) {
+		Commandes commande=null;
+		List<Commandes> commandes=new ArrayList<Commandes>();
+		try {
+			
+			state = con.createStatement();
+			result1 = state.executeQuery("SELECT code FROM clients where nom = '"+nom+"'");
+			result1.next();
+			int code = result1.getInt("code");
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM commande where code = '"+code+"'");
+
+			while (result.next()) {
+				commande=new Commandes();
+				commande.setCode(result.getInt("code"));
+				commande.setCode_cli(result.getInt("code_cli"));
+				commande.setMode_payement(result.getString("mode_payement"));
+				commande.setTotal_ttc(result.getDouble("total_ttc"));
+				commande.setDate(result.getString("date"));
+				commandes.add(commande);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commandes;
+	}
 
 	@Override
 	public List<Commandes> getAllCommandes(Connection con) {
@@ -113,6 +147,25 @@ public class CommandesDAOMySQL implements CommandesDAO{
 			e.printStackTrace();
 		}
 		return commandes;
+	}
+	
+	public  int countCommandes(Connection con) {
+		int count = 0;
+			
+			try {
+				state = con.createStatement();
+				result = state.executeQuery(" SELECT count(*) as count FROM commande WHERE date<now()");
+				result.next();
+				count = result.getInt("count");
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		return count;
 	}
 
 }

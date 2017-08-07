@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import Entite.Clients;
 import Entite.Commandes;
@@ -29,10 +30,10 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		String email = client.getEmail();
 		String remarques = client.getRemarques();
 		int carte_fidelite = client.getCarte_fidelite();
-		
+		System.out.println(date_creation);
 		try {
 			state = con.createStatement();
-			state.executeUpdate("INSERT INTO `clients`VALUES (NULL,"+date_creation+",'"+prenom+"','"+nom+"','"+adresse+"',"+fixe+","+mobile+",'"+email+"','"+remarques+"',"+carte_fidelite+")");
+			state.executeUpdate("INSERT INTO `clients`VALUES (NULL,'"+date_creation+"','"+prenom+"','"+nom+"','"+adresse+"',"+fixe+","+mobile+",'"+email+"','"+remarques+"',"+carte_fidelite+")");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +57,7 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		
 		try {
 			state = con.createStatement();
-			state.executeUpdate("UPDATE clients SET date_creation="+date_creation+",prenom='"+prenom+"',nom='"+nom+"',adresse='"+adresse+"',fixe="+fixe+",mobile="+mobile+",email='"+email+"',remarques='"+remarques+"',carte_fidelite="+carte_fidelite+"  WHERE code = "+code);
+			state.executeUpdate("UPDATE clients SET date_creation='"+date_creation+"',prenom='"+prenom+"',nom='"+nom+"',adresse='"+adresse+"',fixe="+fixe+",mobile="+mobile+",email='"+email+"',remarques='"+remarques+"',carte_fidelite="+carte_fidelite+"  WHERE code = "+code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -183,6 +184,38 @@ public class ClientsDAOMySQL implements ClientsDAO {
 		return clients;
 
 	}
+	
+	public List<Clients> getTriAllClients(Connection con,String tri) {
+		List<Clients> clients=new ArrayList<Clients>();
+		Clients client=null;
+		try {
+			
+			state = con.createStatement();
+			result = state.executeQuery("SELECT * FROM clients ORDER BY "+tri);
+
+			while (result.next()) {
+				client=new Clients();
+				client.setCode(result.getInt("code"));
+				client.setDate_creation(result.getString("date_creation"));
+				client.setPrenom(result.getString("prenom"));
+				client.setNom(result.getString("nom"));
+				client.setAdresse(result.getString("adresse"));
+				client.setFixe(result.getInt("fixe"));
+				client.setMobile(result.getInt("mobile"));
+				client.setEmail(result.getString("email"));
+				client.setRemarques(result.getString("remarques"));
+				client.setCarte_fidelite(result.getInt("carte_fidelite"));
+				Util u = new Util();
+				client.setListCom( u.combyname(client.getCode()) );
+				clients.add(client);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clients;
+
+	}
 
 	@Override
 	public List<Commandes> getCommandesCli(Connection con,int cli) {
@@ -238,6 +271,79 @@ public class ClientsDAOMySQL implements ClientsDAO {
 			e.printStackTrace();
 		}
 		return client;
+	}
+
+	public List<Clients> getTriClient(int code, String prenom, String nom, int carte_fidelite, Connection con,String tri) {
+		List<Clients> clients=new ArrayList<Clients>();
+		Clients client=null;
+		try {
+			
+			state = con.createStatement();
+			String requete = "";
+			int and = 0;
+			
+			if(code != 0){
+				if( and == 0){
+					requete = "code = '"+String.valueOf(code)+"'" ;
+				}else{
+					requete = "AND code= '"+ String.valueOf(code)+"'";
+				}
+				and = 1;
+			}
+			if(!prenom.equals("") ){
+				if( and == 0){
+					requete += "prenom= '"+prenom+"'";
+				}else{
+					requete += " AND prenom= '"+prenom+"'";
+				}
+				and = 1;
+			}
+			if(!nom.equals("")){
+				if( and == 0){
+					requete += " nom= '"+nom+"'";
+				}else{
+					requete += " AND nom= '"+nom+"'";
+				}
+				and = 1;
+			}
+			if(carte_fidelite == 1){
+				if( and == 0){
+					requete += "carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
+				}else{
+					requete += " AND carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
+				}
+				and = 1;
+			}else{
+				if( and == 0){
+					requete += "carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
+				}else{
+					requete += " AND carte_fidelite = '"+String.valueOf(carte_fidelite)+"'";
+				}
+				and = 1;
+			}			
+						
+			result = state.executeQuery("SELECT * FROM clients where " +requete+" ORDER BY "+tri);
+
+			while (result.next()) {
+				client=new Clients();
+				client.setCode(result.getInt("code"));
+				client.setDate_creation(result.getString("date_creation"));
+				client.setPrenom(result.getString("prenom"));
+				client.setNom(result.getString("nom"));
+				client.setAdresse(result.getString("adresse"));
+				client.setFixe(result.getInt("fixe"));
+				client.setMobile(result.getInt("mobile"));
+				client.setEmail(result.getString("email"));
+				client.setRemarques(result.getString("remarques"));
+				client.setCarte_fidelite(result.getInt("carte_fidelite"));
+				clients.add(client);
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clients;
 	}
 
 }

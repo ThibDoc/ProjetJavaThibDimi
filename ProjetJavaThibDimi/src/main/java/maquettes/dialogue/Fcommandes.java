@@ -195,6 +195,8 @@ public class Fcommandes extends JFrame {
 		
 		// Texte field de commande en cour
 		textField = new JTextField();
+		String count = Integer.toString(daoCom.countCommandes( conn));
+		textField.setText(count);
 		textField.setEditable(false);
 		panel_3.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
@@ -205,7 +207,12 @@ public class Fcommandes extends JFrame {
 		panel_3.add(lblDate, "cell 2 0,alignx trailing");
 		
 		// Texte field de date
+		String format = "dd/MM/yy HH:mm:ss";
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format );
+		java.util.Date date = new java.util.Date();
+		
 		textField_1 = new JTextField();
+		textField_1.setText(formater.format( date ));
 		textField_1.setEditable(false);
 		panel_3.add(textField_1, "cell 3 0,growx");
 		textField_1.setColumns(10);
@@ -329,7 +336,7 @@ public class Fcommandes extends JFrame {
 		JPanel panel_5 = new JPanel();
 		panel_5.setBackground(new Color(255, 222, 173));
 		panel_2.add(panel_5, "cell 0 2,grow");
-		panel_5.setLayout(new MigLayout("", "[300px,right][150px,left][50px][80px,right]", "[80px][]"));
+		panel_5.setLayout(new MigLayout("", "[300px,right][150px,left][50px][80px,right][20px]", "[80px][]"));
 		
 		// label mode reglement
 		JLabel lblNewLabel_3 = new JLabel("Mode de réglement");
@@ -347,11 +354,15 @@ public class Fcommandes extends JFrame {
 		txtDzd.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDzd.setBackground(new Color(255, 215, 0));
 		txtDzd.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtDzd.setText("0,00€");
+		txtDzd.setText("0,00");
 		txtDzd.setEditable(false);
 		panel_5.add(txtDzd, "cell 3 0,aligny center");
 		txtDzd.setColumns(10);
 		txtDzd.setBorder(new LineBorder(new Color(255, 140, 0), 3));
+		
+		JLabel lblNewLabel_4 = new JLabel("€");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 20));
+		panel_5.add(lblNewLabel_4, "cell 4 0");
 		
 		// Boutton valider la com
 		JButton btnNewButton_11 = new JButton("Valider la commande");
@@ -538,7 +549,7 @@ public class Fcommandes extends JFrame {
 				for (Articles articles : art) {
 					total += articles.getQuantite() * articles.getPrix_unitaire();
 				}
-				txtDzd.setText(Double.toString(total)+"€");
+				txtDzd.setText(Double.toString(total));
 			}
 		});
 		
@@ -629,7 +640,7 @@ public class Fcommandes extends JFrame {
 					));
 				table.setEnabled(false);
 				art.clear();
-				txtDzd.setText("0.0€");
+				txtDzd.setText("0.0");
 			}
 		});
 		

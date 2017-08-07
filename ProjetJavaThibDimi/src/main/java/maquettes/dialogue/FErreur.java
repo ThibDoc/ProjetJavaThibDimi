@@ -4,12 +4,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class FErreur extends JFrame {
 
@@ -32,11 +40,7 @@ public class FErreur extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		// Label du texte d'erreur
-		JLabel lblMauvaisLoginOu = new JLabel(texte);
-		lblMauvaisLoginOu.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMauvaisLoginOu.setBounds(54, 43, 283, 49);
-		contentPane.add(lblMauvaisLoginOu);
+		
 		
 		// Boutton Ok
 		JButton btnNewButton = new JButton("OK");
@@ -50,5 +54,20 @@ public class FErreur extends JFrame {
 		
 		// Appuie sur ok sa appuie sur le boutton ok
 		contentPane.getRootPane().setDefaultButton(btnNewButton);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
+		textPane.setBackground(UIManager.getColor("Button.background"));
+		textPane.setOpaque(true);
+		StyledDocument doc = textPane.getStyledDocument();		
+		MutableAttributeSet center = new SimpleAttributeSet();		
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, 0, center, true);
+		textPane.setText(texte);
+		
+		
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textPane.setBounds(10, 45, 352, 62);
+		contentPane.add(textPane);
 	}
 }

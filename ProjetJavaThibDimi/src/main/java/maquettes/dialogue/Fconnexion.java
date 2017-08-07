@@ -162,6 +162,12 @@ public class Fconnexion extends JFrame {
 	
 		//Boutton parametre
 		JButton btnNewButton = new JButton("Param\u00E8tres");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Fparametres frame = new Fparametres();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setBounds(0, 11, 168, 55);
 		panel_1.add(btnNewButton);
