@@ -70,6 +70,7 @@ public class FAccueil extends JFrame {
 		panel_1.setLayout(new MigLayout("", "[grow,center][grow,center][grow,center]", "[grow,center][grow,center][grow,center]"));
 		
 		JButton btnNewButton_4 = new JButton("");
+		btnNewButton_4.setSelectedIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Product-128-actif.png")));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Farticles frame;
@@ -87,6 +88,7 @@ public class FAccueil extends JFrame {
 		panel_1.add(btnNewButton_4, "cell 1 0");
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setSelectedIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/People-128-actif.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Fclients frame;
@@ -104,10 +106,12 @@ public class FAccueil extends JFrame {
 		panel_1.add(btnNewButton_1, "cell 0 1");
 		
 		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setSelectedIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Diagram-128-actif.png")));
 		btnNewButton_2.setIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Diagram-128.png")));
 		panel_1.add(btnNewButton_2, "cell 1 1");
 		
 		JButton btnNewButton_5 = new JButton("");
+		btnNewButton_5.setSelectedIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Shopping-Bag-128-actif.png")));
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Fcommandes frame;
@@ -125,6 +129,7 @@ public class FAccueil extends JFrame {
 		panel_1.add(btnNewButton_5, "cell 2 1");
 		
 		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setSelectedIcon(new ImageIcon(FAccueil.class.getResource("/images/accueil/Settings-02-128-actif.png")));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Fparametres frame = new Fparametres();
